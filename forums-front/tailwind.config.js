@@ -1,3 +1,4 @@
+const { ɵNgNoValidate } = require('@angular/forms')
 const colors = require('tailwindcss/colors')
 
 module.exports = {

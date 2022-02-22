@@ -1,0 +1,28 @@
+#navbar {
+  color: white;
+  width:100%;
+  height:60px;
+  position: fixed;
+  top:0;
+  left:0;
+  @apply bg-sky-700;
+
+}
+
+#title {
+  //@apply font-sans: font-light;
+  font-size: 225%;
+  margin-left: 30px;
+}
+
+nav {
+  position: fixed;
+  top: 11px;
+  left:160px;
+  font-size: 150%;
+}
+
+a {
+  margin-left: 25px;
+
+}
