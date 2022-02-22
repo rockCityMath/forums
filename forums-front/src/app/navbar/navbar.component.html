@@ -1,8 +1,18 @@
 <div id = 'navbar'  class="font-sans: font-light">
-<h1 id = 'title' routerLink="/home">{{ title | uppercase }}</h1>
-<nav>
-  <a routerLink="/home">home</a>
-  <a routerLink="/about">about</a>
-  <a routerLink="/users">users</a>
-</nav>
+  <a id = 'title' routerLink="/home">{{ title | uppercase }}</a>
+  <nav>
+    <a routerLink="/home">home</a>
+    <a routerLink="/about">about</a>
+    <a routerLink="/admin">admin</a>
+
+    <div id="SLButtons">
+      <div id="signUpBG"><button type="button" id="signUpButton" class="font-sans: font-light"
+      routerLink="/register">sign up</button></div>
+
+      <div id="loginBG"><button type="button" id="loginButton" class="font-sans: font-light"
+        routerLink="/login">login</button></div>
+    </div>
+
+
+  </nav>
 </div>

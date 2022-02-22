@@ -10,7 +10,6 @@
 }
 
 #title {
-  //@apply font-sans: font-light;
   font-size: 225%;
   margin-left: 30px;
 }
@@ -24,5 +23,33 @@ nav {
 
 a {
   margin-left: 25px;
+}
 
+#signUpButton {
+  @apply text-sky-800;
+}
+
+#signUpBG {
+  @apply bg-white;
+  width: 90px;
+  height: 30px;
+  position: fixed;
+  top: 14px;
+  right: 160px;
+  border-radius: 7.5px;
+}
+
+#loginBG {
+  @apply bg-sky-600;
+  width: 90px;
+  height: 30px;
+  position: fixed;
+  top: 14px;
+  right: 45px;
+  border-radius: 7.5px;
+}
+
+#SLButtons {
+  text-align: center;
+  font-size: 75%;
 }
