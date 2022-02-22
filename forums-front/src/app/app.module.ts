@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { ComposeComponent } from './compose/compose.component';
+import { FeatureComponent } from './feature/feature.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ComposeComponent } from './compose/compose.component';
     RegisterComponent,
     SearchComponent,
     ComposeComponent,
+    FeatureComponent,
   ],
   imports: [
     BrowserModule,

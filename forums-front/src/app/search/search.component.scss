@@ -1,17 +1,21 @@
 #searchBar {
   position: relative;
-  margin-left: 35%;
+  margin-left: 37%;
   padding-left: 1.1%;
-  padding-top: .08%;
+  padding-top: .2%;
   top: 15px;
   height: 30px;
   width: 30%;
   border-radius: 20px;
-  outline: none;
-  border: none;
   background-color: transparent;
   @apply text-gray-400;
   @apply bg-white;
+  overflow: auto;
+}
+
+#searchBar input {
+  border: none;
+  outline: none;
 }
 
 #searchIcon {

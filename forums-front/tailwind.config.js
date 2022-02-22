@@ -17,7 +17,9 @@ module.exports = {
       white: colors.white,
       red: colors.red,
     },
-    extend: {},
+    extend: {
+
+    },
   },
   variants: {
     extend: {},
