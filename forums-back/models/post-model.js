@@ -5,8 +5,9 @@ const Schema = mongoose.Schema;
 
 const Post = new Schema(
     {
-        username: {type: User, required: true },
+        userID: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},
         content: {type: String, required: true },
-        tag: {type: [String], required: true }
+        tags: {type: [String], required: true }
     }
 )
+module.exports = mongoose.model('posts', Post)
