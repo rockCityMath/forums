@@ -4,12 +4,11 @@ const Post = require('../models/post-model');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//Will parentComment work???
+//Add parent comments at a later date
 const Comment = new Schema(
     {
-        post: {type: Post, required: true },
-        parentComment: {type: Comment, required: false },
-        username: {type: User, required: true },
+        post: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Post' },
+        username: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
         content: {type: String, required: true },
     }
 )

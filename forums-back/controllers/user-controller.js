@@ -10,11 +10,14 @@ createUser = (req, res) => {
         })
     }
 
+    //Modify if model changes
     const user = new User({
-    username: body.username,
-    password: body.password,
-    biography: body.biography,
-    isAdmin: body.isAdmin
+        username: body.username,
+        password: body.password,
+        biography: body.biography,
+        isAdmin: body.isAdmin,
+        likedPosts: body.likedPosts,
+        comments: body.comments
     }); 
 
     if (!user) {
@@ -57,10 +60,13 @@ updateUser = async(req, res) => {
             })
         }
 
+        //Modify if model changes
         user.username = body.username;
         user.password = body.password;
         user.biography = body.biography;
         user.isAdmin = body.isAdmin;
+        user.likedPosts = body.likedPosts;
+        user.comments = body.comments;
 
         user
             .save()
