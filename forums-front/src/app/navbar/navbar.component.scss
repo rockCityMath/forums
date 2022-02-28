@@ -1,12 +1,13 @@
 #navbar {
-  color: white;
   width:100%;
   height:60px;
   position: fixed;
   top:0;
   left:0;
+  opacity: 1.0;
+  background-color: rgba(0,0,0,1.0);
   @apply bg-sky-700;
-
+  @apply text-white;
 }
 
 #title {
@@ -55,7 +56,7 @@ a {
 }
 
 #compose {
-  position:absolute;
+  position:fixed;
   right: 20px;
   bottom: 15px;
   height: 50px;
