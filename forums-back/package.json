@@ -9,10 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "express-bearer-token": "^2.4.0",
     "mongodb": "^4.4.0",
     "mongoose": "^6.2.3",
+    "njwt": "^1.2.0",
     "request": "^2.88.2"
   }
 }
