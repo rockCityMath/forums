@@ -7,7 +7,7 @@
       <a routerLink="/about">about</a>
       <a routerLink="/admin">admin</a>
     </div>
-    
+
     <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
       <div id="SLButtons">
         <div id="loginBG"><button type="button" id="loginButton" class="font-sans: font-light"
@@ -19,7 +19,7 @@
       <div id="SLButtons">
         <div id="signUpBG"><button type="button" id="signUpButton" class="font-sans: font-light"
         routerLink="/register">sign up</button></div>
-  
+
         <div id="loginBG"><button type="button" id="loginButton" class="font-sans: font-light"
           routerLink="/login">login</button></div>
       </div>
@@ -28,4 +28,6 @@
   </nav>
 </div>
 <app-search></app-search>
-<app-compose></app-compose>
+<button type="button" routerLink="/compose">
+  <div id="compose"><div id="vLine"></div><div id="hLine"></div></div>
+</button>

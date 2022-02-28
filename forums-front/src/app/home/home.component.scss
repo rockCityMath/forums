@@ -1,0 +1,46 @@
+#main {
+  position: fixed;
+  top: 10%;
+  margin-left: 10%;
+  height: 100%;
+  width: 50%
+}
+
+#post {
+
+}
+
+a {
+  border-radius: 2px;
+  padding: 1rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  text-align: left;
+  width: 100%;
+  min-width: 70px;
+  margin: .5rem auto;
+  box-sizing: border-box;
+
+  /* flexbox */
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+
+  @apply text-black;
+}
+
+
+#title {
+
+}
+
+#content {
+
+}
+
+#liked {
+
+}
+
