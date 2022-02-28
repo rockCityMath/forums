@@ -2,6 +2,6 @@
   <a *ngFor="let post of posts" id="post">
     <div id="title" class="font-sans: font-bold">{{post.title}}</div>
     <div id="content">{{post.content}}</div>
-    <div id="liked">{{post.likes}} likes</div>
+    <div id="info">{{post.likes}} likes {{post.userID}}</div>
   </a>
 </div>
