@@ -1,9 +1,14 @@
 <div id="bg" ></div>
 <div id = "box" class="font-sans: font-light">
-  <h1 id="title">FORUM  |  login</h1>
-  <input type ="text" size="30" placeholder="Username">
-  <br><br>
-  <input type ="password" size="30" placeholder="Password">
-  <div id="loginBG" class="font-sans: font-light"><button type="button" id="loginButton" routerLink="/home">login</button></div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1 id="title">FORUM  |  login</h1>
+    <input type ="text" size="30" placeholder="Username" formControlName="username" required>
+    <br><br>
+    <input type ="password" size="30" placeholder="Password" formControlName="password" required>
+    <br><br><br>
+    <div id="loginBG" class="font-sans: font-light">
+      <button type="button submit" id="loginButton" class="button">login</button>
+    </div>
+  </form>
 </div>
 

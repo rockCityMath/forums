@@ -12,6 +12,9 @@ import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { ComposeComponent } from './compose/compose.component';
 import { FeatureComponent } from './feature/feature.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './auth.service'
 
 @NgModule({
   declarations: [
@@ -24,13 +27,18 @@ import { FeatureComponent } from './feature/feature.component';
     RegisterComponent,
     SearchComponent,
     ComposeComponent,
-    FeatureComponent,
+    FeatureComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

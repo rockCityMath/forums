@@ -5,6 +5,8 @@ const config = require('../config')
 const User = require('../models/user-model')
 
 registerUser = async(req, res) => {
+    console.log("recieved request")
+
     const body = req.body
 
     if (!body) {

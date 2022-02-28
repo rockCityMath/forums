@@ -15,8 +15,14 @@ const authRouter = require('./routes/auth-router')
 const app = express()
 const apiPort = 3232
 
+const corsOptions ={
+	origin: "*",
+	credentials: true,
+	optionSuccessStatus: 200,
+}
+
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors())
+app.use(cors(corsOptions));
 app.use(bodyParser.json())
 app.use(bearerToken())
 
