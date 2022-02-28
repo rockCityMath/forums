@@ -7,6 +7,7 @@ const User = new Schema(
         password: {type: String, required: true },
         biography: {type: String, required: true }, 
         isAdmin: {type: Boolean, required: true, default: false },
+        posts: {type: [mongoose.Schema.Types.ObjectId], required: false, ref: 'Post'},        //same
         likedPosts: {type: [mongoose.Schema.Types.ObjectId], required: false, ref: 'Post'},  //Arr of objID that references a post
         comments: {type: [mongoose.Schema.Types.ObjectId], required: false, ref: 'Comment'}  //same
     },

@@ -7,8 +7,10 @@ const Schema = mongoose.Schema;
 //Add parent comments at a later date
 const Comment = new Schema(
     {
-        post: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Post' },
-        username: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
+        postID: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Post' },
+        userID: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
         content: {type: String, required: true },
     }
 )
+
+module.exports = mongoose.model('comments', Comment)

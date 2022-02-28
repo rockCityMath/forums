@@ -1,8 +1,8 @@
-const { find } = require('../models/post-model');
 const Post = require('../models/post-model');
-const User = require('../models/user-model')
+const User = require('../models/user-model');
+const { post } = require('../routes/comment-router');
 
-createPost = (req, res) => {
+createPost = async (req, res) => {
     const body = req.body
 
     if (!body) {
@@ -12,9 +12,9 @@ createPost = (req, res) => {
         })
     }
 
-    //Modify if model changes
     const post = new Post({
         userID : body.userID,
+        title: body.title,
         content : body.content,
         tags : body.tags,
         usersThatHaveLiked: body.usersThatHaveLiked,
@@ -41,6 +41,33 @@ createPost = (req, res) => {
                 message: 'Post not created!',
             })
         })
+    
+    //Add the post to the user's list of posts
+    await User.findOne({_id: body.userID}, (err, user) => {
+                                
+        if(err) {
+            return res.status(404).json({
+                err,
+                message: 'Error searching for user...',
+            })
+        }
+
+        if (!user) {
+            return res
+                .status(404)
+                .json({ success: false, error: `User not found...` })
+        }
+
+        user.posts.push(post._id)
+        user
+            .save()
+            .catch(error => {
+                return res.status(404).json({
+                    error,
+                    message: 'Error adding post to users likes....'
+                })
+            })
+    })
 }
 
 getPostById = async (req, res) => {
@@ -73,6 +100,8 @@ getPosts = async (req, res) => {
 }
 
 deletePost = async (req, res) => {
+    var userID = 0
+
     await Post.findOneAndDelete({ _id: req.params.id }, (err, post) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -83,225 +112,115 @@ deletePost = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `Post not found` })
         }
+        userID = post.userID
 
-        return res.status(200).json({ success: true, data: post})
-    }).catch(err => console.log(err))
-}
+        return res.status(200).json({ success: true })
+    })
+        .clone()
+        .catch(err => console.log(err))
 
-likePost = async(req, res) => {
-    const body = req.body;
-
-    if(!body) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a userID',
-        })
+    //Check for valid userID and remove the post from the users list of posts
+    if(userID == 0) {
+        return res
+                .status(404)
+                .json({ success: false, error: `Unable to remove from users posts list` })
     }
-
-    //Update post like count and add user id to list of likes
-    await Post.findOne({_id: req.params.id }, (err, post) => {
-        
-        if(err) {
-            return res.status(404).json({
-                err,
-                message: 'Post not found',
-            })
-        }
-
-        //Check that there is a userID provided
-        var userID = body.userID
-        if(userID == 'undefined') {
-            return res.status(404).json({
-                err,
-                message: 'You must provide a userID',
-            })
-        }
-
-        //Check for userID in array of post's likes
-        var postLikes = post.usersThatHaveLiked
-        var found = postLikes.findIndex(function(element) {
-            if(element == userID) {
-                return true
-            }
-        })
-        
-        //If user has not already liked
-        if(found == -1) {
-
-            //Add userID to list of likes, and update like count
-            post.usersThatHaveLiked.push(userID);
-            post.likeCount = post.likeCount + 1;
-
-            post
-                .save()
-                .then(() => {
-                    return res.status(200).json({
-                        success: true,
-                        id: post._id,
-                        message: 'Post liked!'
-                    })
+    else {
+        await User.findOne({_id: userID}, (err, user) => {
+                                    
+            if(err) {
+                return res.status(404).json({
+                    err,
+                    message: 'Error searching for user...',
                 })
+            }
+
+            if (!user) {
+                return res
+                    .status(404)
+                    .json({ success: false, error: `User not found...` })
+            }
+            
+            //Remove the post from the user's posts
+            var postIndex = user.likedPosts.findIndex(function(element) {
+                if(element == post.userID) {
+                    return true
+                }
+            })
+            if(postIndex != 1) {
+                user.posts.splice(postIndex, 1)
+            }
+            else {
+                return res.status(404).json({
+                    error,
+                    message: 'Post does not belong to user...'
+                })
+            }
+
+            user
+                .save()
                 .catch(error => {
                     return res.status(404).json({
                         error,
-                        message: 'Error liking post...'
+                        message: 'Error removing post from user...'
                     })
                 })
+        })
+            .clone()
+            .catch(err => console.log(err))
         }
-        else {
-            return res.status(404).json({
-                err,
-                message: 'This user has already liked the post...',
-            })
-        }
-
-    }).clone()
-
-    //Add the post to the user's list of liked posts
-    await User.findOne({_id: body.userID}, (err, user) => {
-                                
-        if(err) {
-            return res.status(404).json({
-                err,
-                message: 'Error searching for user...',
-            })
-        }
-
-        if (!user) {
-            return res
-                .status(404)
-                .json({ success: false, error: `User not found...` })
-        }
-
-        user.likedPosts.push(req.params.id)
-        user
-            .save()
-            .catch(error => {
-                return res.status(404).json({
-                    error,
-                    message: 'Error adding post to users likes....'
-                })
-            })
-    }).clone()
-
-    
 }
 
-unlikePost = async(req, res) => {
-    const body = req.body;
-
-    if(!body) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a userID',
-        })
-    }
-
-    //Update post like count and remove user from list of post's likes
-    Post.findOne({_id: req.params.id }, (err, post) => {
-        
-        if(err) {
-            return res.status(404).json({
-                err,
-                message: 'Post not found',
-            })
+//Get the n most liked posts in order from greatest to least
+//How to do this without having to fetch every single object and sort them
+getMostLikedPosts = async (req, res) => {
+    await Post.find({}, (err, posts) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
         }
-
-        //Check that there is a userID provided
-        var userID = body.userID
-        if(userID == 'undefined') {
-            return res.status(404).json({
-                err,
-                message: 'You must provide a userID',
-            })
-        }
-
-        //Check for userID in array of post's likes
-        var postLikes = post.usersThatHaveLiked
-        var found = postLikes.findIndex(function(element) {
-            if(element == userID) {
-                return true
-            }
-        })
-
-        //Apply unlike if user found
-        if(found != -1) {
-            post.usersThatHaveLiked.splice(found, 1);
-            post.likeCount = post.likeCount - 1;
-            post
-                .save()
-                .then(() => {
-                    return res.status(200).json({
-                        success: true,
-                        id: post._id,
-                        message: 'Post unliked!'
-                    })
-                })
-                .catch(error => {
-                    return res.status(404).json({
-                        error,
-                        message: 'Error unliking post...'
-                    })
-                })
-        }
-        else {
-            return res.status(404).json({
-                err,
-                message: 'This user has not already liked the post...',
-            })
-        }
-
-    }).clone()
-
-    //Remove the post from the user's list of liked posts
-    await User.findOne({_id: body.userID}, (err, user) => {
-                                
-        if(err) {
-            return res.status(404).json({
-                err,
-                message: 'Error searching for user...',
-            })
-        }
-
-        if (!user) {
+        if (!posts.length) {
             return res
                 .status(404)
-                .json({ success: false, error: `User not found...` })
+                .json({ success: false, error: `Posts not found` })
         }
-        
-        //Remove the post from the user's liked posts
-        var postIndex = user.likedPosts.findIndex(function(element) {
-            if(element == req.params.id) {
-                return true
-            }
+        return res.status(200).json({ 
+            success: true, 
+            data: posts
+                .sort((a, b) => (a.likeCount < b.likeCount) ? 1 : -1)
+                .slice(0, 3) //second parameter is amount of posts to return
         })
-        if(postIndex != 1) {
-            user.likedPosts.splice(postIndex, 1)
-        }
-        else {
-            return res.status(404).json({
-                error,
-                message: 'Post not in user likes...'
-            })
-        }
-
-
-        user
-            .save()
-            .catch(error => {
-                return res.status(404).json({
-                    error,
-                    message: 'Error adding post to users likes....'
-                })
-            })
-    }).clone()
+    })
+        .catch(err => console.log(err))
 }
+
+//Get the n most recent posts in order from newest to oldest
+getMostRecentPosts = async (req, res) => {
+    await Post.find({}, (err, posts) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!posts.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Posts not found` })
+        }
+        return res.status(200).json({ 
+            success: true, 
+            data: posts
+                .sort((a, b) => (a.createdAt < b.createdAt) ? 1 : -1)
+                .slice(0, 3) //second parameter is amount of posts to return
+        })
+    })
+        .catch(err => console.log(err))
+}
+
+
 
 module.exports = {
     createPost,
     getPostById,
     getPosts,
     deletePost,
-    likePost,
-    unlikePost
+    getMostLikedPosts,
+    getMostRecentPosts
 }
