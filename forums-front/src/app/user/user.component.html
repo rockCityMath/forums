@@ -1,0 +1,16 @@
+<a *ngFor="let user of users">
+    <a *ngFor="let post of posts">
+        <div id="main">
+            <div id="image"></div>
+            <a *ngIf="user.id == post.userID">
+                <div id="username">{{user.username}}</div>
+                <div id="bio">{{user.bio}}</div>
+            </a>  
+            <a *ngIf="post.userID == user.id">
+                <div id="title">{{post.title}}</div>
+                <div id="content">{{post.content}}</div>
+                <div id="info">{{post.likes}} likes </div>
+            </a>
+        </div>
+    </a>
+</a>
