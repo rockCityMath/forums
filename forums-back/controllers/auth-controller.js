@@ -4,6 +4,8 @@ const config = require('../config')
 
 const User = require('../models/user-model')
 
+const jwtAuth = require('../auth')
+
 registerUser = async(req, res) => {
     console.log("recieved request")
 
@@ -75,7 +77,16 @@ loginUser = async(req, res) => {
     }).catch(err => console.log(err))
 }
 
+getUserID = async(req, res) => {
+
+    jwtAuth(req, res, 
+        console.log("next!")
+    )
+
+}
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getUserID
 }

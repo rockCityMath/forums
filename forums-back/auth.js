@@ -11,8 +11,10 @@ function jwtAuth(req, res, next) {
       return res.status(500).send({ auth: false, message: 'Could not authenticate token' });
     }
     req.userId = decoded.body.id;
+    return res.status(200).send({ auth: true, user: req.userId})
     next();
   });
+
 }
 
 module.exports = jwtAuth;

@@ -14,7 +14,7 @@ import { ComposeComponent } from './compose/compose.component';
 import { FeatureComponent } from './feature/feature.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from './auth.service';
+import { AuthService } from './shared/services/auth.service';
 import { UserComponent } from './user/user.component';
 import { PostComponent } from './post/post.component';
 import { CommentComponent } from './comment/comment.component'

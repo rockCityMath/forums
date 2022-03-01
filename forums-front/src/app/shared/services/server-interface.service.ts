@@ -7,13 +7,14 @@ const baseUrl = 'http://localhost:3232';
   providedIn: 'root'
 })
 
+//Interface with the backend, add JWT to backend calls
 export class ServerService {
   private loggedIn = false;
   private token?: string;
 
   constructor(private http: HttpClient) {}
 
-  setLoggedIn(loggedIn: boolean, token?: string) { //changed from token?: string
+  setLoggedIn(loggedIn: boolean, token?: string) {
     this.loggedIn = loggedIn;
     this.token = token = "";
   }

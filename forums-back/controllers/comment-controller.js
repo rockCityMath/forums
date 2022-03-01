@@ -190,7 +190,7 @@ removeComment = async(req, res) => {
 
     }).clone()
 
-    /* REMOVE COMMENT FROM USER'S  */
+    /* REMOVE COMMENT FROM USER'S COMMENTS */
 
     
 
