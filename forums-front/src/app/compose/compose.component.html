@@ -1,11 +1,14 @@
 <div id="bg" ></div>
 <div id = "box" class="font-sans: font-light">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h1 id="title">FORUM  |  create post</h1>
-    <div id="i1">    <input  type ="text" size="30" placeholder="enter post title..."></div>
-    <div id="i2">    <input type ="text" size="30" placeholder="enter post contents..."></div>
-    <div id="i3">    <input type="text" size="30" placeholder="enter post tags..."></div>
-    <div id="submitBG" class="font-sans: font-light">
-      <button type="button submit" id="submitButton" class="button" routerLink="/home">submit</button>
-    </div>
+    <div id="i1">    <input  type ="text" size="30" placeholder="enter post title..." formControlName="title"></div>
+    <div id="i2">    <input type ="text" size="30" placeholder="enter post contents..." formControlName="content"></div>
+    <div id="i3">    <input type="text" size="30" placeholder="enter post tags..." formControlName="tags"></div>
+  </form>
+  <div id="submitBG" class="font-sans: font-light">
+    <button type="button submit" id="submitButton" class="button" routerLink="/home">submit</button>
+  </div>
 </div>
+
 

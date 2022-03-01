@@ -28,6 +28,9 @@
   </nav>
 </div>
 <app-search></app-search>
+<div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
 <button type="button" routerLink="/compose">
   <div id="compose"><div id="vLine"></div><div id="hLine"></div></div>
 </button>
+</div>
+<ng-template #notLoggedIn></ng-template>

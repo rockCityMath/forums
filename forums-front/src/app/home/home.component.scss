@@ -22,7 +22,7 @@ a {
   min-width: 70px;
   margin: .5rem auto;
   box-sizing: border-box;
-
+  z-index: -10;
   /* flexbox */
   order: 0;
   flex: 0 1 auto;
