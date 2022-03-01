@@ -1,6 +1,10 @@
 <a *ngFor="let post of posts" id="main" class="font-sans: font-light">
     <div id="title" class="font-snas: font-bold">{{post.title}}</div>
     <div id="content">{{post.content}}</div>
-    <div id="info">{{post.likes}}</div>
+    <div id="info">{{post.likes}}
+      <a *ngFor="let user of users" >
+        <a *ngIf="user.id == post.userID" routerLink="/user/{{user.username}}" >{{user.username}}</a>
+      </a>
+    </div>
 </a>
 
