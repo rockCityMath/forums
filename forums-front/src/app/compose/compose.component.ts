@@ -23,16 +23,6 @@ export class ComposeComponent implements OnInit {
   }
 
   async onSubmit() {
-    this.loginInvalid = false;
-    this.formSubmitAttempt = false;
-    if (this.form?.valid) {
-      try {
-        await this.authService.login(this.form.value);
-      } catch (err) {
-        this.loginInvalid = true;
-      }
-    } else {
-      this.formSubmitAttempt = true;
-    }
+    console.log("title " + this.form.get('title'))
   }
 }

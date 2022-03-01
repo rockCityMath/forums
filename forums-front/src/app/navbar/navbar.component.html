@@ -11,7 +11,7 @@
     <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
       <div id="SLButtons">
         <div id="loginBG"><button type="button" id="loginButton" class="font-sans: font-light"
-          (click)="authService.logout()">Logout</button></div>
+          (click)="authService.logout()">logout</button></div>
       </div>
     </div>
 
@@ -27,6 +27,7 @@
 
   </nav>
 </div>
+
 <app-search></app-search>
 <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
 <button type="button" routerLink="/compose">
