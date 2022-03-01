@@ -12,26 +12,24 @@
       <div id="SLButtons">
         <div id="loginBG"><button type="button" id="loginButton" class="font-sans: font-light"
           (click)="authService.logout()">logout</button></div>
+          <button type="button" routerLink="/compose">
+            <div id="compose"><div id="vLine"></div><div id="hLine"></div></div>
+          </button>
       </div>
     </div>
 
     <ng-template #notLoggedIn>
       <div id="SLButtons">
-        <div id="signUpBG"><button type="button" id="signUpButton" class="font-sans: font-light"
-        routerLink="/register">sign up</button></div>
+        <button type="button" id="signUpButton" class="font-sans: font-light"
+        routerLink="/register"><div id="signUpBG">sign up</div></button>
 
-        <div id="loginBG"><button type="button" id="loginButton" class="font-sans: font-light"
-          routerLink="/login">login</button></div>
+        <button type="button" id="loginButton" class="font-sans: font-light"
+          routerLink="/login"><div id="loginBG">login</div></button>
       </div>
+
     </ng-template>
 
   </nav>
 </div>
-
 <app-search></app-search>
-<div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
-<button type="button" routerLink="/compose">
-  <div id="compose"><div id="vLine"></div><div id="hLine"></div></div>
-</button>
-</div>
-<ng-template #notLoggedIn></ng-template>
+

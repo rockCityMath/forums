@@ -9,4 +9,13 @@
       </a>
     </div>
   </a>
+  <a *ngFor="let post of posts" id="featured">
+    <div id="title" class="font-sans: font-bold"><a routerLink="/post">{{post.title}}</a></div>
+    <div id="info">
+      {{post.likes}} likes
+      <a *ngFor="let user of users" >
+        <a *ngIf="user.id == post.userID" routerLink="/user/{{user.username}}" >{{user.username}}</a>
+      </a>
+    </div>
+  </a>
 </div>
