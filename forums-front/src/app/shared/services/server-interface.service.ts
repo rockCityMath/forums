@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { map } from 'rxjs/operators'
+import { Observable } from 'rxjs'
+
+import { Post } from '../../post'
 
 const baseUrl = 'http://localhost:3232';
 
@@ -19,6 +23,7 @@ export class ServerService {
     this.token = token = "";
   }
 
+  //Functions used by auth
   request(method: string, route: string, data?: any) {
     if (method === 'GET') {
       return this.get(route, data);
@@ -36,6 +41,7 @@ export class ServerService {
   }
 
   get(route: string, data?: any) {
+    console.log("route " + baseUrl + route)
     const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
 
     let params = new HttpParams();
@@ -51,4 +57,17 @@ export class ServerService {
       params
     });
   }
-}
+
+  //Functions used for most API calls
+  getMostLiked() {
+
+    const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
+    const posts = this.http.get(baseUrl + '/api/post/mostLiked', {
+      responseType: 'json',
+      headers: header
+    })
+
+    return posts
+  }
+
+  }

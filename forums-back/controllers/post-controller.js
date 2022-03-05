@@ -183,8 +183,8 @@ getMostLikedPosts = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `Posts not found` })
         }
-        return res.status(200).json({ 
-            success: true, 
+        return res.status(200).json({  
+            success: true,
             data: posts
                 .sort((a, b) => (a.likeCount < b.likeCount) ? 1 : -1)
                 .slice(0, 3) //second parameter is amount of posts to return
