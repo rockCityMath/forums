@@ -13,49 +13,17 @@ const baseUrl = 'http://localhost:3232';
 
 //Interface with the backend, add JWT to backend calls
 export class ServerService {
+
+  //Set on setLoggedIn()
   private loggedIn = false;
   private token?: string;
 
   constructor(private http: HttpClient) {}
 
+  //Call externally to set login state and token
   setLoggedIn(loggedIn: boolean, token?: string) {
     this.loggedIn = loggedIn;
     this.token = token = "";
-  }
-
-  //Functions used by auth
-  request(method: string, route: string, data?: any) {
-    if (method === 'GET') {
-      return this.get(route, data);
-    }
-
-    //Add token to header
-    const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
-
-    return this.http.request(method, baseUrl + route, {
-      body: data,
-      responseType: 'json',
-      observe: 'body',
-      headers: header
-    });
-  }
-
-  get(route: string, data?: any) {
-    console.log("route " + baseUrl + route)
-    const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
-
-    let params = new HttpParams();
-    if (data !== undefined) {
-      Object.getOwnPropertyNames(data).forEach(key => {
-        params = params.set(key, data[key]);
-      });
-    }
-
-    return this.http.get(baseUrl + route, {
-      responseType: 'json',
-      headers: header,
-      params
-    });
   }
 
   //Functions used for most API calls
@@ -68,6 +36,28 @@ export class ServerService {
     })
 
     return posts
+  }
+
+  login(loginData?:any ) {
+
+    const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("POST", baseUrl + '/auth/login', {
+      body: loginData,
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  register(userData?: any) {
+
+    const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("POST", baseUrl + '/auth/register', {
+      body: userData,
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
   }
 
   }

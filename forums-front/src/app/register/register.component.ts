@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    const request = this.server.request('POST', '/auth/register', {
+    const request = this.server.register({
       username: this.form.get('username')?.value,
       password: this.form.get('password')?.value
     });

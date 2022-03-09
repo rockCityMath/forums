@@ -12,6 +12,7 @@ export class AuthService {
     return this.loggedIn.asObservable();
   }
 
+  //Attempt to retrieve token from local storage
   constructor(private router: Router, private server: ServerService) {
     const userData = localStorage.getItem('user');
     if (userData) {
@@ -24,11 +25,11 @@ export class AuthService {
 
   login(user) {
     if (user.username !== '' && user.password !== '' ) {
-      return this.server.request('POST', '/auth/login', {
+      return this.server.login({
         username: user.username,
         password: user.password
       }).subscribe((response: any) => {
-        if (response.auth === true && response.token !== undefined) {
+        if (response.auth === true && response.token !== undefined) { //resp valid = set and store token
           this.token = response.token;
           this.server.setLoggedIn(true, this.token);
           this.loggedIn.next(true);
@@ -36,6 +37,8 @@ export class AuthService {
             token: this.token,
           };
           localStorage.setItem('user', JSON.stringify(userData));
+
+          console.log("login success")
           //SHOW SUCCESS HERE
           this.router.navigateByUrl('/home');
         }

@@ -187,7 +187,7 @@ getMostLikedPosts = async (req, res) => {
             success: true,
             data: posts
                 .sort((a, b) => (a.likeCount < b.likeCount) ? 1 : -1)
-                .slice(0, 3) //second parameter is amount of posts to return
+                .slice(0, 5) //second parameter is amount of posts to return
         })
     })
         .catch(err => console.log(err))
@@ -208,7 +208,7 @@ getMostRecentPosts = async (req, res) => {
             success: true, 
             data: posts
                 .sort((a, b) => (a.createdAt < b.createdAt) ? 1 : -1)
-                .slice(0, 3) //second parameter is amount of posts to return
+                .slice(0, 5) //second parameter is amount of posts to return
         })
     })
         .catch(err => console.log(err))
