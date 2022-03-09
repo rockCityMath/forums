@@ -40,6 +40,8 @@ export class AuthService {
 
           console.log("login success")
           //SHOW SUCCESS HERE
+
+          alert("Successfully logged in!")
           this.router.navigateByUrl('/home');
         }
       });

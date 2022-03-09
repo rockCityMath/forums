@@ -48,6 +48,7 @@ export class RegisterComponent implements OnInit {
     request.subscribe(() => {
       //SHOW SUCCESS HERE
       
+      alert("Successfully registered acount. Please sign in below!")
       this.router.navigate(['/login']);
     })
   }

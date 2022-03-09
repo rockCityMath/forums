@@ -1,9 +1,13 @@
+
+const { idFromToken } = require('../auth');
+
 const Post = require('../models/post-model');
 const User = require('../models/user-model');
 const { post } = require('../routes/comment-router');
 
 createPost = async (req, res) => {
     const body = req.body
+    var userID
 
     if (!body) {
         return res.status(400).json({
@@ -12,13 +16,39 @@ createPost = async (req, res) => {
         })
     }
 
+    //Get users ID from JWT on header
+    await idFromToken(req.token, (decodedID) => {
+        userID = decodedID
+    })
+
+    //Get username from userID (to be associated with the post)
+    const userFromID = await User.findOne({_id: userID}, (err, user) => {
+                                
+        if(err) {
+            return res.status(404).json({
+                err,
+                message: 'Error searching for user...',
+            })
+        }
+
+        if (!user) {
+            return res
+                .status(404)
+                .json({ success: false, error: `User not found...` })
+        }
+    })  
+        .clone()
+        .exec()
+        .catch(err => console.log(err))
+
+
+    //Create post object with given information (id and username obtained previously)
     const post = new Post({
-        userID : body.userID,
+        userID : userID,
+        username: userFromID.username,
         title: body.title,
         content : body.content,
         tags : body.tags,
-        usersThatHaveLiked: body.usersThatHaveLiked,
-        comments: body.comments
     }); 
 
     if (!post) {
@@ -41,9 +71,9 @@ createPost = async (req, res) => {
                 message: 'Post not created!',
             })
         })
-    
+
     //Add the post to the user's list of posts
-    await User.findOne({_id: body.userID}, (err, user) => {
+    await User.findOne({_id: userID}, (err, user) => {
                                 
         if(err) {
             return res.status(404).json({
@@ -64,10 +94,10 @@ createPost = async (req, res) => {
             .catch(error => {
                 return res.status(404).json({
                     error,
-                    message: 'Error adding post to users likes....'
+                    message: 'Error adding post to users posts....'
                 })
             })
-    })
+    }).clone()
 }
 
 getPostById = async (req, res) => {
