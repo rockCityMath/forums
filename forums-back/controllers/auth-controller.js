@@ -2,6 +2,8 @@ const bcrypt = require('bcryptjs')
 const nJwt = require('njwt')
 const config = require('../config')
 
+const { idFromToken } = require('../auth')
+
 const User = require('../models/user-model')
 
 const jwtAuth = require('../auth')
@@ -70,7 +72,7 @@ loginUser = async(req, res) => {
         }
 
         var jwt = nJwt.create({id: user._id}, config.secret)
-        jwt.setExpiration(new Date().getTime() + (24*60*60*1000));
+        jwt.setExpiration(new Date().getTime() + ( 24*60*60*1000*1000 ));
 
         res.status(200).send({ auth: true, token: jwt.compact() });
 
@@ -85,8 +87,49 @@ getUserID = async(req, res) => {
 
 }
 
+getUsernameFromID = async(req, res) => {
+
+    await idFromToken(req.headers['authorization'].split(" ").pop(), (decodedID) => {
+        userID = decodedID
+    })
+
+    if(userID == undefined || userID == 0 ) {
+        return res.status(404).json({
+            message: 'You must be logged in!'
+        })
+    }
+
+    //Get username from userID
+    const userFromID = await User.findOne({_id: userID}, (err, user) => {
+                                
+        if(err) {
+            return res.status(404).json({
+                err,
+                message: 'Error searching for user...',
+            })
+        }
+
+        if (!user) {
+            return res
+                .status(404)
+                .json({ success: false, error: `User not found...` })
+        }
+    })  
+        .clone()
+        .exec()
+        .catch(err => console.log(err))
+    
+    console.log("GOTTEN " + userFromID.username)
+    return res.status(201).json({
+        message: userFromID.username
+    })
+
+
+}
+
 module.exports = {
     registerUser,
     loginUser,
-    getUserID
+    getUserID,
+    getUsernameFromID
 }

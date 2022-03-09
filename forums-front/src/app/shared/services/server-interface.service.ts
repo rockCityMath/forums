@@ -6,6 +6,12 @@ import { Observable } from 'rxjs'
 import { Post } from '../../post'
 
 const baseUrl = 'http://localhost:3232';
+const getMostLikedUrl = '/api/post/mostLiked'
+const loginUrl = '/auth/login'
+const registerUrl = '/auth/register'
+const getMostRecentUrl = '/api/post/mostRecent'
+const createPostUrl = '/api/post'
+const usernameFromID = '/auth/usernameFromID'
 
 @Injectable({
   providedIn: 'root'
@@ -17,31 +23,45 @@ export class ServerService {
   //Set on setLoggedIn()
   private loggedIn = false;
   private token?: string;
+  private username?: string;
 
   constructor(private http: HttpClient) {}
 
   //Call externally to set login state and token
   setLoggedIn(loggedIn: boolean, token?: string) {
     this.loggedIn = loggedIn;
-    this.token = token = "";
+    this.token = token;
+  }
+
+  setUsername(username: string) {
+    this.username = username
+  }
+  getUsername() {
+    return this.username
   }
 
   //Functions used for most API calls
   getMostLiked() {
-
     const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
-    const posts = this.http.get(baseUrl + '/api/post/mostLiked', {
+    const posts = this.http.get(baseUrl + getMostLikedUrl, {
       responseType: 'json',
       headers: header
     })
+    return posts
+  }
 
+  getMostRecent() {
+    const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
+    const posts = this.http.get(baseUrl + getMostRecentUrl, {
+      responseType: 'json',
+      headers: header
+    })
     return posts
   }
 
   login(loginData?:any ) {
-
     const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
-    return this.http.request("POST", baseUrl + '/auth/login', {
+    return this.http.request("POST", baseUrl + loginUrl, {
       body: loginData,
       responseType: 'json',
       observe: 'body',
@@ -50,10 +70,29 @@ export class ServerService {
   }
 
   register(userData?: any) {
-
     const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
-    return this.http.request("POST", baseUrl + '/auth/register', {
+    return this.http.request("POST", baseUrl + registerUrl, {
       body: userData,
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  createPost(postData?: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("POST", baseUrl + createPostUrl, {
+      body: postData,
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  getUsernameFromID(userID?: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("POST", baseUrl + usernameFromID, {
+      body: userID,
       responseType: 'json',
       observe: 'body',
       headers: header

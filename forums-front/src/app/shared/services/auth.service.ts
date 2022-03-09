@@ -39,8 +39,6 @@ export class AuthService {
           localStorage.setItem('user', JSON.stringify(userData));
 
           console.log("login success")
-          //SHOW SUCCESS HERE
-
           alert("Successfully logged in!")
           this.router.navigateByUrl('/home');
         }

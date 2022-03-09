@@ -5,7 +5,6 @@ import { User } from '../user';
 import { UserService } from '../user.service';
 
 import { ServerService } from '../shared/services/server-interface.service'
-import { PostsService } from '../shared/services/posts.service'
 
 @Component({
   selector: 'app-home',
@@ -13,16 +12,15 @@ import { PostsService } from '../shared/services/posts.service'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  posts: any = [];
+  mostRecentPosts: any = [];
+  mostLikedPosts: any = [];
   users: User[] = [];
 
-
-
-  constructor(private postService: PostService, private userService: UserService, private serverService: ServerService, private postsService: PostsService) { }
+  constructor(private userService: UserService, private serverService: ServerService) { }
 
   ngOnInit(): void {
-    //this.getPosts();
     this.getUsers();
+    this.getMostRecent();
     this.getMostLiked();
   }
 
@@ -31,21 +29,21 @@ export class HomeComponent implements OnInit {
       .subscribe(users => this.users = users);
   }
 
-  getMostLiked() {
-    
-    const postsObservable = this.postsService.getMostLiked()
+  getMostRecent() {
+    const postsObservable = this.serverService.getMostRecent()
     postsObservable.subscribe((data ) => {
-      console.log(data)
       data = Object.values(data)
-      this.posts = data
+      this.mostRecentPosts= data
     })
-    
-    
   }
 
-  getPosts(): void {
-    this.postService.getPosts()
-      //.subscribe(posts => this.posts = posts);
+  getMostLiked() {
+    const postsObservable = this.serverService.getMostLiked()
+    postsObservable.subscribe((data ) => {
+      data = Object.values(data)
+      this.mostLikedPosts = data
+    })
   }
+
 
 }

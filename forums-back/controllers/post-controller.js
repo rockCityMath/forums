@@ -9,6 +9,8 @@ createPost = async (req, res) => {
     const body = req.body
     var userID
 
+    console.log(req.headers['authorization'])
+
     if (!body) {
         return res.status(400).json({
             success: false,
@@ -16,10 +18,18 @@ createPost = async (req, res) => {
         })
     }
 
-    //Get users ID from JWT on header
-    await idFromToken(req.token, (decodedID) => {
+    //Get users ID from JWT on header 
+    await idFromToken(req.headers['authorization'].split(" ").pop(), (decodedID) => {
         userID = decodedID
     })
+
+    console.log(userID)
+
+    if(userID == undefined || userID == 0 ) {
+        return res.status(404).json({
+            message: 'You must be logged in!'
+        })
+    }
 
     //Get username from userID (to be associated with the post)
     const userFromID = await User.findOne({_id: userID}, (err, user) => {
@@ -42,7 +52,7 @@ createPost = async (req, res) => {
         .catch(err => console.log(err))
 
 
-    //Create post object with given information (id and username obtained previously)
+    //Create post object  with given information (id and username obtained previously)
     const post = new Post({
         userID : userID,
         username: userFromID.username,

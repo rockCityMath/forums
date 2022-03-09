@@ -1,15 +1,14 @@
 <div id="main" class="font-sans: font-light">
-  <a *ngFor="let post of posts[1]" id="post">
+  <a *ngFor="let post of mostRecentPosts[1]" id="post">
     <div id="title" class="font-sans: font-bold"><a routerLink="/post/{{post.id}}">{{post.title}}</a></div>
     <div id="content">{{post.content}}</div>
     <div id="info">
       {{post.likeCount}} likes
-      <a *ngFor="let user of users" >
-        <a *ngIf="user.id == post.userID" routerLink="/user/{{user.username}}" >{{post.userID}}</a>
-      </a>
+      <a routerLink="/user/{{post.username}}" >{{post.username}}</a>
     </div>
   </a>
-  <a *ngFor="let post of posts" id="featured">
+
+  <a *ngFor="let post of mostLikedPosts[1]" id="featured">
     <div id="title" class="font-sans: font-bold"><a routerLink="/post/{{post.id}}">{{post.title}}</a></div>
     <div id="info">
       {{post.likeCount}} likes

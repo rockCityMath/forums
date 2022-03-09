@@ -10,6 +10,9 @@
 
     <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
       <div id="SLButtons">
+
+        <button type="" id="signUpButton" class="font-sans: font-light"><div id="signUpBG">{{username}}</div></button>
+
         <div id="loginBG"><button type="button" id="loginButton" class="font-sans: font-light"
           (click)="authService.logout()">logout</button></div>
           <button type="button" routerLink="/compose">

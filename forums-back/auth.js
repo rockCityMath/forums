@@ -21,7 +21,8 @@ function jwtAuth(req, res, next) {
 //Returns userID given a token from the header
 function idFromToken(token, next) {
   
-  var userID = "undefined"
+  var userID = 0
+  console.log("GIVEN " + token)
 
   nJwt.verify(token, config.secret, function(err, decoded)  {
     if(err) {

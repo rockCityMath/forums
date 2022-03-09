@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { AuthService } from '../shared/services/auth.service'
+import { ServerService } from '../shared/services/server-interface.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,9 +10,18 @@ import { AuthService } from '../shared/services/auth.service'
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private server: ServerService) { }
+
+  username: any = "null"
 
   ngOnInit(): void {
+
+    const nameObservable = this.server.getUsernameFromID()
+    nameObservable.subscribe((data ) => {
+      data = Object.values(data)
+      this.username = data
+    })
+
   }
   title = 'forum';
 }

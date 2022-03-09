@@ -1,14 +1,35 @@
 <div id="bg" ></div>
 <div id = "box" class="font-sans: font-light">
+  
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h1 id="title">FORUM  |  create post</h1>
-    <div id="i1"><input  type ="text" size="30" placeholder="enter post title..." formControlName="title"></div>
-    <div id="i2"><textarea  name="contnet" placeholder="enter post contents"></textarea></div>
-    <div id="i3"><input type="text" size="30" placeholder="enter post tags..." formControlName="tags"></div>
+    <div id="i1"><input  type ="text" size="30" placeholder="enter post title..." formControlName="title" required></div>
+    <div id="i2"><textarea  name="content" placeholder="enter post contents" formControlName="content" required></textarea></div>
+    <div id="i3"><input type="text" size="30" placeholder="enter post tags..." formControlName="tags" required></div>
+    <br><br><br>
+    <div id="loginBG" class="font-sans: font-light">
+      <button type="submit" id="submitButton" class="button">
+        <div id="submitBG" class="font-sans: font-light">submit</div></button>
+      </div>
   </form>
 
-    <button type="button submit" id="submitButton" class="button" routerLink="/home">
+    
+
+    <!--
+
+      <button type="button submit" id="submitButton" class="button" routerLink="/home">
       <div id="submitBG" class="font-sans: font-light">submit</div></button>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h1 id="title">FORUM  |  sign up</h1>
+      <input type ="text" size="30" placeholder="Username" formControlName="username" required>
+      <br><br>
+      <input type ="password" size="30" placeholder="Password" formControlName="password" required>
+      <br><br><br>
+      <div id="loginBG" class="font-sans: font-light">
+        <button type="button submit" id="loginButton" class="button">sign up</button>
+      </div>
+    </form>
+  -->
 </div>
 
 
