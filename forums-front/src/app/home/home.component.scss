@@ -1,9 +1,13 @@
+#page-content-container {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
 #main {
   position: relative;
+  float: left;
   margin-top: 5%;
-  margin-left: 10%;
   height: 100%;
-  width: 50%
 }
 
 #post {
@@ -28,22 +32,69 @@
 
 
 #title {
-  font-size: 200%;
+  font-size: 150%;
 }
 
 #content {
-
+  
 }
 
 #info {
+  float: left;
   padding-top: 1%;
   margin-bottom: 0px;
   padding-bottom: 0px;
+  width:60%;
 }
 
 #featured {
+  border-radius: 2px;
+  padding: 1rem;
+  font-size: 0.8rem;
+  width: 100%;
+  text-decoration: none;
   display: inline-block;
-  order: 1;
+  text-align: left;
+  box-sizing: border-box;
+  z-index: -10;
+  /* flexbox */
+  order: 0;
   flex: 0 1 auto;
   align-self: auto;
+
+  @apply text-black;
+}
+
+#username {
+  float: left;
+  padding-top: 1%;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  width:20%;
+}
+
+#tags {
+  width: 100%
+}
+
+#individual-tag {
+  border: hidden #000;
+  width: max-content;
+  padding: 3px;
+  border-width: 0.01em;
+  border-radius: 5px;
+  background-color: #f3f4f6;
+}
+
+#info-user-container {
+  width: 100%;
+}
+
+.most-recent {
+  width: 70%;
+}
+
+.most-liked {
+  width: 30%;
+  padding-left: 10%;
 }

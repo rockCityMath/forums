@@ -1,20 +1,38 @@
-<div id="main" class="font-sans: font-light">
-  <a *ngFor="let post of mostRecentPosts[1]" id="post">
-    <div id="title" class="font-sans: font-bold"><a routerLink="/post/{{post.id}}">{{post.title}}</a></div>
-    <div id="content">{{post.content}}</div>
-    <div id="info">
-      {{post.likeCount}} likes
-      <a routerLink="/user/{{post.username}}" >{{post.username}}</a>
-    </div>
-  </a>
 
-  <a *ngFor="let post of mostLikedPosts[1]" id="featured">
-    <div id="title" class="font-sans: font-bold"><a routerLink="/post/{{post.id}}">{{post.title}}</a></div>
-    <div id="info">
-      {{post.likeCount}} likes
-      <a *ngFor="let user of users" >
-        <a *ngIf="user.id == post.userID" routerLink="/user/{{user.username}}" >{{post.userID}}</a>
-      </a>
-    </div>
-  </a>
+
+
+
+
+
+
+<div id="page-content-container">
+  <div id="main" class="font-sans: font-light most-recent">
+    <a *ngFor="let post of mostRecentPosts[1]" id="post">
+      <div id="title" class="font-sans: font-bold"><a routerLink="/post/{{post.id}}">{{post.title}}</a></div>
+      <div id="content">{{post.content}}</div>
+      <div id="tags"><p *ngFor="let tag of post.tags" id="individual-tag">{{tag}}</p></div>
+      <div id="info-user-container">
+        <div id="info">{{post.likeCount}} likes  &nbsp; &nbsp;  234 comments</div>
+        <div id="username">{{post.username}}</div>
+      </div>
+    </a>
+  </div>
+  
+  
+  
+  
+  
+  
+  <div id = "main" class="font-sans: font-light most-liked">
+    <a *ngFor="let post of mostLikedPosts[1]" id="featured">
+      <div id="title" class="font-sans: font-bold"><a routerLink="/post/{{post.id}}">{{post.title}}</a></div>
+      <div id="info">
+        {{post.likeCount}} likes
+        <a *ngFor="let user of users" >
+          <a *ngIf="user.id == post.userID" routerLink="/user/{{user.username}}" >{{post.userID}}</a>
+        </a>
+      </div>
+    </a>
+  </div>
+
 </div>
