@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../post';
-import { PostService } from '../post.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -19,14 +18,8 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService, private serverService: ServerService) { }
 
   ngOnInit(): void {
-    this.getUsers();
     this.getMostRecent();
     this.getMostLiked();
-  }
-
-  getUsers(): void {
-    this.userService.getUsers()
-      .subscribe(users => this.users = users);
   }
 
   getMostRecent() {

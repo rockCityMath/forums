@@ -11,7 +11,8 @@ const loginUrl = '/auth/login'
 const registerUrl = '/auth/register'
 const getMostRecentUrl = '/api/post/mostRecent'
 const createPostUrl = '/api/post'
-const usernameFromID = '/auth/usernameFromID'
+const usernameFromIDUrl = '/auth/usernameFromID'
+const postDetailsUrl = '/api/post'
 
 @Injectable({
   providedIn: 'root'
@@ -91,8 +92,17 @@ export class ServerService {
 
   getUsernameFromID(userID?: any) {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
-    return this.http.request("POST", baseUrl + usernameFromID, {
+    return this.http.request("POST", baseUrl + usernameFromIDUrl, {
       body: userID,
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  getPostDetails(id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("GET", baseUrl + postDetailsUrl + "/" + id, {
       responseType: 'json',
       observe: 'body',
       headers: header

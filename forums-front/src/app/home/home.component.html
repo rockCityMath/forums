@@ -8,8 +8,8 @@
 <div id="page-content-container">
   <div id="main" class="font-sans: font-light most-recent">
     <a *ngFor="let post of mostRecentPosts[1]" id="post">
-      <div id="title" class="font-sans: font-bold"><a routerLink="/post/{{post.id}}">{{post.title}}</a></div>
-      <div id="content">{{post.content}}</div>
+      <div id="title" class="font-sans: font-bold"><a routerLink="/post/{{post._id}}">{{post.title}}</a></div>
+      <div id="content">{{post.content | shorten: 100}} </div>
       <div id="tags"><p *ngFor="let tag of post.tags" id="individual-tag">{{tag}}</p></div>
       <div id="info-user-container">
         <div id="info">{{post.likeCount}} likes  &nbsp; &nbsp;  234 comments</div>

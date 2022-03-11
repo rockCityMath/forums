@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user';
 import { Post } from '../post';
-import { PostService } from '../post.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -17,14 +16,11 @@ export class UserComponent implements OnInit {
   users: User[] = [];
 
   constructor(
-    private postService: PostService,
     private route: ActivatedRoute,
     private userService: UserService,
   ) { }
 
   ngOnInit(): void {
-    this.getUsers();
-    this.getPosts();
 
   }
 /*
@@ -37,11 +33,6 @@ export class UserComponent implements OnInit {
   getUsers(): void {
     this.userService.getUsers()
       .subscribe(users => this.users = users);
-  }
-
-  getPosts(): void {
-    this.postService.getPosts()
-      .subscribe(posts => this.posts = posts);
   }
 
 }

@@ -2,8 +2,12 @@ import { getSafePropertyAccessString } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { Post } from '../post';
-import { PostService } from '../post.service';
 import { UserService } from '../user.service';
+
+import { ServerService } from '../shared/services/server-interface.service'
+
+import { ActivatedRoute } from '@angular/router'
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -11,23 +15,25 @@ import { UserService } from '../user.service';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  posts: Post[] = [];
-  users: User[] = [];
+  post: any = ""
+  id: any = ""
 
-  constructor(private postService: PostService, private userService: UserService) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private serverService: ServerService) { }
 
   ngOnInit(): void {
-    this.getPosts();
-    this.getUsers();
+    this.id = this.route.snapshot.paramMap.get('id')
+    this.getPostDetails()
   }
 
-  getUsers(): void {
-    this.userService.getUsers()
-      .subscribe(users => this.users = users);
+  getPostDetails() {
+    const postsObservable = this.serverService.getPostDetails(this.id)
+    postsObservable.subscribe((data ) => {
+      data = Object.values(data)
+      this.post = data[1]
+    })
   }
 
-  getPosts(): void {
-    this.postService.getPosts()
-      .subscribe(posts => this.posts = posts);
+  ngOnDestroy() {
+
   }
 }

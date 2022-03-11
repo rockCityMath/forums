@@ -1,3 +1,4 @@
+/*
 import { Post } from './post';
 
 export const POSTS: Post[] = [
@@ -14,3 +15,5 @@ export const POSTS: Post[] = [
   { id: 21, userID: 1, title: 'Forum Post About Something5', content: 'Lorem ipsum dolor sit amet5, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam', likes: 50},
   { id: 22, userID: 2, title: 'Forum Post About Something6', content: 'Lorem ipsum dolor sit amet6, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam', likes: 60},
 ]
+
+*/

@@ -17,7 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './shared/services/auth.service';
 import { UserComponent } from './user/user.component';
 import { PostComponent } from './post/post.component';
-import { CommentComponent } from './comment/comment.component'
+import { CommentComponent } from './comment/comment.component';
+import { ShortenPipe } from './shorten.pipe'
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { CommentComponent } from './comment/comment.component'
     FeatureComponent,
     UserComponent,
     PostComponent,
-    CommentComponent
+    CommentComponent,
+    ShortenPipe
   ],
   imports: [
     BrowserModule,
