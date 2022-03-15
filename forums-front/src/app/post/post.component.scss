@@ -10,18 +10,41 @@
   }
   
   .title {
-    font-size: 220%;
+    font-size: 180%;
     font-weight: 800;
   }
 
   .content {
-    font-size: 120%;
+    font-size: 100%;
     line-height: 200%;
     margin-bottom: 2%;
   }
 
   .username {
-    margin-bottom: 5%;
+    margin-bottom: 2%;
     font-size: 120%;
     font-weight: 800;
+  }
+
+  #tags {
+    width: 100%
+  }
+
+  #individual-tag {
+    border: hidden #000;
+    width: max-content;
+    padding: 3px;
+    border-width: 0.01em;
+    border-radius: 5px;
+    background-color: #f3f4f6;
+  }
+  
+  .likes-comments {
+    width: 30%;
+    float: left;
+  }
+
+  .reply {
+    width: 40%;
+    float: left;
   }
