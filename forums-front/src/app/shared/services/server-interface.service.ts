@@ -13,6 +13,7 @@ const getMostRecentUrl = '/api/post/mostRecent'
 const createPostUrl = '/api/post'
 const usernameFromIDUrl = '/auth/usernameFromID'
 const postDetailsUrl = '/api/post'
+const commentByIDUrl = '/api/comment'
 
 @Injectable({
   providedIn: 'root'
@@ -103,6 +104,15 @@ export class ServerService {
   getPostDetails(id: any) {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
     return this.http.request("GET", baseUrl + postDetailsUrl + "/" + id, {
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  getComment(id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("GET", baseUrl + commentByIDUrl + "/" + id, {
       responseType: 'json',
       observe: 'body',
       headers: header

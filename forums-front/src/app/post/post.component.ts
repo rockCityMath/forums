@@ -30,6 +30,23 @@ export class PostComponent implements OnInit {
     postsObservable.subscribe((data ) => {
       data = Object.values(data)
       this.post = data[1]
+
+      this.post.comments.forEach(element => {
+        this.getPostComment(element)
+      });
+    })
+  }
+
+  getPostComment(commentID) {
+    const commentsObservable = this.serverService.getComment(commentID)
+    commentsObservable.subscribe((data ) => {
+      
+      data = Object.values(data)
+      /*
+      this.post = data[1]
+      */
+      
+      console.log(data[1][0])
     })
   }
 

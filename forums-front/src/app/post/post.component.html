@@ -8,7 +8,12 @@
   <div class="username">By: {{post.username}}</div>
   <div id="tags"><p *ngFor="let tag of post.tags" id="individual-tag">{{tag}}</p></div>
   <!--Add comment count here, once model and rest of backend is updated-->
-  <div class="likes-comments">{{post.likeCount}} likes &nbsp; &nbsp; {{post.comments}} comments </div> 
+  <div class="likes-comments">{{post.likeCount}} likes &nbsp; &nbsp; 3209 comments </div> 
   <div class="reply">reply &nbsp; &nbsp; edit</div>
+
+  <div class="comments-title">Comments</div>
+
+  <!--  Implement comments -->
+  <div class="comments"><p *ngFor="let comment of post.comments" class="individual-comment">{{comment}}</p></div>
 </h1>
 

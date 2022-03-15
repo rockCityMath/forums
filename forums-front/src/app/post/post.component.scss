@@ -23,7 +23,7 @@
   .username {
     margin-bottom: 2%;
     font-size: 120%;
-    font-weight: 800;
+    font-weight: 600;
   }
 
   #tags {
@@ -45,6 +45,17 @@
   }
 
   .reply {
-    width: 40%;
+    width: 70%;
     float: left;
+  }
+
+  .comments-title {
+    margin-top: 10%;
+    font-size: 180%;
+    font-weight: 800;
+    margin-bottom: 2%;
+  }
+
+  .comments {
+    
   }
