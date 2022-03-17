@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs';
 export class PostComponent implements OnInit {
   post: any = ""
   id: any = ""
+  comments: any = ""
 
   constructor(private userService: UserService, private route: ActivatedRoute, private serverService: ServerService) { }
 
@@ -42,11 +43,8 @@ export class PostComponent implements OnInit {
     commentsObservable.subscribe((data ) => {
       
       data = Object.values(data)
-      /*
-      this.post = data[1]
-      */
+      this.comments = data[1]
       
-      console.log(data[1][0])
     })
   }
 

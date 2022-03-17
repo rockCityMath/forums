@@ -3,8 +3,43 @@ const User = require('../models/user-model')
 const Comment = require('../models/comment-model');
 const { response } = require('express');
 
+
+const { idFromToken } = require('../auth');
+
 addComment = async(req, res) => {
     const body = req.body
+    var userID
+
+    //Get users ID from JWT on header 
+    await idFromToken(req.headers['authorization'].split(" ").pop(), (decodedID) => {
+        userID = decodedID
+    })
+
+    if(userID == undefined || userID == 0 ) {
+        return res.status(404).json({
+            message: 'You must be logged in!'
+        })
+    }
+
+    //Get username from userID (to be associated with the post)
+    const userFromID = await User.findOne({_id: userID}, (err, user) => {
+                                
+        if(err) {
+            return res.status(404).json({
+                err,
+                message: 'Error searching for user...',
+            })
+        }
+
+        if (!user) {
+            return res
+                .status(404)
+                .json({ success: false, error: `User not found...` })
+        }
+    })  
+        .clone()
+        .exec()
+        .catch(err => console.log(err))
 
     /* CREATE COMMENT OBEJCT */
     if (!body) {
@@ -14,10 +49,14 @@ addComment = async(req, res) => {
         })
     }
 
+    console.log("USERNAME")
+    console.log(userFromID.username)
+
     //Modify if model changes
     const comment = new Comment({
         postID: req.params.id,
-        userID: body.userID,
+        username: userFromID.username,
+        userID: userID,
         content: body.content
     }); 
 
@@ -75,7 +114,7 @@ addComment = async(req, res) => {
     }).clone()
 
     /* ADD COMMENT TO USER COMMENTS */
-    await User.findOne({_id: body.userID }, (err, user) => {
+    await User.findOne({_id: userID }, (err, user) => {
         
         if(err) {
             return res.status(404).json({

@@ -30,6 +30,16 @@ a {
   @apply text-sky-800;
 }
 
+#signUpBG:hover,
+  #signUpBG:focus {
+    background-color: rgb(224, 224, 224);
+  }
+
+#loginBG:hover,
+  #loginBG:focus {
+    background-color: rgb(24, 47, 110);
+  }
+
 #signUpBG {
   @apply bg-white;
   width: 90px;

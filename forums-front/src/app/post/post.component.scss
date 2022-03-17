@@ -40,13 +40,50 @@
   }
   
   .likes-comments {
-    width: 30%;
+    width: 25%;
     float: left;
+    top: 50%;
+    transform: translateY(50%);
   }
 
   .reply {
-    width: 70%;
-    float: left;
+    width:75%;
+    float: left;  
+  }
+
+
+  /* CSS */
+  .button-1 {
+    background-color: #EA4C89;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 5px 50px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+
+    @apply bg-sky-600
+  }
+
+  .button-1:hover,
+  .button-1:focus {
+    background-color: rgb(24, 47, 110);
   }
 
   .comments-title {
@@ -57,5 +94,11 @@
   }
 
   .comments {
-    
+  
+  }
+  
+  .individual-comment {
+    margin-bottom: 2%;
+    //border: 0.01rem solid;
+    padding: 5px;
   }

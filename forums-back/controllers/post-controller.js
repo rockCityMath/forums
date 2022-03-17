@@ -9,7 +9,7 @@ createPost = async (req, res) => {
     const body = req.body
     var userID
 
-    console.log(req.headers['authorization'])
+    //console.log(req.headers['authorization'])
 
     if (!body) {
         return res.status(400).json({
