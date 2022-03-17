@@ -15,12 +15,9 @@
 
   <!--  Implement comments -->
   <div class="comments"><div *ngFor="let comment of comments" class="individual-comment">
+    &nbsp; &nbsp; {{ comment.username }}
+    <br>
     {{ comment.content }}
-    <br>
-    <br>
-    <hr>
-    {{ comment.username }}
-    <div class="reply-edit">  &nbsp; reply &nbsp; &nbsp; edit</div>
   </div></div>
 </h1>
 
