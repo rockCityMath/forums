@@ -4,18 +4,22 @@
   justify-content: center;
   //background-color: red;
   align-items: flex-start;
-  margin-top: 2rem;
+  margin-top: 3rem;
+  left: 50%;
+  transform: translate(12.5%);
   gap: 2rem 2rem;
   @apply font-sans;
 }
 
 .recent {
   padding-bottom: 1rem;
+  display: block;
+  margin: auto;
   order: 1;
   flex-basis: 45rem;
   flex-shrink: 1;
-  margin: 1.1rem;
-  margin-top: 0;
+  //margin: 1.1rem;
+  //margin-top: 0;
   border-radius: 20px;
   @apply bg-white;
   filter: drop-shadow(5px 10px 10px grey);
@@ -23,6 +27,9 @@
 
 .featured {
   padding-bottom: 1rem;
+  display: block;
+  margin: auto;
+  margin-top: 0;
   order: 2;
   flex-basis: 25rem;
   border-radius: 20px;
@@ -65,7 +72,7 @@ h2 {
    padding-left: 0.5rem;
    padding-right: 0.5rem;
    margin: 0.5rem;
-   margin-left: 0.5rem;
+   margin-left: 0.75rem;
    @apply bg-gray-300;
 }
 
