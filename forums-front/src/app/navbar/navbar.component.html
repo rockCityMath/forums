@@ -8,7 +8,7 @@
     </div>
     <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
       <div class="SLButtons">
-        <button type="button" id="signUpButton"><div id="signUpBG">{{username}}</div></button>
+        <button type="" id="signUpButton"><div id="signUpBG">{{username}}</div></button>
         <div id="loginBG"><button type="button" id="loginButton" (click)="authService.logout()">logout</button></div>
           <button type="button" routerLink="/compose">
             <div id="compose"><div id="vLine"></div><div id="hLine"></div></div>

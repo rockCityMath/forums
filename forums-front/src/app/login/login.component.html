@@ -1,5 +1,22 @@
+<span id="bg">
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <p>FORUM | login</p>
+      <span class="input">
+        <input type="text" placeholder="username" formControlName="username" size="30" required>
+        <input type="password" placeholder="password" formControlName="password" size="30" required>
+      </span>
+      <button type="submit">login</button>
+    </form>
+  </div>
+</span>
+
+
+
+
+<!--
 <div id="bg" ></div>
-<div id = "box" class="font-sans: font-light">
+<div id="box">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h1 id="title">FORUM  |  login</h1>
     <input type ="text" size="30" placeholder="Username" formControlName="username" required>
@@ -11,4 +28,5 @@
     </div>
   </form>
 </div>
+-->
 
