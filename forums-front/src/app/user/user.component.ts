@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user';
 import { Post } from '../post';
-import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user',
@@ -17,7 +16,6 @@ export class UserComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
@@ -30,9 +28,5 @@ export class UserComponent implements OnInit {
       .subscribe(users => this.users = users);
   }*/
 
-  getUsers(): void {
-    this.userService.getUsers()
-      .subscribe(users => this.users = users);
-  }
 
 }

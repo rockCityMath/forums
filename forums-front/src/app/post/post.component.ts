@@ -2,7 +2,7 @@ import { getSafePropertyAccessString } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { Post } from '../post';
-import { UserService } from '../user.service';
+
 
 import { ServerService } from '../shared/services/server-interface.service'
 
@@ -19,7 +19,7 @@ export class PostComponent implements OnInit {
   id: any = ""
   comments: any = ""
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private serverService: ServerService) { }
+  constructor(private route: ActivatedRoute, private serverService: ServerService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id')
@@ -41,10 +41,10 @@ export class PostComponent implements OnInit {
   getPostComment(commentID) {
     const commentsObservable = this.serverService.getComment(commentID)
     commentsObservable.subscribe((data ) => {
-      
+
       data = Object.values(data)
       this.comments = data[1]
-      
+
     })
   }
 

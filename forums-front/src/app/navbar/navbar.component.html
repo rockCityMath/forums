@@ -1,37 +1,26 @@
-<div id = 'navbar'  class="font-sans: font-light">
-
-  <a id = 'title' routerLink="/home">{{ title | uppercase }}</a>
+<div class="navbar">
+  <a routerLink="/home" id="title">{{title | uppercase}}</a>
   <nav>
-    <div id = 'menu'> <!--add hamburger menu for size responsiveness-->
+    <div id="menu"> <!--add hamburger menu for size responsiveness-->
       <a routerLink="/home">home</a>
       <a routerLink="/about">about</a>
       <a routerLink="/admin">admin</a>
     </div>
-
     <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
-      <div id="SLButtons">
-
-        <button type="" id="signUpButton" class="font-sans: font-light"><div id="signUpBG">{{username}}</div></button>
-
-        <div id="loginBG"><button type="button" id="loginButton" class="font-sans: font-light"
-          (click)="authService.logout()">logout</button></div>
+      <div class="SLButtons">
+        <button type="button" id="signUpButton"><div id="signUpBG">{{username}}</div></button>
+        <div id="loginBG"><button type="button" id="loginButton" (click)="authService.logout()">logout</button></div>
           <button type="button" routerLink="/compose">
             <div id="compose"><div id="vLine"></div><div id="hLine"></div></div>
           </button>
       </div>
     </div>
-
     <ng-template #notLoggedIn>
-      <div id="SLButtons">
-        <button type="button" id="signUpButton" class="font-sans: font-light"
-        routerLink="/register"><div id="signUpBG">sign up</div></button>
-
-        <button type="button" id="loginButton" class="font-sans: font-light"
-          routerLink="/login"><div id="loginBG">login</div></button>
+      <div class="SLButtons">
+        <button type="button" id="signUpButton" routerLink="/register"><div id="signUpBG">sign up</div></button>
+        <button type="button" id="loginButton" routerLink="/login"><div id="loginBG">login</div></button>
       </div>
-
     </ng-template>
-
   </nav>
 </div>
 <app-search></app-search>
