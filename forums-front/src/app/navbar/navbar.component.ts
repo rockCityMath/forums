@@ -15,13 +15,17 @@ export class NavbarComponent implements OnInit {
   username: any = "null"
 
   ngOnInit(): void {
-
-    const nameObservable = this.server.getUsernameFromID()
-    nameObservable.subscribe((data ) => {
-      data = Object.values(data)
-      this.username = data
-    })
-
+      
+    //If user logged in, get username
+      this.authService.isLoggedIn.subscribe(data => {
+        if(data) {
+          const nameObservable = this.server.getUsernameFromID()
+          nameObservable.subscribe((data ) => {
+            data = Object.values(data)
+            this.username = data
+          })
+        }
+      })
   }
   title = 'forum';
 }

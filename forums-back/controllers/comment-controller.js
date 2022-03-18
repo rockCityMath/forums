@@ -106,7 +106,8 @@ addComment = async(req, res) => {
                     })
                 })
 
-    }).clone()
+    })
+        .clone()
 
     /* ADD COMMENT TO USER COMMENTS */
     const userReturn = await User.findOne({_id: userID }, (err, user) => {
@@ -137,7 +138,8 @@ addComment = async(req, res) => {
                     })
                 })
 
-    }).clone()
+    })
+        .clone()
 
 }
 
@@ -301,6 +303,7 @@ getComment= async(req, res) => {
             data: comment
         })
     })
+        .clone()
         .catch(err => console.log(err))
 }
 

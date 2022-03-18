@@ -9,8 +9,6 @@ createPost = async (req, res) => {
     const body = req.body
     var userID
 
-    //console.log(req.headers['authorization'])
-
     if (!body) {
         return res.status(400).json({
             success: false,
@@ -22,8 +20,6 @@ createPost = async (req, res) => {
     await idFromToken(req.headers['authorization'].split(" ").pop(), (decodedID) => {
         userID = decodedID
     })
-
-    console.log(userID)
 
     if(userID == undefined || userID == 0 ) {
         return res.status(404).json({
@@ -51,6 +47,8 @@ createPost = async (req, res) => {
         .exec()
         .catch(err => console.log(err))
 
+    //Seperate tags
+    var parsedTags = body.tags.split(' ')
 
     //Create post object  with given information (id and username obtained previously)
     const post = new Post({
@@ -58,7 +56,7 @@ createPost = async (req, res) => {
         username: userFromID.username,
         title: body.title,
         content : body.content,
-        tags : body.tags,
+        tags : parsedTags,
     }); 
 
     if (!post) {
@@ -107,7 +105,8 @@ createPost = async (req, res) => {
                     message: 'Error adding post to users posts....'
                 })
             })
-    }).clone()
+    })
+        .clone()
 }
 
 getPostById = async (req, res) => {
@@ -122,7 +121,9 @@ getPostById = async (req, res) => {
                 .json({ success: false, error: `Post not found` })
         }
         return res.status(200).json({ success: true, data: post })
-    }).catch(err => console.log(err))
+    })
+        .clone()
+        .catch(err => console.log(err))
 }
 
 getPosts = async (req, res) => {
@@ -136,7 +137,10 @@ getPosts = async (req, res) => {
                 .json({ success: false, error: `Posts not found` })
         }
         return res.status(200).json({ success: true, data: posts })
-    }).catch(err => console.log(err))
+    })
+        .clone()
+        .catch(err => console.log(err))
+
 }
 
 deletePost = async (req, res) => {
@@ -230,6 +234,7 @@ getMostLikedPosts = async (req, res) => {
                 .slice(0, 5) //second parameter is amount of posts to return
         })
     })
+        .clone()
         .catch(err => console.log(err))
 }
 
@@ -251,10 +256,10 @@ getMostRecentPosts = async (req, res) => {
                 .slice(0, 5) //second parameter is amount of posts to return
         })
     })
+        .clone()
         .catch(err => console.log(err))
+    
 }
-
-
 
 module.exports = {
     createPost,

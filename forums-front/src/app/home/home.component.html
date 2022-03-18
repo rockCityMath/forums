@@ -4,7 +4,9 @@
       <a *ngFor="let post of mostRecentPosts[1]" class="post">
         <a routerLink="/post/{{post._id}}" class="title">{{post.title}}</a>
         <div id="content">{{post.content | shorten: 170}}</div>
-        <p *ngFor="let tag of post.tags" id="tag">{{tag}}</p>
+        <div class="tag-container">
+          <p *ngFor="let tag of post.tags" id="tag">{{tag}}</p>
+        </div>
         <div class="row">
           <div class="info">
             <div id="likes">{{post.likeCount}} likes</div>
@@ -22,7 +24,7 @@
   <div class="featured">
     <h2>featured posts</h2>
     <a *ngFor="let post of mostLikedPosts[1]" class="post">
-      <a routerLink="/post/{{post.id}}" class="title">{{post.title}}</a>
+      <a routerLink="/post/{{post._id}}" class="title">{{post.title}}</a>
         <div class="info">
           <div id="likes">{{post.likeCount}} likes</div>
           <a *ngFor="let user of users">
