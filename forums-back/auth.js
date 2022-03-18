@@ -1,7 +1,7 @@
 const nJwt = require('njwt');
 var config = require('./config');
 
-//Can be used as route guard
+//Can be used as route guard, returns auth bool and userID if valid
 function jwtAuth(req, res, next) {
   if (!req.token) {
     return res.status(403).send({ auth: false, message: 'No token provided' });
@@ -22,7 +22,6 @@ function jwtAuth(req, res, next) {
 function idFromToken(token, next) {
   
   var userID = 0
-  console.log("GIVEN " + token)
 
   nJwt.verify(token, config.secret, function(err, decoded)  {
     if(err) {

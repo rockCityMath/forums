@@ -3,14 +3,12 @@ const nJwt = require('njwt')
 const config = require('../config')
 
 const { idFromToken } = require('../auth')
+const { jwtAuth } = require('../auth')
 
 const User = require('../models/user-model')
 
-const jwtAuth = require('../auth')
 
 registerUser = async(req, res) => {
-    console.log("recieved request")
-
     const body = req.body
 
     if (!body) {
@@ -22,7 +20,6 @@ registerUser = async(req, res) => {
 
     var hashedPassword = bcrypt.hashSync(body.password, 8)
 
-    //Modify if model changes
     const user = new User({
         username: body.username,
         password: hashedPassword,
@@ -56,7 +53,6 @@ registerUser = async(req, res) => {
 }
 
 loginUser = async(req, res) => {
-
     await User.findOne({ username: req.body.username }, (err, user) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -80,15 +76,12 @@ loginUser = async(req, res) => {
 }
 
 getUserID = async(req, res) => {
-
     jwtAuth(req, res, 
-        console.log("next!")
-    )
 
+    )
 }
 
 getUsernameFromID = async(req, res) => {
-
     await idFromToken(req.headers['authorization'].split(" ").pop(), (decodedID) => {
         userID = decodedID
     })
@@ -101,7 +94,6 @@ getUsernameFromID = async(req, res) => {
 
     //Get username from userID
     const userFromID = await User.findOne({_id: userID}, (err, user) => {
-                                
         if(err) {
             return res.status(404).json({
                 err,
@@ -118,13 +110,10 @@ getUsernameFromID = async(req, res) => {
         .clone()
         .exec()
         .catch(err => console.log(err))
-    
-    console.log("GOTTEN " + userFromID.username)
+
     return res.status(201).json({
         message: userFromID.username
     })
-
-
 }
 
 module.exports = {
