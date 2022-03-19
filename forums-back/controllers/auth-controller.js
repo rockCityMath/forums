@@ -55,16 +55,16 @@ registerUser = async(req, res) => {
 loginUser = async(req, res) => {
     await User.findOne({ username: req.body.username }, (err, user) => {
         if (err) {
-            return res.status(400).json({ success: false, error: err })
+            return res.status(200).send({ success: false, error: err })
         }
 
         if (!user) {
             return res
-                .status(404)
-                .json({ success: false, error: `User not found` })
+                .status(200)
+                .send({ success: false, error: `User not found` })
         }
         if(!bcrypt.compareSync(req.body.password, user.password)) {
-            return res.status(401).send({ auth: false, token: null });
+            return res.status(200).send({ auth: false, token: null });
         }
 
         var jwt = nJwt.create({id: user._id}, config.secret)
@@ -72,7 +72,9 @@ loginUser = async(req, res) => {
 
         res.status(200).send({ auth: true, token: jwt.compact() });
 
-    }).catch(err => console.log(err))
+    })
+        .clone()
+        .catch(err => console.log(err))
 }
 
 getUserID = async(req, res) => {

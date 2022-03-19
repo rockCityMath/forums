@@ -29,6 +29,7 @@ export class AuthService {
         username: user.username,
         password: user.password
       }).subscribe((response: any) => {
+
         if (response.auth === true && response.token !== undefined) { //resp valid = set and store token
           this.token = response.token;
           this.server.setLoggedIn(true, this.token);
@@ -41,6 +42,9 @@ export class AuthService {
           console.log("login success")
           alert("Successfully logged in!")
           this.router.navigateByUrl('/home');
+        }
+        else {
+          alert("Invalid login!")
         }
       });
     }

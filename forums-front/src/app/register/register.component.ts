@@ -45,8 +45,10 @@ export class RegisterComponent implements OnInit {
       password: this.form.get('password')?.value
     });
 
-    request.subscribe(() => {
+    request.subscribe((data) => {
       //SHOW SUCCESS HERE
+
+      console.log(data)
       
       alert("Successfully registered acount. Please sign in below!")
       this.router.navigate(['/login']);
