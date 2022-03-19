@@ -22,6 +22,7 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id')
     this.getPostDetails()
+    this.getPostComments()
   }
 
   getPostDetails() {
@@ -29,21 +30,14 @@ export class PostComponent implements OnInit {
     postsObservable.subscribe((data ) => {
       data = Object.values(data)
       this.post = data[1]
-
-      this.post.comments.forEach(element => {
-        this.getPostComment(element)
-      });
     })
   }
 
-  getPostComment(commentID) {
-    const commentsObservable = this.serverService.getComment(commentID)
-    console.log("getting comment id " + commentID)
+  getPostComments() {
+    const commentsObservable = this.serverService.getPostComments(this.id)
     commentsObservable.subscribe((data ) => {
       data = Object.values(data)
-      console.log(data)
       this.comments = data[1]
-
     })
   }
 

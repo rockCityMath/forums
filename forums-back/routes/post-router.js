@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.get('/mostLiked', PostControl.getMostLikedPosts)
 router.get('/mostRecent', PostControl.getMostRecentPosts)
-router.get('/userPosts/:id', PostControl.getMostRecentPosts )
+router.get('/userPosts/:id', PostControl.getUsersPosts )
 router.post('/', PostControl.createPost)
 router.get('/:id', PostControl.getPostById)
 router.delete('/:id', PostControl.deletePost)
