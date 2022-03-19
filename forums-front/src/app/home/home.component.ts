@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../post';
-import { User } from '../user';
 
 import { ServerService } from '../shared/services/server-interface.service'
 
@@ -12,7 +10,6 @@ import { ServerService } from '../shared/services/server-interface.service'
 export class HomeComponent implements OnInit {
   mostRecentPosts: any = [];
   mostLikedPosts: any = [];
-  users: User[] = [];
 
   constructor(private serverService: ServerService) { }
 

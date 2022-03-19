@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../user';
-import { Post } from '../post';
+
 
 import { ServerService } from '../shared/services/server-interface.service'
 

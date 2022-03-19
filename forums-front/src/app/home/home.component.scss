@@ -65,6 +65,7 @@ h2 {
 
 #tag-container {
   width: 100%;
+  margin: 0.5rem;
 }
 
 #tag {
@@ -75,8 +76,7 @@ h2 {
    padding-bottom: 0.25rem;
    float: left;
    width: max-content;
-   margin: 0.5rem;
-   margin-left: 0.75rem;
+   margin: 0.25rem;
    @apply bg-gray-300;
 }
 

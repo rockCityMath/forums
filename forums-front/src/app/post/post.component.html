@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header">{{post.title}} <span id="username">| {{post.username}}</span></div>
     <div id="content">{{post.content}}</div>
-    <div class="tags"><p *ngFor="let tag of post.tags" id="tag">{{tag}}</p></div>
+    <span class="tags"><p *ngFor="let tag of post.tags" id="tag">{{tag}}</p></span>
     <div class="info">
       <span class="text">
         <div id="likes">{{post.likeCount}} likes</div>
