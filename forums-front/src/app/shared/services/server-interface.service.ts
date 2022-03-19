@@ -18,6 +18,7 @@ const usersPostsByIDURL = '/api/post/userPosts'
 const userDetailsURL ='/api/user'
 const userCommentsURL = '/api/comment/userComments'
 const addCommentURL = '/api/comment/add'
+const postCommentsURL = '/api/comment/postComments'
 
 @Injectable({
   providedIn: 'root'
@@ -125,7 +126,6 @@ export class ServerService {
 
   getUsersPosts(id: any) {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
-    console.log(baseUrl + usersPostsByIDURL + "/" + id)
     return this.http.request("GET", baseUrl + usersPostsByIDURL + "/" + id, {
       responseType: 'json',
       observe: 'body',
@@ -156,6 +156,15 @@ export class ServerService {
     console.log(replyData)
     return this.http.request("POST", baseUrl + addCommentURL + '/' + id, {
       body: replyData,
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  getPostComments(id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("GET", baseUrl + postCommentsURL + "/" + id, {
       responseType: 'json',
       observe: 'body',
       headers: header

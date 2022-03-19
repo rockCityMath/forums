@@ -326,9 +326,33 @@ getUserComments = async(req, res) => {
         .catch(err => console.log(err))
 }
 
+getPostComments = async(req, res) => {
+    await Comment.find({postID: req.params.id}, (err, comment) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!comment.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Comment not found` })
+        }
+        return res.status(200).json({  
+            success: true,
+            data: comment
+        })
+    })
+        .clone()
+        .catch(err => console.log(err))
+}
+
+
+
+ 
+
 module.exports = {
     addComment,
     removeComment,
     getComment,
-    getUserComments
+    getUserComments,
+    getPostComments
 }
