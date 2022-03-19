@@ -4,9 +4,7 @@
       <a *ngFor="let post of mostRecentPosts[1]" class="post">
         <a routerLink="/post/{{post._id}}" class="title">{{post.title}}</a>
         <div id="content">{{post.content | shorten: 170}}</div>
-        <div id="tag-container">
-          <p *ngFor="let tag of post.tags" id="tag">{{tag}}</p>
-        </div>
+        <div id="tag-container"><p *ngFor="let tag of post.tags" id="tag">{{tag}}</p></div>
         <div class="row">
           <div class="info">
             <div id="likes">{{post.likeCount}} likes</div>
@@ -15,10 +13,9 @@
           </div>
           <div class="buttons">
             <button type="button" id="likeButton"><3</button>
-              <button type="button" id="commentButton">comment</button>
+              <button type="button" id="commentButton">reply</button>
           </div>
         </div>
-
       </a>
   </div>
   <div class="featured">
