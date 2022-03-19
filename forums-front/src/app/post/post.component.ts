@@ -1,7 +1,5 @@
 import { getSafePropertyAccessString } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user';
-import { Post } from '../post';
 
 
 import { ServerService } from '../shared/services/server-interface.service'
@@ -15,9 +13,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  post: any = ""
-  id: any = ""
-  comments: any = ""
+  post: any = [];
+  id: any = []
+  comments: any = [];
 
   constructor(private route: ActivatedRoute, private serverService: ServerService) { }
 

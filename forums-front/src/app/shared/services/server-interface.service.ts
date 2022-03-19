@@ -3,8 +3,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 
-import { Post } from '../../post'
-
 const baseUrl = 'http://localhost:3232';
 const getMostLikedUrl = '/api/post/mostLiked'
 const loginUrl = '/auth/login'
