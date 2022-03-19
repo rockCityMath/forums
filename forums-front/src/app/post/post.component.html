@@ -1,3 +1,27 @@
+<div class="container">
+  <div class="header">{{post.title}} <span id="username">| {{post.username}}</span></div>
+  <div id="content">{{post.content}}</div>
+  <div class="tags"><p *ngFor="let tag of post.tags" id="tag">{{tag}}</p></div>
+  <div class="info">
+    <span class="text">
+      <div id="likes">{{post.likeCount}} likes</div>
+      <div id="comments">3209 comments</div>
+    </span>
+    <span class="buttons">
+      <button>reply</button>
+      <button>edit</button>
+    </span>
+  </div>
+  <div class="comments">
+    <h2>comments</h2>
+    <div *ngFor="let comment of comments">
+      <div id="user">{{comment.username}}username</div>
+      <div id="comment">{{comment.content}}content</div>
+    </div>
+  </div>
+</div>
+
+
 <!--
 <h1 class="main">
   <div class="title">{{post.title}}</div>
@@ -21,10 +45,3 @@
   </div></div>
 </h1>
 -->
-<div class="container">
-  <p>{{post.title}} | {{post.username}}</p>
-  <div id="content">{{post.content}}</div>
-  <div id="tag-container"><p *ngFor="let tag of post.tags" id="tag">{{tag}}</p></div>
-  <div id="likes-comments">{{post.likeCount}} likes &nbsp; &nbsp; 3209 comments </div>
-</div>
-

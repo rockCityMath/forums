@@ -1,3 +1,99 @@
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  height: max-content;
+  margin: 5rem;
+  @apply font-sans font-light;
+}
+
+.header {
+  font-size: 225%;
+  //text-align: center;
+  margin-bottom: 0.5rem;
+  @apply font-bold text-sky-800;
+}
+
+#username {
+  @apply font-light;
+}
+
+#content {
+  margin-bottom: 1rem;
+}
+
+.tags {
+  display: flex;
+  width: 100%;
+
+}
+
+#tag {
+  border: 1rem;
+  border-radius: 1rem;
+  float: left;
+  width: max-content;
+  margin: 0.5rem;
+  margin-left: 0.75rem;
+  @apply bg-gray-300;
+}
+
+.info {
+  display: flex;
+}
+
+.text {
+  display: flex;
+  padding: 1rem;
+}
+
+#likes {
+
+}
+
+#comments {
+
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-start;
+}
+
+button {
+  padding-bottom: 3%;
+  font-size: 110%;
+  width: 90px;
+  display: block;
+  margin: auto;
+  text-align: center;
+  margin-top: 1rem;
+  height: 30px;
+  border-radius: 7.5px;
+  @apply text-white bg-sky-600;
+}
+
+button:hover {
+  @apply bg-sky-800;
+}
+
+h2 {
+  margin-top: 2rem;
+  font-size: 150%;
+  @apply font-light text-sky-800;
+}
+
+.comments {
+
+}
+
+#user {
+
+}
+
+#comment {
+
+}
+
 .main {
     position: relative;
     padding-top: 10%;
@@ -8,7 +104,7 @@
 
     @apply text-black;
   }
-  
+
   .title {
     font-size: 180%;
     font-weight: 800;
@@ -38,7 +134,7 @@
     border-radius: 5px;
     background-color: #f3f4f6;
   }
-  
+
   .likes-comments {
     width: 25%;
     float: left;
@@ -48,7 +144,7 @@
 
   .reply {
     width:75%;
-    float: left;  
+    float: left;
   }
 
 
@@ -93,10 +189,6 @@
     margin-bottom: 2%;
   }
 
-  .comments {
-  
-  }
-  
   .individual-comment {
     margin-bottom: 2%;
     //border: 0.01rem solid;
