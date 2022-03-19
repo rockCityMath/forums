@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../user';
 import { Post } from '../post';
 
+import { ServerService } from '../shared/services/server-interface.service'
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -11,16 +13,17 @@ import { Post } from '../post';
 export class UserComponent implements OnInit {
   @Input() user?: User;
 
-  posts: Post[] = [];
   users: User[] = [];
 
   constructor(
     private route: ActivatedRoute,
+    private serverService: ServerService
   ) { }
 
   ngOnInit(): void {
 
   }
+
 /*
   getUsers(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));

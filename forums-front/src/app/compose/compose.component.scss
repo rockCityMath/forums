@@ -4,8 +4,7 @@
   height: 100%;
   width: 100%;
   background-color: transparent;
-  @apply opacity-50;
-  @apply bg-gray-300;
+  @apply opacity-50 bg-gray-300 text-black;
   order: 0;
   flex: 0 1 auto;
   align-self: auto;

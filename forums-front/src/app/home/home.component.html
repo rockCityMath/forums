@@ -11,7 +11,7 @@
           <div class="info">
             <div id="likes">{{post.likeCount}} likes</div>
             <div id="comments">234 comments</div>
-            <div id="username">{{post.username}}</div>
+            <a id="username" routerLink="/user/{{post.userID}}">{{post.username}}</a>
           </div>
           <div class="buttons">
             <button type="button" id="likeButton"><3</button>
@@ -27,9 +27,7 @@
       <a routerLink="/post/{{post._id}}" class="title">{{post.title}}</a>
         <div class="info">
           <div id="likes">{{post.likeCount}} likes</div>
-          <a *ngFor="let user of users">
-            <a *ngIf="user.id == post.userID" routerLink="/user/{{user.username}}">{{post.userID}}</a>
-          </a>
+          <a id="username" routerLink="/user/{{post.userID}}">{{post.username}}</a>
         </div>
     </a>
   </div>
