@@ -1,9 +1,25 @@
+#bg {
+  z-index: 0;
+  position: fixed;
+  top: 60px;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  @apply bg-gray-300;
+}
+
 .container {
   display: flex;
+  padding: 2rem;
   flex-flow: column nowrap;
   height: max-content;
   margin: 5rem;
-  @apply font-sans font-light;
+  border-radius: 20px;
+  width: 80rem;
+  @apply bg-white font-sans font-light;
+  filter: drop-shadow(5px 10px 10px grey);
 }
 
 .header {
@@ -30,6 +46,9 @@
 #tag {
   border: 1rem;
   border-radius: 1rem;
+  padding: 0.5rem;
+  padding-top: 0;
+  padding-bottom: 0.25rem;
   float: left;
   width: max-content;
   margin: 0.5rem;
@@ -39,10 +58,13 @@
 
 .info {
   display: flex;
+  gap: 1rem 1rem;
+
 }
 
 .text {
   display: flex;
+  gap: 1rem 1rem;
   padding: 1rem;
 }
 
@@ -56,9 +78,22 @@
 
 .buttons {
   display: flex;
+  gap: 1rem 1rem;
   justify-content: flex-start;
 }
 
+button {
+  @apply font-sans;
+  margin: auto;
+  padding: 5%;
+}
+
+button:hover {
+  @apply font-bold;
+  padding: 5%;
+}
+
+/*
 button {
   padding-bottom: 3%;
   font-size: 110%;
@@ -74,7 +109,7 @@ button {
 
 button:hover {
   @apply bg-sky-800;
-}
+}*/
 
 h2 {
   margin-top: 2rem;
