@@ -1,5 +1,22 @@
+.searchBar {
+  z-index: 200;
+
+  //align-self: center;
+  //margin: auto;
+
+  overflow: auto;
+  border-radius: 20px;
+  padding-left: 2%;
+  @apply text-black bg-white;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+/*
 #searchBar {
-  z-index: 11;
+  z-index: 200;
   position: fixed;
   margin-left: 37%;
   padding-left: 1.1%;
@@ -22,3 +39,4 @@
 #searchIcon {
 
 }
+*/

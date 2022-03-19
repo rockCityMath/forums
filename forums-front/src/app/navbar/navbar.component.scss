@@ -1,69 +1,69 @@
-.navbar {
-  color: white;
+#container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
   width:100%;
-  height:60px;
+  height:3.5rem;
   position: fixed;
-  top:0;
-  left:0;
   z-index: 10;
-  @apply bg-sky-700;
-  @apply font-sans;
-  @apply font-light;
+  @apply bg-sky-700 text-white font-sans font-light;
+
 }
 
 #title {
   font-size: 225%;
-  margin-left: 30px;
-}
-
-nav {
-  position: fixed;
-  top: 11px;
-  left:160px;
-  font-size: 150%;
+  margin-left: 2.5rem;
 }
 
 a {
-  margin-left: 25px;
+  margin-left: 1rem;
+  font-size: 150%
+}
+
+.menu {
+  order: 1;
+  margin-left: 12rem;
+  margin-top: 0.5rem;
+  position: fixed;
+}
+
+.search {
+  order: 2;
+  justify-self: center;
+  width: 25rem;
+  margin: auto;
 }
 
 #signUpButton {
   @apply text-sky-800;
 }
 
-#signUpBG:hover,
-  #signUpBG:focus {
-    @apply bg-gray-300;
-  }
-
-#loginBG:hover,
-  #loginBG:focus {
-    @apply bg-sky-800;
-  }
-
-#signUpBG {
+.signUpBG {
   width: 90px;
   height: 30px;
   position: fixed;
-  top: 14px;
-  right: 160px;
+  top: 12px;
+  right: 9.5rem;
   border-radius: 7.5px;
-  @apply bg-white;
+  @apply bg-white text-sky-800;
 }
 
-#loginBG {
+.loginBG {
   @apply bg-sky-600;
   width: 90px;
   height: 30px;
   position: fixed;
-  top: 14px;
-  right: 45px;
+  top: 12px;
+  right: 2.5rem;
   border-radius: 7.5px;
 }
 
-.SLButtons {
-  text-align: center;
-  font-size: 75%;
+.signUpBG:hover{
+  background-color: rgb(224, 224, 224);
+}
+
+.loginBG:hover{
+  background-color: rgb(24, 47, 110);
 }
 
 #compose {
@@ -75,10 +75,6 @@ a {
   border-radius: 100px;
   filter: drop-shadow(5px 10px 10px grey);
   @apply bg-sky-600;
-}
-
-#compose:hover {
-  @apply bg-sky-800;
 }
 
 #vLine {

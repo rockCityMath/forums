@@ -16,7 +16,7 @@
     <div class="comments">
       <h2>comments</h2>
       <div *ngFor="let comment of comments">
-        <div id="user">{{comment.username}}</div>
+        <a id="username" routerLink="/user/{{comment.userID}}"><div id="user">{{comment.username}}</div></a>
         <div id="comment">{{comment.content}}</div>
       </div>
     </div>

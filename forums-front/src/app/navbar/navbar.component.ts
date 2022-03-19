@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   isAdmin: Boolean = false
 
   ngOnInit(): void {
-      
+
     //If user logged in, get username
       this.authService.isLoggedIn.subscribe(data => {
         if(data) {

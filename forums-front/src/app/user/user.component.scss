@@ -18,10 +18,9 @@
 }
 
 .posts {
-  padding-bottom: 1rem;
+  padding: 1rem;
   display: block;
   margin: auto;
-  order: 1;
   flex-basis: 45rem;
   flex-shrink: 1;
   border-radius: 20px;
@@ -42,6 +41,7 @@
 
 #bio {
   margin-bottom: 2rem;
+  margin-right: 1rem;
 }
 
 h2 {
@@ -58,6 +58,7 @@ h2 {
 
 #content {
   margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .info {
@@ -80,6 +81,7 @@ h2 {
   display: flex;
   width: 100%;
   margin-bottom: 1.5rem;
+  margin-right: 1rem;
 }
 
 #tag {
