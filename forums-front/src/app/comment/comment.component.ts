@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 import { ServerService } from '../shared/services/server-interface.service'
 import { Router } from '@angular/router'
+import {ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-comment',
@@ -11,16 +12,19 @@ import { Router } from '@angular/router'
 })
 export class CommentComponent implements OnInit {
   form!: FormGroup;
-  public loginInvalid?: boolean;
   private formSubmitAttempt?: boolean;
+  id: any = ""
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private server: ServerService, private router: Router ) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private server: ServerService, private router: Router, private route: ActivatedRoute ) { 
+    route.params.subscribe(
+      (params) => {
+        this.id = params['id']
+      });
+  }
 
   ngOnInit(): void {
   this.form = this.fb.group({
-    title: [''],
-    content: [''],
-    tags: ['']
+    content: ['']
   });
   }
 
@@ -31,18 +35,13 @@ export class CommentComponent implements OnInit {
       return;
     }
 
-    const request = this.server.createPost({
-      title: this.form.get('title')?.value,
-      content: this.form.get('content')?.value,
-      //TODO: Parse these tags
-      tags: this.form.get('tags')?.value
-    });
+    const request = this.server.addReply({
+      content: this.form.get('content')?.value
+    }, this.id );
 
     request.subscribe(() => {
-      //SHOW SUCCESS HERE
-
       alert("Successfully posted!")
-      this.router.navigate(['/home']);
+      this.router.navigate(['/post/' + this.id]);
     })
   }
 }
