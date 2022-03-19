@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
 
   id: any = "test"
   posts: any[] = []
+  user: any;
 
   constructor(private route: ActivatedRoute, private serverService: ServerService) {
     route.params.subscribe(
@@ -33,14 +34,16 @@ export class UserComponent implements OnInit {
     postsObservable.subscribe((data ) => {
       data = Object.values(data)
       this.posts = data[1]
-
-      console.log(data)
-      /*
-      this.posts.comments.forEach(element => {
-        this.getPostComment(element)
-      });
-      */
     })
+  }
+
+  getUserInfo() {
+    const userObservable = this.serverService.getUser(this.id)
+    userObservable.subscribe((data ) => {
+      data = Object.values(data)
+      this.user = data[1]
+    })
+     
   }
 
 /*
