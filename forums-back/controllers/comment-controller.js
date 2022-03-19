@@ -289,6 +289,25 @@ removeComment = async(req, res) => {
 }
 
 getComment= async(req, res) => {
+    await Comment.find({_id: req.params.id}, (err, comments) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!comment.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Comment not found` })
+        }
+        return res.status(200).json({  
+            success: true,
+            data: comments
+        })
+    })
+        .clone()
+        .catch(err => console.log(err))
+}
+
+getUserComments = async(req, res) => {
     await Comment.find({}, (err, comment) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -310,5 +329,6 @@ getComment= async(req, res) => {
 module.exports = {
     addComment,
     removeComment,
-    getComment
+    getComment,
+    getUserComments
 }

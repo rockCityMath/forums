@@ -6,5 +6,6 @@ const CommentControl = require('../controllers/comment-controller')
 router.post('/add/:id', CommentControl.addComment)          //post id is req param
 router.post('/remove/:id', CommentControl.removeComment)    //post id is req param, comment to delete is given in req body
 router.get('/:id', CommentControl.getComment)
+router.get('/userComments/:id', CommentControl.getUserComments)
 
 module.exports = router
