@@ -14,6 +14,7 @@ const createPostUrl = '/api/post'
 const usernameFromIDUrl = '/auth/usernameFromID'
 const postDetailsUrl = '/api/post'
 const commentByIDUrl = '/api/comment'
+const usersPostsByIDURL = '/api/post/userPosts'
 
 @Injectable({
   providedIn: 'root'
@@ -113,6 +114,16 @@ export class ServerService {
   getComment(id: any) {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
     return this.http.request("GET", baseUrl + commentByIDUrl + "/" + id, {
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  getUsersPosts(id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    console.log(baseUrl + usersPostsByIDURL + "/" + id)
+    return this.http.request("GET", baseUrl + usersPostsByIDURL + "/" + id, {
       responseType: 'json',
       observe: 'body',
       headers: header
