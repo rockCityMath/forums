@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   constructor(public authService: AuthService, private server: ServerService) { }
 
   username: any = "null"
+  isAdmin: Boolean = false
 
   ngOnInit(): void {
       
@@ -21,8 +22,10 @@ export class NavbarComponent implements OnInit {
         if(data) {
           const nameObservable = this.server.getUsernameFromID()
           nameObservable.subscribe((data ) => {
+            console.log(data)
             data = Object.values(data)
-            this.username = data
+            this.username = data[0]
+            this.isAdmin = data[1]
           })
         }
       })

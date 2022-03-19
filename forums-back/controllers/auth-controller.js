@@ -114,7 +114,8 @@ getUsernameFromID = async(req, res) => {
         .catch(err => console.log(err))
 
     return res.status(201).json({
-        message: userFromID.username
+        message: userFromID.username,
+        admin: userFromID.isAdmin
     })
 }
 

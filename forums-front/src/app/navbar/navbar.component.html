@@ -4,7 +4,7 @@
     <div id="menu"> <!--add hamburger menu for size responsiveness-->
       <a routerLink="/home">home</a>
       <a routerLink="/about">about</a>
-      <a routerLink="/admin">admin</a>
+      <a *ngIf="isAdmin" routerLink="/admin">admin</a>
     </div>
     <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
       <div class="SLButtons">
