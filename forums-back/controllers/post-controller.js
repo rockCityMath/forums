@@ -261,11 +261,34 @@ getMostRecentPosts = async (req, res) => {
     
 }
 
+getUsersPosts = async (req, res) => {
+    console.log("Called")
+    await Post.find({ userID: req.params.id }, (err, posts) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!posts.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Users posts not found` })
+        }
+        return res.status(200).json({ 
+            success: true, 
+            data: posts
+                .sort((a, b) => (a.createdAt < b.createdAt) ? 1 : -1)
+        })
+    })
+    .clone()
+    .catch(err => console.log(err))
+}
+
+
 module.exports = {
     createPost,
     getPostById,
     getPosts,
     deletePost,
     getMostLikedPosts,
-    getMostRecentPosts
+    getMostRecentPosts,
+    getUsersPosts
 }
