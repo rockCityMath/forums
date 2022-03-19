@@ -7,7 +7,7 @@
   background-color: transparent;
   display: flex;
   justify-content: center;
-  @apply bg-gray-300;
+ // @apply bg-gray-300;
 }
 
 .container {
@@ -38,7 +38,7 @@ input {
   border-radius: 20px;
   overflow: auto;
   margin-top: 0.5rem;
-  @apply bg-gray-300 text-black;
+  @apply bg-gray-200 text-black;
 }
 
 button {

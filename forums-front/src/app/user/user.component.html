@@ -1,40 +1,33 @@
 <span id="bg">
   <div class="container">
-    <div class="user">
-      <div id="username">{{user.username}}</div>
-      <div id="bio">{{user.createdAt}}</div>
-    </div>
-    <a *ngFor="let post of posts">
-      <div class="posts">
-        <div id="title">{{post.title}}</div>
-        <div id="content">{{post.content | shorten: 300}}</div>
-        <div class="info">
-          <div id="likes">{{post.likeCount}} likes</div>
-          <div id="comments">234 comments</div>
-
-        </div>
-        <span class="tags"><p *ngFor="let tag of post.tags" id="tag">{{tag}}</p></span>
+    <div class="posts">
+      <div class="user">
+        <div id="username">{{user.username}}</div>
+        <div id="bio">{{user.createdAt}}</div>
+        <h2>{{user.username}}'s posts</h2>
       </div>
-    </a>
+      <a *ngFor="let post of posts">
+        <div class="post">
+          <a id="title" routerLink="/post/{{post._id}}">{{post.title}}</a>
+          <div id="content">{{post.content | shorten: 300}}</div>
+          <div class="info">
+            <div id="likes">{{post.likeCount}} likes</div>
+            <div id="comments">234 comments</div>
+          </div>
+          <span class="tags"><p *ngFor="let tag of post.tags" id="tag">{{tag}}</p></span>
+        </div>
+      </a>
+    </div>
+    <div class="comments">
+      <h2 id="box-title">{{user.username}}'s comments</h2>
+      <div *ngFor="let comment of userComments">
+        <a *ngFor="let post of posts">
+          <a *ngIf="comment.postID == post._id">
+            <a id="title" routerLink="/post/{{post._id}}">{{post.title}}</a>
+            <div id="comment">{{comment.content}}</div>
+          </a>
+        </a>
+      </div>
+    </div>
   </div>
 </span>
-
-<!--
-<a *ngFor="let post of posts">
-        <div id="main">
-            <div id="image"></div>
-
-                <div id="username">{{user.username}}</div>
-                <div id="bio">{{user.createdAt}}</div>
-
-
-                <div id="title">{{post.title}}</div>
-                <div id="content">{{post.content}}</div>
-                <div id="info">{{post.likes}} likes </div>
-
-        </div>
-    </a>
-
-
-
--->
