@@ -114,7 +114,10 @@ getUserById = async (req, res) => {
                 .json({ success: false, error: `User not found` })
         }
         return res.status(200).json({ success: true, data: user })
-    }).catch(err => console.log(err))
+    })
+        .clone()
+        .catch(err => console.log(err))
+
 }
 
 getUsers = async (req, res) => {
@@ -128,7 +131,9 @@ getUsers = async (req, res) => {
                 .json({ success: false, error: `User not found` })
         }
         return res.status(200).json({ success: true, data: users })
-    }).catch(err => console.log(err))
+    })
+        .clone()
+        .catch(err => console.log(err))
 }
 
 module.exports = {

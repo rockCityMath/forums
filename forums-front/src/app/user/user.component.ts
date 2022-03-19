@@ -26,6 +26,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserPosts()
+    this.getUserInfo()
   }
 
 
@@ -40,6 +41,7 @@ export class UserComponent implements OnInit {
   getUserInfo() {
     const userObservable = this.serverService.getUser(this.id)
     userObservable.subscribe((data ) => {
+      console.log(data)
       data = Object.values(data)
       this.user = data[1]
     })

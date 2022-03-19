@@ -15,7 +15,7 @@ const usernameFromIDUrl = '/auth/usernameFromID'
 const postDetailsUrl = '/api/post'
 const commentByIDUrl = '/api/comment'
 const usersPostsByIDURL = '/api/post/userPosts'
-const userDetailsURL ='/api/user/:id'
+const userDetailsURL ='/api/user'
 
 @Injectable({
   providedIn: 'root'
