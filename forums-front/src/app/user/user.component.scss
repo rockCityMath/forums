@@ -1,6 +1,5 @@
 #bg {
   z-index: 0;
-  position: fixed;
   top: 60px;
   height: 100%;
   width: 100%;
@@ -57,7 +56,6 @@
   flex-flow: row nowrap;
   order: 1;
   margin-left: 1rem;
-  margin-bottom: 1.5rem;
 }
 
 #likes {
@@ -67,4 +65,23 @@
 #comments {
   order: 2;
   margin-left: 1rem;
+}
+
+.tags {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+#tag {
+  border: 1rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  padding-top: 0;
+  padding-bottom: 0.25rem;
+  float: left;
+  width: max-content;
+  margin: 0.5rem;
+  margin-left: 0.75rem;
+  @apply bg-gray-300;
 }

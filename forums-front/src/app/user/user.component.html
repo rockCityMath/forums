@@ -11,7 +11,9 @@
         <div class="info">
           <div id="likes">{{post.likeCount}} likes</div>
           <div id="comments">234 comments</div>
-          </div>
+
+        </div>
+        <span class="tags"><p *ngFor="let tag of post.tags" id="tag">{{tag}}</p></span>
       </div>
     </a>
   </div>
