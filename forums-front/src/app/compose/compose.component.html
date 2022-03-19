@@ -1,18 +1,14 @@
-<div id="bg" ></div>
-<div id = "box">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h1 id="title">FORUM  |  create post</h1>
-    <div id="i1"><input  type ="text" size="30" placeholder="enter post title..." formControlName="title" required></div>
-    <div id="i2"><textarea  name="content" placeholder="enter post contents" formControlName="content" required></textarea></div>
-    <div id="i3"><input type="text" size="30" placeholder="enter post tags..." formControlName="tags"></div>
-    <br><br><br>
-    <div id="loginBG">
-      <button type="submit" id="submitButton" class="button">
-        <div id="submitBG">submit</div></button>
-      </div>
-  </form>
-
-
+<span id="bg">
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <p>FORUM | create post</p>
+      <div id="i1"><input  type ="text" size="30" placeholder="enter post title..." formControlName="title" required></div>
+      <div id="i2"><textarea  name="content" placeholder="enter post contents" formControlName="content" required></textarea></div>
+      <div id="i3"><input type="text" size="30" placeholder="enter post tags..." formControlName="tags"></div>
+      <button type="submit" id="submitButton" class="button">submit</button>
+    </form>
+  </div>
+</span>
 
     <!--
 
@@ -29,6 +25,6 @@
       </div>
     </form>
   -->
-</div>
+
 
 

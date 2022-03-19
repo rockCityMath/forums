@@ -63,13 +63,15 @@ h2 {
   margin-left: 1rem;
 }
 
+#tag-container {
+  width: 100%;
+}
+
 #tag {
    border: 1rem;
    border-radius: 1rem;
    float: left;
    width: max-content;
-   padding-left: 0.5rem;
-   padding-right: 0.5rem;
    margin: 0.5rem;
    margin-left: 0.75rem;
    @apply bg-gray-300;
@@ -126,6 +128,3 @@ h2 {
   margin-left: 1rem;
 }
 
-.tag-container {
-  width: 100%;
-}

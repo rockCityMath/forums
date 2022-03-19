@@ -4,7 +4,7 @@
       <a *ngFor="let post of mostRecentPosts[1]" class="post">
         <a routerLink="/post/{{post._id}}" class="title">{{post.title}}</a>
         <div id="content">{{post.content | shorten: 170}}</div>
-        <div class="tag-container">
+        <div id="tag-container">
           <p *ngFor="let tag of post.tags" id="tag">{{tag}}</p>
         </div>
         <div class="row">

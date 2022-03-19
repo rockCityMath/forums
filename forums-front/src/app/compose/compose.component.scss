@@ -1,84 +1,44 @@
 #bg {
+  z-index: 0;
   position: fixed;
   top: 60px;
   height: 100%;
   width: 100%;
   background-color: transparent;
-  @apply opacity-50 bg-gray-300 text-black;
-  order: 0;
-  flex: 0 1 auto;
-  align-self: auto;
+  display: flex;
+  justify-content: center;
+  @apply bg-gray-300;
 }
 
-#box {
-  display: inline-block;
-  position: absolute;
-  top: 20%;
-  left: 33.5%;
-  width: 700px;
-  height: 540px;
+.container {
+  display: flex;
+  padding: 2rem;
+  height: max-content;
+  margin-top: 5rem;
   border-radius: 20px;
-  @apply bg-white;
+  width: 40rem;
+  flex-flow: column wrap;
+  @apply bg-white font-sans font-light;
   filter: drop-shadow(5px 10px 10px grey);
-  order: 0;
-  flex: 0 1 auto;
-  align-self: auto;
 }
 
-h1 {
-  position: relative;
-  margin-top: 3%;
-  top: 15%;
+p {
   font-size: 225%;
   text-align: center;
-  @apply text-sky-800;
+  margin-bottom: 0.5rem;
+  @apply font-sans font-light text-sky-800;
 }
 
 input {
   padding-left: 3%;
-  height: 100%;
+  top: 22px;
+  height: 30px;
+  width: 75%;
+  margin-left: 12.5%;
   border-radius: 20px;
-  background-color: transparent;
-  @apply text-gray-400;
-  @apply bg-gray-300;
   overflow: auto;
-  width: 190%;
-}
-
-#i1 {
-  position: fixed;
-  top: 20%;
-  left: 10%;
-  height: 30px;
-}
-
-#i2 {
-  position: fixed;
-  top: 30%;
-  left: 10%;
-  height: 36%;
-  width: 77.5%;
-}
-
-#i3 {
-  position: fixed;
-  top: 70%;
-  left: 10%;
-  height: 30px;
-}
-
-#submitBG {
-  @apply bg-sky-600;
-  justify-content: center;
-  position: absolute;
-  left: 42%;
-  top: 85%;
-  width: 90px;
-  text-align: center;
-  height: 30px;
-  font-size: 110%;
-  @apply text-white;
-  border-radius: 7.5px;
+  margin-top: 0.5rem;
+  @apply bg-gray-300 text-black;
 }
 
 textarea {
@@ -86,8 +46,29 @@ textarea {
   padding-left: 1%;
   padding-top: 1%;
   resize: none;
-  width: 100%;
-  height: 100%;
+  height: 15rem;
   border-radius: 20px;
-  @apply bg-gray-300;
+  width: 75%;
+  margin-left: 12.5%;
+  border-radius: 20px;
+  overflow: auto;
+  margin-top: 0.5rem;
+  @apply bg-gray-300 text-black;
+}
+
+button {
+  padding-bottom: 3%;
+  font-size: 110%;
+  width: 90px;
+  display: block;
+  margin: auto;
+  text-align: center;
+  margin-top: 1rem;
+  height: 30px;
+  border-radius: 7.5px;
+  @apply text-white bg-sky-600;
+}
+
+button:hover {
+  @apply bg-sky-800;
 }
