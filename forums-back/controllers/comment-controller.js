@@ -289,7 +289,7 @@ removeComment = async(req, res) => {
 }
 
 getComment= async(req, res) => {
-    await Comment.find({_id: req.params.id}, (err, comments) => {
+    await Comment.find({}, (err, comment) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -300,7 +300,7 @@ getComment= async(req, res) => {
         }
         return res.status(200).json({  
             success: true,
-            data: comments
+            data: comment
         })
     })
         .clone()
@@ -308,7 +308,7 @@ getComment= async(req, res) => {
 }
 
 getUserComments = async(req, res) => {
-    await Comment.find({}, (err, comment) => {
+    await Comment.find({userID: req.params.id}, (err, comment) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
