@@ -15,11 +15,19 @@
     </div>
     <div class="comments">
       <h2>comments</h2>
-      <div *ngFor="let comment of comments">
-        <a id="username" routerLink="/user/{{comment.userID}}"><div id="user">{{comment.username}}</div></a>
-        <div id="comment">{{comment.content}}</div>
-      </div>
-    </div>
+
+      <div *ngFor="let comment of comments" class="">
+        <div class="dialogbox">
+          <div class="body">
+            <span class="tip tip-left"></span>
+            <div class="message">
+              <span>{{comment.content}}</span>
+              <br>
+              <a routerLink="/user/{{comment.userID}}" class="comment-username">{{comment.username}}</a>
+            </div>
+          </div>
+        </div>
+    </div>  
   </div>
 
-</span>
+
