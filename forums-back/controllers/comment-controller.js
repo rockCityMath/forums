@@ -7,14 +7,14 @@ const { response } = require('express');
 const { idFromToken } = require('../auth');
 
 addComment = async(req, res) => {
+
     const body = req.body
     var userID = 0
 
-    //Get users ID from JWT on header 
+    //Get and verify userID from JWT 
     await idFromToken(req.headers['authorization'].split(" ").pop(), (decodedID) => {
         userID = decodedID
     })
-
     if(userID == undefined || userID == 0 ) {
         return res.status(404).json({
             message: 'You must be logged in!'
@@ -29,16 +29,12 @@ addComment = async(req, res) => {
                 message: 'Error searching for user...',
             })
         }
-
         if (!user) {
             return res
                 .status(404)
                 .json({ success: false, error: `User not found...` })
         }
-    })  
-        .clone()
-        .exec()
-        .catch(err => console.log(err))
+    })  .clone().exec().catch(err => console.log(err))
 
     /* CREATE COMMENT OBEJCT */
     if (!body) {
@@ -47,28 +43,20 @@ addComment = async(req, res) => {
             error: 'You must provide comment info',
         })
     }
-
-    //Modify if model changes
     const comment = new Comment({
         postID: req.params.id,
         username: userFromID.username,
         userID: userID,
         content: body.content
     }); 
-
     if (!comment) {
         console.log("400 error")
         return res.status(400).json({ success: false, error: err })
     }
-
         comment
         .save()
         .then(() => {
-            return res.status(201).json({
-                success: true,
-                id: comment._id,
-                message: 'Comment created!',
-            })
+            
         })
         .catch(error => {
             return res.status(400).json({
@@ -77,7 +65,7 @@ addComment = async(req, res) => {
             })
         })
 
-    /* ADD COMMENT TO POST COMMENTS */
+    /* ADD COMMENT TO POST COMMENTS + INC COMMENT COUNT */
     const postReturn = await Post.findOne({_id: req.params.id }, (err, post) => {
         
         if(err) {
@@ -89,15 +77,12 @@ addComment = async(req, res) => {
         
         //Add commentID to post's comment list
         post.comments.push(comment._id);
+        post.commentCount += 1;
 
             post
                 .save()
                 .then(() => {   
-                    return res.status(200).json({
-                        success: true,
-                        id: post._id,
-                        message: 'Comment added to post!'
-                    })
+                    
                 })
                 .catch(error => {
                     return res.status(404).json({
@@ -106,8 +91,7 @@ addComment = async(req, res) => {
                     })
                 })
 
-    })
-        .clone()
+    }).clone()
 
     /* ADD COMMENT TO USER COMMENTS */
     const userReturn = await User.findOne({_id: userID }, (err, user) => {
@@ -125,10 +109,11 @@ addComment = async(req, res) => {
             user
                 .save()
                 .then(() => {
+                    
                     return res.status(200).json({
                         success: true,
-                        id: post._id,
-                        message: 'Comment added to user!'
+                        id: comment._id,
+                        message: 'Comment added to post!'
                     })
                 })
                 .catch(error => {
@@ -138,13 +123,22 @@ addComment = async(req, res) => {
                     })
                 })
 
-    })
-        .clone()
+    }).clone()
 
 }
 
 removeComment = async(req, res) => {
     const body = req.body
+    var userID = 0;
+
+    await idFromToken(req.headers['authorization'].split(" ").pop(), (decodedID) => {
+        userID = decodedID
+    })
+    if(userID == undefined || userID == 0 ) {
+        return res.status(404).json({
+            message: 'You must be logged in!'
+        })
+    }
 
     /* REMOVE COMMENT OBEJCT */
     if (!body) {
@@ -160,17 +154,12 @@ removeComment = async(req, res) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
+    })
+        .clone()
+        .catch(err => console.log(err))
 
-        if (!comment) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Comment not found` })
-        }
 
-        return res.status(200).json({ success: true })
-    }).clone().catch(err => console.log(err))
-
-    /* REMOVE COMMENT FROM POST'S COMMENT LIST */
+    /* REMOVE COMMENT FROM POST'S COMMENT LIST + DECR COMMENT COUNT */
     const postReturn = await Post.findOne({_id: req.params.id }, (err, post) => {
         
         if(err) {
@@ -200,16 +189,11 @@ removeComment = async(req, res) => {
         //Remove comment if its found
         if(found != -1) {
             post.comments.splice(found, 1);
+            post.commentCount -= 1;
             post
                 .save()
                 .then(() => {
-                    console.log("POST")
-                    console.log(post)
-                    return res.status(200).json({
-                        success: true,
-                        id: post._id,
-                        message: 'Comment removed!'
-                    })
+
                 })
                 .catch(error => {
                     return res.status(404).json({
@@ -225,32 +209,32 @@ removeComment = async(req, res) => {
             })
         }
 
-    }).clone().catch(err => console.log(err))
+    })
+        .clone()
+        .catch(err => console.log(err))
 
-    console.log(postReturn.username)
+    if(postReturn == null) {
+        return 0;
+    }
 
     /* REMOVE COMMENT FROM USER'S COMMENTS */
-    /*
-    User.findOne({_id: req.params.id }, (err, post) => {
+
+    console.log("MADE IT TO USER SECTION")
+    console.log(userID)
+
+    const userReturn = User.findOne({ _id: userID }, (err, user) => {
         
         if(err) {
             return res.status(404).json({
                 err,
-                message: 'Post not found',
+                message: 'Comment not found',
             })
         }
 
-        //Check that there is a userID provided
-        var commentID = body.commentID
-        if(commentID == 'undefined') {
-            return res.status(404).json({
-                err,
-                message: 'You must provide a commentID',
-            })
-        }
+        console.log(user)
 
-        //Check for commentID in post's list of comments
-        var comments = post.comments
+        //Check for commentID in user's list of comments
+        var comments = user.comments
         var found = comments.findIndex(function(element) {
             if(element == commentID) {
                 return true
@@ -259,13 +243,12 @@ removeComment = async(req, res) => {
 
         //Remove comment if its found
         if(found != -1) {
-            post.comments.splice(found, 1);
-            post
+            user.comments.splice(found, 1);
+            user
                 .save()
                 .then(() => {
                     return res.status(200).json({
                         success: true,
-                        id: post._id,
                         message: 'Comment removed!'
                     })
                 })
@@ -282,10 +265,11 @@ removeComment = async(req, res) => {
                 message: 'This comment does not exist...',
             })
         }
-
     }).clone()
-    */
 
+    if(userReturn == null) {
+        return 0;
+    }
 }
 
 getComment = async(req, res) => {
@@ -315,7 +299,7 @@ getUserComments = async(req, res) => {
         if (!comment.length) {
             return res
                 .status(404)
-                .json({ success: false, error: `Comment not found` })
+                .json({ success: false, error: `No comments found!` })
         }
         return res.status(200).json({  
             success: true,

@@ -13,7 +13,8 @@ const Post = new Schema(
         tags: {type: [String], required: true },
         usersThatHaveLiked: {type: [mongoose.Schema.Types.ObjectId], required: false, ref: 'User'},
         likeCount: { type: Number, required: true, default: 0 },
-        comments: {type: [mongoose.Schema.Types.ObjectId], required: false, ref: 'Comment'}   
+        comments: {type: [mongoose.Schema.Types.ObjectId], required: false, ref: 'Comment'}, 
+        commentCount: {type: Number, required: true, default: 0 }
     },
     { timestamps: true } 
 )
