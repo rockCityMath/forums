@@ -11,6 +11,5 @@ router.get('/userPosts/:id', PostControl.getUsersPosts )
 router.post('/', PostControl.createPost)
 router.get('/:id', PostControl.getPostById)
 router.delete('/:id', PostControl.deletePost)
-router.get('/', PostControl.getPosts)
 
 module.exports = router

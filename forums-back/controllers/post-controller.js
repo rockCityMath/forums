@@ -126,25 +126,19 @@ getPostById = async (req, res) => {
         .catch(err => console.log(err))
 }
 
-getPosts = async (req, res) => {
-    await Post.find({}, (err, posts) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-        if (!posts.length) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Posts not found` })
-        }
-        return res.status(200).json({ success: true, data: posts })
-    })
-        .clone()
-        .catch(err => console.log(err))
-
-}
-
 deletePost = async (req, res) => {
     var userID = 0
+
+    //Get users ID from JWT on header 
+    await idFromToken(req.headers['authorization'].split(" ").pop(), (decodedID) => {
+        userID = decodedID
+    })
+
+    if(userID == undefined || userID == 0 ) {
+        return res.status(404).json({
+            message: 'You must be logged in!'
+        })
+    }
 
     await Post.findOneAndDelete({ _id: req.params.id }, (err, post) => {
         if (err) {
@@ -156,20 +150,14 @@ deletePost = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `Post not found` })
         }
-        userID = post.userID
 
         return res.status(200).json({ success: true })
     })
         .clone()
         .catch(err => console.log(err))
 
-    //Check for valid userID and remove the post from the users list of posts
-    if(userID == 0) {
-        return res
-                .status(404)
-                .json({ success: false, error: `Unable to remove from users posts list` })
-    }
-    else {
+    //Remove post from user's list
+
         await User.findOne({_id: userID}, (err, user) => {
                                     
             if(err) {
@@ -212,7 +200,7 @@ deletePost = async (req, res) => {
         })
             .clone()
             .catch(err => console.log(err))
-        }
+        
 }
 
 //Get the n most liked posts in order from greatest to least
@@ -262,7 +250,6 @@ getMostRecentPosts = async (req, res) => {
 }
 
 getUsersPosts = async (req, res) => {
-    console.log("Called")
     await Post.find({ userID: req.params.id }, (err, posts) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -286,7 +273,6 @@ getUsersPosts = async (req, res) => {
 module.exports = {
     createPost,
     getPostById,
-    getPosts,
     deletePost,
     getMostLikedPosts,
     getMostRecentPosts,
