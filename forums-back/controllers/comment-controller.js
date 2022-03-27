@@ -74,6 +74,12 @@ addComment = async(req, res) => {
                 message: 'Post not found',
             })
         }
+        if(post == null) {
+            return res.status(404).json({
+                err,
+                message: 'Post not found',
+            })
+        }
         
         //Add commentID to post's comment list
         post.comments.push(comment._id);
@@ -109,7 +115,7 @@ addComment = async(req, res) => {
             user
                 .save()
                 .then(() => {
-                    
+                    console.log(new Date() + " ---- Comment Created: " + comment._id)
                     return res.status(200).json({
                         success: true,
                         id: comment._id,
@@ -214,14 +220,13 @@ removeComment = async(req, res) => {
         .catch(err => console.log(err))
 
     if(postReturn == null) {
-        return 0;
+        return res.status(404).json({
+            err,
+            message: 'This comment does not exist...',
+        })
     }
 
     /* REMOVE COMMENT FROM USER'S COMMENTS */
-
-    console.log("MADE IT TO USER SECTION")
-    console.log(userID)
-
     const userReturn = User.findOne({ _id: userID }, (err, user) => {
         
         if(err) {
@@ -230,8 +235,6 @@ removeComment = async(req, res) => {
                 message: 'Comment not found',
             })
         }
-
-        console.log(user)
 
         //Check for commentID in user's list of comments
         var comments = user.comments
@@ -247,6 +250,7 @@ removeComment = async(req, res) => {
             user
                 .save()
                 .then(() => {
+                    console.log(new Date() + " ---- Comment Removed: " + commentID)
                     return res.status(200).json({
                         success: true,
                         message: 'Comment removed!'

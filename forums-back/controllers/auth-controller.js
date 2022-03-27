@@ -23,10 +23,10 @@ registerUser = async(req, res) => {
     const user = new User({
         username: body.username,
         password: hashedPassword,
-        biography: body.biography,
-        isAdmin: body.isAdmin,
-        likedPosts: body.likedPosts,
-        comments: body.comments
+        // biography: body.biography,
+        // isAdmin: body.isAdmin,
+        // likedPosts: body.likedPosts,
+        // comments: body.comments
     }); 
 
     if (!user) {
@@ -37,6 +37,7 @@ registerUser = async(req, res) => {
     user
         .save()
         .then(() => {
+            console.log(new Date() + " ---- Registered User: " + user.username)
             return res.status(201).json({
                 success: true,
                 id: user._id,
@@ -49,6 +50,7 @@ registerUser = async(req, res) => {
                 message: 'User not created!',
             })
         })
+    
 
 }
 
@@ -70,6 +72,8 @@ loginUser = async(req, res) => {
         var jwt = nJwt.create({id: user._id}, config.secret)
         jwt.setExpiration(new Date().getTime() + ( 24*60*60*1000*1000 ));
 
+
+        console.log(new Date() + " ---- Login User: " + req.body.username)
         res.status(200).send({ auth: true, token: jwt.compact() });
 
     })

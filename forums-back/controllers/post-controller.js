@@ -67,11 +67,7 @@ createPost = async (req, res) => {
     post
         .save()
         .then(() => {
-            return res.status(201).json({
-                success: true,
-                id: post._id,
-                message: 'Post created!',
-            })
+            
         })
         .catch(error => {
             return res.status(400).json({
@@ -99,6 +95,14 @@ createPost = async (req, res) => {
         user.posts.push(post._id)
         user
             .save()
+            .then(() => {
+                console.log(new Date() + " ---- Post Created: " + post._id)
+                return res.status(201).json({
+                    success: true,
+                    id: post._id,
+                    message: 'Post created!',
+                })
+            })
             .catch(error => {
                 return res.status(404).json({
                     error,
@@ -140,65 +144,61 @@ deletePost = async (req, res) => {
         })
     }
 
-    await Post.findOneAndDelete({ _id: req.params.id }, (err, post) => {
+    await Post.findOneAndDelete({ _id: req.params.id }, (err) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
 
-        if (!post) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Post not found` })
-        }
-
-        return res.status(200).json({ success: true })
     })
         .clone()
         .catch(err => console.log(err))
 
     //Remove post from user's list
-
-        await User.findOne({_id: userID}, (err, user) => {
+    await User.findOne({_id: userID}, (err, user) => {
                                     
-            if(err) {
-                return res.status(404).json({
-                    err,
-                    message: 'Error searching for user...',
-                })
-            }
-
-            if (!user) {
-                return res
-                    .status(404)
-                    .json({ success: false, error: `User not found...` })
-            }
-            
-            //Remove the post from the user's posts
-            var postIndex = user.likedPosts.findIndex(function(element) {
-                if(element == post.userID) {
-                    return true
-                }
+        if(err) {
+            return res.status(404).json({
+                err,
+                message: 'Error searching for user...',
             })
-            if(postIndex != 1) {
-                user.posts.splice(postIndex, 1)
+        }
+
+        if (!user) {
+            return res
+                .status(404)
+                .json({ success: false, error: `User not found...` })
+        }
+        
+        //Remove the post from the user's posts
+        var postIndex = user.posts.findIndex(function(element) {
+            if(element == req.params.id) {
+                return true
             }
-            else {
+        })
+        if(postIndex != 1) {
+            user.posts.splice(postIndex, 1)
+        }
+        else {
+            return res.status(404).json({
+                error,
+                message: 'Post does not belong to user...'
+            })
+        }
+
+        user
+            .save()
+            .then(() => {
+                console.log(new Date() + " ---- Post Removed: ")
+                return res.status(200).json({ success: true })
+            })
+            .catch(error => {
                 return res.status(404).json({
                     error,
-                    message: 'Post does not belong to user...'
+                    message: 'Error removing post from user...'
                 })
-            }
-
-            user
-                .save()
-                .catch(error => {
-                    return res.status(404).json({
-                        error,
-                        message: 'Error removing post from user...'
-                    })
-                })
-        })
-            .clone()
+            })
+    })
+        .clone()
             .catch(err => console.log(err))
         
 }
