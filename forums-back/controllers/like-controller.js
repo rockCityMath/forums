@@ -1,13 +1,18 @@
 const Post = require('../models/post-model')
 const User = require('../models/user-model')
 
-likePost = async(req, res) => {
-    const body = req.body;
+const { idFromToken } = require('../auth');                                                 
 
-    if(!body) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a userID',
+likePost = async(req, res) => {
+    var userID = 0;
+
+    //Get and verify userID from JWT 
+    await idFromToken(req.headers['authorization'].split(" ").pop(), (decodedID) => {
+        userID = decodedID
+    })
+    if(userID == undefined || userID == 0 ) {
+        return res.status(404).json({
+            message: 'You must be logged in!'
         })
     }
 
@@ -18,15 +23,6 @@ likePost = async(req, res) => {
             return res.status(404).json({
                 err,
                 message: 'Post not found',
-            })
-        }
-
-        //Check that there is a userID provided
-        var userID = body.userID
-        if(userID == 'undefined') {
-            return res.status(404).json({
-                err,
-                message: 'You must provide a userID',
             })
         }
 
@@ -71,7 +67,7 @@ likePost = async(req, res) => {
     }).clone()
 
     //Add the post to the user's list of liked posts
-    await User.findOne({_id: body.userID}, (err, user) => {
+    await User.findOne({_id: userID}, (err, user) => {
                                 
         if(err) {
             return res.status(404).json({
@@ -101,12 +97,15 @@ likePost = async(req, res) => {
 }
 
 unlikePost = async(req, res) => {
-    const body = req.body;
+    var userID = 0;
 
-    if(!body) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a userID',
+    //Get and verify userID from JWT 
+    await idFromToken(req.headers['authorization'].split(" ").pop(), (decodedID) => {
+        userID = decodedID
+    })
+    if(userID == undefined || userID == 0 ) {
+        return res.status(404).json({
+            message: 'You must be logged in!'
         })
     }
 
@@ -121,7 +120,6 @@ unlikePost = async(req, res) => {
         }
 
         //Check that there is a userID provided
-        var userID = body.userID
         if(userID == 'undefined') {
             return res.status(404).json({
                 err,
@@ -167,7 +165,7 @@ unlikePost = async(req, res) => {
     }).clone()
 
     //Remove the post from the user's list of liked posts
-    await User.findOne({_id: body.userID}, (err, user) => {
+    await User.findOne({_id: userID}, (err, user) => {
                                 
         if(err) {
             return res.status(404).json({

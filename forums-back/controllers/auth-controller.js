@@ -50,8 +50,6 @@ registerUser = async(req, res) => {
                 message: 'User not created!',
             })
         })
-    
-
 }
 
 loginUser = async(req, res) => {
