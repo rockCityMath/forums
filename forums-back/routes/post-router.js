@@ -11,5 +11,7 @@ router.get('/userPosts/:id', PostControl.getUsersPosts )
 router.post('/', PostControl.createPost)
 router.get('/:id', PostControl.getPostById)
 router.delete('/:id', PostControl.deletePost)
+router.post('/searchTitle', PostControl.searchPostsByTitle)
+router.post('/searchTags', PostControl.searchPostsByTag)
 
 module.exports = router

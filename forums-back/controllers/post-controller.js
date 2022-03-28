@@ -270,11 +270,54 @@ getUsersPosts = async (req, res) => {
 }
 
 
+searchPostsByTitle = async (req, res) => {
+    await Post.find({ title: {'$regex': req.body.query,$options:'i'} }, (err, posts) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!posts.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `No posts found!` })
+        }
+        return res.status(200).json({ 
+            success: true, 
+            data: posts
+                .sort((a, b) => (a.createdAt < b.createdAt) ? 1 : -1)
+        })
+    })
+    .clone()
+    .catch(err => console.log(err))
+}
+
+searchPostsByTag = async (req, res) => {
+    await Post.find({ tags: {'$regex': req.body.query,$options:'i'} }, (err, posts) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!posts.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `No posts found!` })
+        }
+        return res.status(200).json({ 
+            success: true, 
+            data: posts
+                .sort((a, b) => (a.createdAt < b.createdAt) ? 1 : -1)
+        })
+    })
+    .clone()
+    .catch(err => console.log(err))
+}
+
+
 module.exports = {
     createPost,
     getPostById,
     deletePost,
     getMostLikedPosts,
     getMostRecentPosts,
-    getUsersPosts
+    getUsersPosts,
+    searchPostsByTitle,
+    searchPostsByTag 
 }

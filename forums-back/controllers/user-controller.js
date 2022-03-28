@@ -1,4 +1,5 @@
 const User = require('../models/user-model');
+const Post = require('../models/post-model')
 
 createUser = (req, res) => {
     const body = req.body
@@ -136,10 +137,27 @@ getUsers = async (req, res) => {
         .catch(err => console.log(err))
 }
 
+getUserLikes = async (req, res) => {
+    await Post.find({ usersThatHaveLiked: {'$regex': req.params.id }}, (err, posts) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!posts.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Posts not found` })
+        }
+        return res.status(200).json({ success: true, data: posts })
+    })
+        .clone()
+        .catch(err => console.log(err))
+}
+
 module.exports = {
     createUser,
     updateUser,
     deleteUser,
     getUserById,
     getUsers,
+    getUserLikes
 }
