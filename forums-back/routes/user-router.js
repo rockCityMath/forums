@@ -7,6 +7,6 @@ const router = express.Router()
 router.put('/:id', UserControl.updateUser)
 router.delete('/:id', UserControl.deleteUser)
 router.get('/:id', UserControl.getUserById)
-router.get('/userLikes/:id', UserControl.getUserLikes)
+router.get('/stats/:id', UserControl.getUserStats)
 
 module.exports = router

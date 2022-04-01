@@ -137,21 +137,22 @@ getUsers = async (req, res) => {
         .catch(err => console.log(err))
 }
 
-getUserLikes = async (req, res) => {
-    await Post.find({ usersThatHaveLiked: {'$regex': req.params.id }}, (err, posts) => {
+getUserStats = async (req, res) => {
+    await User.find({}, (err, users) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-        if (!posts.length) {
+        if (!users.length) {
             return res
                 .status(404)
-                .json({ success: false, error: `Posts not found` })
+                .json({ success: false, error: `User not found` })
         }
-        return res.status(200).json({ success: true, data: posts })
+        return res.status(200).json({ success: true, data: users })
     })
         .clone()
         .catch(err => console.log(err))
 }
+
 
 module.exports = {
     createUser,
@@ -159,5 +160,5 @@ module.exports = {
     deleteUser,
     getUserById,
     getUsers,
-    getUserLikes
+    getUserStats
 }
