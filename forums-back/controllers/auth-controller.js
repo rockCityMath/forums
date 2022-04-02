@@ -6,10 +6,12 @@ const { idFromToken } = require('../auth')
 const { jwtAuth } = require('../auth')
 
 const User = require('../models/user-model')
+const { exit } = require('process')
 
 
 registerUser = async(req, res) => {
     const body = req.body
+    var userFound = true;
 
     if (!body) {
         return res.status(400).json({
@@ -19,6 +21,29 @@ registerUser = async(req, res) => {
     }
 
     var hashedPassword = bcrypt.hashSync(body.password, 8)
+
+    User.findOne({ username: body.username }, (err, user) => {
+        if (err) {
+
+            return res.status(400).json({ success: false, error: err })
+        }
+
+        if (user) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Username already taken` })
+        }
+        else {
+            userFound = false;
+        }
+    })
+        .clone()
+        .catch(err => console.log(err))
+    
+
+    if(userFound) {
+        return 0;
+    }
 
     const user = new User({
         username: body.username,
