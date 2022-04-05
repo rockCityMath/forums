@@ -10,6 +10,7 @@
 
 .title {
   font-size: 36px;
+  font-weight: 400;
 }
 
 .post-title {
@@ -19,15 +20,18 @@
 
 .post-info {
   display: flex;
+  justify-content: space-between;
   @apply text-gray-400;
 }
 
 .left {
-  display: flex inline;
+  display: flex;
+  justify-content: space-between;
 }
 
 .right {
-  display: flex inline;
+  display: flex;
+  justify-content: space-between;
 }
 
 .post-user{
