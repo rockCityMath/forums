@@ -1,4 +1,11 @@
 <div class="home">
-  <app-recent></app-recent>
-  <app-feature></app-feature>
+  <div class="left">
+    <app-recent></app-recent>
+  </div>
+  <div class="right">
+    <div *ngIf="authService.isLoggedIn | async as isLoggedIn">
+      <button class="compose" routerLink="/compose">+ Create a New Post</button>
+    </div>
+    <app-feature></app-feature>
+  </div>
 </div>

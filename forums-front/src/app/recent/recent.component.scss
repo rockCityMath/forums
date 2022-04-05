@@ -1,3 +1,55 @@
+.post {
+  border-radius: 30px;
+  margin-bottom: 50px;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  @apply bg-white;
+  filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
+}
+
+.post-title {
+  font-size: 36px;
+  margin-left: 110px;
+}
+
+.post-center {
+  display: flex;
+  flex-direction: row;
+}
+
+.post-stats {
+  margin-left: 25px;
+  margin-right: 60px;
+}
+
+.post-content {
+
+}
+
+.post-info {
+  display: flex;
+  margin-left: 115px;
+}
+
+.post-user{
+
+}
+
+.link {
+  @apply text-sky-700;
+}
+
+.post-date {
+}
+
+/*
+.heart {
+  fill: red;
+}
+*/
+
+/*
 .container {
   display: flex;
   flex-flow: row wrap-reverse;
@@ -129,4 +181,6 @@ h2 {
   order: 2;
   margin-left: 1rem;
 }
+*/
+
 

@@ -19,7 +19,7 @@
   flex-shrink: 1;
   border-radius: 20px;
   @apply bg-white;
-  filter: drop-shadow(5px 10px 10px grey);
+  filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
 }
 
 .featured {
@@ -32,7 +32,7 @@
   border-radius: 20px;
   align-self: flex-end;
   @apply bg-white;
-  filter: drop-shadow(5px 10px 10px grey);
+  filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
 }
 
 .post {

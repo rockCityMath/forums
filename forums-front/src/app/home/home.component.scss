@@ -5,12 +5,24 @@
   margin: 80px;
 }
 
-app-recent {
+.left {
   margin-right: 25px;
   width: 1604px;
 }
 
-app-feature {
+.right {
   margin-left: 25px;
   width: 746px;
+  display: flex;
+  flex-direction: column;
+}
+
+.compose {
+  margin-bottom: 50px;
+  width: 100%;
+  height: 124px;
+  border-radius: 30px;
+  font-size: 48px;
+  @apply bg-sky-500 text-white;
+  filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
 }
