@@ -13,5 +13,6 @@ router.get('/:id', PostControl.getPostById)
 router.delete('/:id', PostControl.deletePost)
 router.post('/searchTitle', PostControl.searchPostsByTitle)
 router.post('/searchTags', PostControl.searchPostsByTag)
+router.put('/updatePost/:id', PostControl.updatePost)
 
 module.exports = router

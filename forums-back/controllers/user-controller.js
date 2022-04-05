@@ -138,16 +138,24 @@ getUsers = async (req, res) => {
 }
 
 getUserStats = async (req, res) => {
-    await User.find({}, (err, users) => {
+    await User.find({ _id: req.params.id }, (err, user) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-        if (!users.length) {
+        if (!user.length) {
             return res
                 .status(404)
                 .json({ success: false, error: `User not found` })
         }
-        return res.status(200).json({ success: true, data: users })
+        console.log(user[0].posts.length)
+
+        var userStats = {
+            "numberOfPosts": user[0].posts.length,
+            "numberOfComments": user[0].comments.length,
+            "numberOfLikes": user[0].likedPosts.length
+        }
+
+        return res.status(200).json({ success: true, data: userStats })
     })
         .clone()
         .catch(err => console.log(err))

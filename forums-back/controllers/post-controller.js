@@ -310,6 +310,20 @@ searchPostsByTag = async (req, res) => {
     .catch(err => console.log(err))
 }
 
+updatePost = async(req, res) => {
+    await Post.findOneAndUpdate({_id: req.params.id}, {$set: {content: req.body.content}}, {new: true}, (err, post) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        return res.status(200).json({  
+            success: true,
+            data: post
+        })
+    })
+        .clone()
+        .catch(err => console.log(err))
+}
+
 
 module.exports = {
     createPost,
@@ -319,5 +333,6 @@ module.exports = {
     getMostRecentPosts,
     getUsersPosts,
     searchPostsByTitle,
-    searchPostsByTag 
+    searchPostsByTag,
+    updatePost
 }

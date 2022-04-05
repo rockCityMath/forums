@@ -333,6 +333,19 @@ getPostComments = async(req, res) => {
         .catch(err => console.log(err))
 }
 
+updateComment = async(req, res) => {
+    await Comment.findOneAndUpdate({_id: req.params.id}, {$set: {content: req.body.content}}, {new: true}, (err, comment) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        return res.status(200).json({  
+            success: true,
+            data: comment
+        })
+    })
+        .clone()
+        .catch(err => console.log(err))
+}
 
 
  
@@ -342,5 +355,6 @@ module.exports = {
     removeComment,
     getComment,
     getUserComments,
-    getPostComments
+    getPostComments,
+    updateComment
 }
