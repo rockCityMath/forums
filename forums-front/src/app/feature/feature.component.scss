@@ -1,3 +1,51 @@
+.featured {
+  border-radius: 30px;
+  padding: 60px;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  @apply bg-white;
+  filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
+}
+
+.title {
+  font-size: 36px;
+}
+
+.post-title {
+  font-size: 36px;
+  font-weight: 300;
+}
+
+.post-info {
+  display: flex;
+  @apply text-gray-400;
+}
+
+.left {
+  display: flex inline;
+}
+
+.right {
+  display: flex inline;
+}
+
+.post-user{
+
+}
+
+.link {
+  @apply text-sky-700;
+}
+
+.post-date {
+
+}
+
+
+
+/*
+
 .container {
   display: flex;
   flex-flow: row wrap-reverse;
@@ -130,3 +178,4 @@ h2 {
   margin-left: 1rem;
 }
 
+*/
