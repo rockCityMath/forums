@@ -15,12 +15,12 @@
         <p class="comment-count">234</p>
       </div>
       <div class="post-content">
-        <p>{{post.content | shorten: 170}}</p>
+        <p>{{post.content | shorten: 580}}</p>
       </div>
     </div>
     <div class="post-info">
-        <a class="post-user" routerLink="/user/{{post.userID}}">By: <span class="link">{{post.username}}</span></a>
-        <p class="post-date">Today</p>
+        <div class="post-user"><a routerLink="/user/{{post.userID}}">By: <span class="link">{{post.username}}</span></a></div>
+        <div class="post-date"><p>Today</p></div>
     </div>
   </a>
 </div>
