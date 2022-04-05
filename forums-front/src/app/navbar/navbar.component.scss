@@ -1,96 +1,67 @@
-#container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  width:100%;
-  height:3.5rem;
-  position: fixed;
-  z-index: 10;
-  @apply bg-sky-700 text-white font-sans font-light;
+.nav {
+  background-color: black;
+  height: 60px;
+  width: 100%;
+  color: white;
+  z-index: 999;
 
 }
 
-#title {
-  font-size: 225%;
-  margin-left: 2.5rem;
+.header {
+  font-family: Montserrat;
+  margin-top: 0px;
+  margin-left: 80px;
+  font-size: 36px;
+  float: left;
 }
 
-a {
-  margin-left: 1rem;
-  font-size: 150%
+button {
+  @apply bg-sky-500;
+  border-radius: 30px;
+  width: 135px;
+  height: 40px;
+  font-size: 24px;
 }
 
-.menu {
-  order: 1;
-  margin-left: 12rem;
-  margin-top: 0.5rem;
-  position: fixed;
+.buttons {
+  float: right;
+  margin-top: 10px;
+  margin-right: 80px;
 }
 
-.search {
-  order: 2;
-  justify-self: center;
-  width: 25rem;
-  margin: auto;
+.login {
+  margin-left: 14px;
 }
 
-#signUpButton {
-  @apply text-sky-800;
+input {
+  background-color: white;
+  width: 400px;
+  max-width: 800px;
+  flex-shrink: 2;
+  height: 40px;
+  max-height: 40px;
+  margin-left: 15%;
+  margin-right: 5%;
+  margin-top: 10px;
+  border-radius: 30px;
+  font-size: 24px;
+  padding-Left: 1%;
+  border: none;
+  outline: none;
+  color: black;
+
 }
 
-.signUpBG {
-  width: 90px;
-  height: 30px;
-  position: fixed;
-  top: 12px;
-  right: 9.5rem;
-  border-radius: 7.5px;
-  @apply bg-white text-sky-800;
+@media only screen and (max-width: 1360px) {
+  input {
+      display: none;
+  }
+
 }
 
-.loginBG {
-  @apply bg-sky-600;
-  width: 90px;
-  height: 30px;
-  position: fixed;
-  top: 12px;
-  right: 2.5rem;
-  border-radius: 7.5px;
-}
-
-.signUpBG:hover{
-  background-color: rgb(224, 224, 224);
-}
-
-.loginBG:hover{
-  background-color: rgb(24, 47, 110);
-}
-
-#compose {
-  position:fixed;
-  right: 20px;
-  bottom: 15px;
-  height: 50px;
-  width: 50px;
-  border-radius: 100px;
-  filter: drop-shadow(5px 10px 10px grey);
-  @apply bg-sky-600;
-}
-
-#vLine {
-  position: absolute;
-  right: 47.5%;
-  top: 16%;
-  height:65%;
-  width: 2px;
-  @apply bg-white;
-}
-
-#hLine {
-  position: absolute;
-  bottom: 48%;
-  right: 18%;
-  height: 2px;
-  width: 65%;
-  @apply bg-white;
+@media only screen and (max-width: 720px){
+  .header, .buttons {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

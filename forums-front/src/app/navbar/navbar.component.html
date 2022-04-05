@@ -1,21 +1,20 @@
-<div id="container">
-<a routerLink="/home" id="title">{{title | uppercase}}</a>
-    <div class="menu">
-      <a routerLink="/home">home</a>
-      <a routerLink="/about">about</a>
-      <a routerLink="/admin">admin</a>
-    </div>
-    <div class="search"><app-search></app-search></div>
+<div class="nav">
+  <a routerLink="/home" class="header">{{title}}</a>
+  <!--<div class="menu">
+    <a routerLink="/home">home</a>
+    <a routerLink="/about">about</a>
+    <a routerLink="/admin">admin</a>
+  </div>-->
+  <div class="buttons">
     <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
-        <button type="button" class="signUpBG"><div id="signUpBG" routerLink="/user/{{username._id}}">{{username}}</div></button>
-        <button type="button" class="loginBG" (click)="authService.logout()">logout</button>
-        <button type="button" routerLink="/compose">
-          <div id="compose"><div id="vLine"></div><div id="hLine"></div></div>
-        </button>
+        <button type="button" class="sign-up"><a routerLink="/user/{{username._id}}">{{username}}</a></button>
+        <button type="button" class="login" (click)="authService.logout()">Logout</button>
     </div>
     <ng-template #notLoggedIn>
-        <button type="button" class="signUpBG" routerLink="/register">sign up</button>
-        <button type="button" class="loginBG" routerLink="/login">login</button>
+        <button type="button" class="sign-up" routerLink="/register">Register</button>
+        <button type="button" class="login" routerLink="/login">Login</button>
     </ng-template>
+  </div>
+  <input type="search" name="search" placeholder="Search..." size="39">
 </div>
 

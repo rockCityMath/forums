@@ -1,1 +1,10 @@
-<p>feature works!</p>
+<div class="featured">
+  <h2>featured posts</h2>
+  <a *ngFor="let post of mostLikedPosts[1]" class="post">
+    <a routerLink="/post/{{post._id}}" class="title">{{post.title}}</a>
+      <div class="info">
+        <div id="likes">{{post.likeCount}} likes</div>
+        <a id="username" routerLink="/user/{{post.userID}}">{{post.username}}</a>
+      </div>
+  </a>
+</div>

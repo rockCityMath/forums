@@ -2,3 +2,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: 'Open Sans';
+}
+
+body {
+  @apply bg-gray-100;
+}

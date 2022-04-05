@@ -1,0 +1,18 @@
+<div class="recent">
+    <a *ngFor="let post of mostRecentPosts[1]" class="post">
+      <a routerLink="/post/{{post._id}}" class="title">{{post.title}}</a>
+      <div id="content">{{post.content | shorten: 170}}</div>
+      <div id="tag-container"><p *ngFor="let tag of post.tags" id="tag">{{tag}}</p></div>
+      <div class="row">
+        <div class="info">
+          <div id="likes">{{post.likeCount}} likes</div>
+          <div id="comments">234 comments</div>
+          <a id="username" routerLink="/user/{{post.userID}}">{{post.username}}</a>
+        </div>
+        <div class="buttons">
+          <button type="button" id="likeButton">like</button>
+            <button type="button" id="commentButton" routerLink="/comment/{{post._id}}">reply</button>
+        </div>
+      </div>
+    </a>
+</div>

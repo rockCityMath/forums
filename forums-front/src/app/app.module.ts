@@ -18,7 +18,8 @@ import { AuthService } from './shared/services/auth.service';
 import { UserComponent } from './user/user.component';
 import { PostComponent } from './post/post.component';
 import { CommentComponent } from './comment/comment.component';
-import { ShortenPipe } from './shorten.pipe'
+import { ShortenPipe } from './shorten.pipe';
+import { RecentComponent } from './recent/recent.component'
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ShortenPipe } from './shorten.pipe'
     UserComponent,
     PostComponent,
     CommentComponent,
-    ShortenPipe
+    ShortenPipe,
+    RecentComponent
   ],
   imports: [
     BrowserModule,

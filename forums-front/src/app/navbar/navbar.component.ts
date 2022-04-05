@@ -30,5 +30,5 @@ export class NavbarComponent implements OnInit {
         }
       })
   }
-  title = 'forum';
+  title = 'Pigeon';
 }
