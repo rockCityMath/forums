@@ -18,6 +18,11 @@ const userDetailsURL ='/api/user'
 const userCommentsURL = '/api/comment/userComments'
 const addCommentURL = '/api/comment/add'
 const postCommentsURL = '/api/comment/postComments'
+const updateCommentURL = '/api/comment/updateComment'
+const updatePostURL = '/api/post/updatePost'
+const searchByTitleURL = '/api/post/searchTitle'
+const searchByTagsURL = '/api/post/searchTags'
+const userStatsURL = '/api/user/stats'
 
 @Injectable({
   providedIn: 'root'
@@ -152,7 +157,6 @@ export class ServerService {
 
   addReply(replyData: any, id: any) {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
-    console.log(replyData)
     return this.http.request("POST", baseUrl + addCommentURL + '/' + id, {
       body: replyData,
       responseType: 'json',
@@ -169,4 +173,53 @@ export class ServerService {
       headers: header
     });
   }
+
+  //New functionality
+  updateComment(content: any, id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("PUT", baseUrl + updateCommentURL + '/' + id, {
+      body: content,
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  updatePost(content: any, id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("PUT", baseUrl + updatePostURL + '/' + id, {
+      body: content,
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  searchByTitle(query: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("GET", baseUrl + searchByTitleURL, {
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  searchByTags(query: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("GET", baseUrl + searchByTagsURL, {
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  getUserStats(id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("GET", baseUrl + userStatsURL + '/' + id, {
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
 }
