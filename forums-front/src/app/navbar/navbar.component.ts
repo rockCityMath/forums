@@ -10,7 +10,9 @@ import { ServerService } from '../shared/services/server-interface.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public authService: AuthService, private server: ServerService) { }
+  constructor(public authService: AuthService, private server: ServerService) {
+
+  }
 
   username: any = "null"
   isAdmin: Boolean = false
@@ -36,4 +38,9 @@ export class NavbarComponent implements OnInit {
       })
   }
   title = 'Pigeon';
+
 }
+
+
+
+

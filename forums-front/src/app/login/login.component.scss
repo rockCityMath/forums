@@ -1,4 +1,86 @@
-#bg {
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding: auto;
+
+  width: 30%;
+  height: 40%;
+  border-radius: 30px;
+  @apply bg-white;
+}
+
+.title {
+  justify-self: center;
+  font-family: Montserrat;
+  font-weight: 300;
+  font-size: 36px;
+  padding-bottom: 20px;
+  padding-top: 25px;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0px;
+    position: absolute;
+    right: 37%;
+    padding-top: 15px;
+    @apply text-gray-300;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+input {
+  padding-left: 3%;
+  top: 22px;
+  width: 75%;
+  margin-left: 12.5%;
+  border-radius: 20px;
+  overflow: auto;
+  margin-top: 0.5rem;
+  @apply bg-gray-200 text-black;
+
+  height: 40px;
+
+  border-radius: 30px;
+  font-size: 24px;
+  font-weight: 300;
+  border: none;
+  outline: none;
+}
+
+.submit {
+  @apply bg-sky-500 text-white;
+  border-radius: 30px;
+  width: 135px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: 300;
+  align-self: center;
+  margin-top: 25px;
+
+}
+
+.submit:hover {
+  @apply bg-sky-800;
+}
+
+
+/*#bg {
   z-index: 0;
   position: fixed;
   top: 60px;
@@ -29,31 +111,5 @@ p {
   @apply font-sans font-light text-sky-800;
 }
 
-input {
-  padding-left: 3%;
-  top: 22px;
-  height: 30px;
-  width: 75%;
-  margin-left: 12.5%;
-  border-radius: 20px;
-  overflow: auto;
-  margin-top: 0.5rem;
-  @apply bg-gray-200 text-black;
-}
 
-button {
-  padding-bottom: 3%;
-  font-size: 110%;
-  width: 90px;
-  display: block;
-  margin: auto;
-  text-align: center;
-  margin-top: 1rem;
-  height: 30px;
-  border-radius: 7.5px;
-  @apply text-white bg-sky-600;
-}
-
-button:hover {
-  @apply bg-sky-800;
-}
+*/

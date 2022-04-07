@@ -4,12 +4,11 @@ import { Router } from '@angular/router'
 import { ServerService } from '../shared/services/server-interface.service'
 
 @Component({
-  selector: 'app-recent',
-  templateUrl: './recent.component.html',
-  styleUrls: ['./recent.component.scss']
+  selector: 'app-like',
+  templateUrl: './like.component.html',
+  styleUrls: ['./like.component.scss']
 })
-
-export class RecentComponent implements OnInit {
+export class LikeComponent implements OnInit {
   mostRecentPosts: any = [];
   mostLikedPosts: any = [];
   userID: any = ''

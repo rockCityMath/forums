@@ -19,7 +19,8 @@ import { UserComponent } from './user/user.component';
 import { PostComponent } from './post/post.component';
 import { CommentComponent } from './comment/comment.component';
 import { ShortenPipe } from './shorten.pipe';
-import { RecentComponent } from './recent/recent.component'
+import { RecentComponent } from './recent/recent.component';
+import { LikeComponent } from './like/like.component'
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { RecentComponent } from './recent/recent.component'
     PostComponent,
     CommentComponent,
     ShortenPipe,
-    RecentComponent
+    RecentComponent,
+    LikeComponent
   ],
   imports: [
     BrowserModule,
