@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
 
   username: any = "null"
   isAdmin: Boolean = false
+  userID: any = ''
 
   ngOnInit(): void {
 
@@ -26,6 +27,10 @@ export class NavbarComponent implements OnInit {
             data = Object.values(data)
             this.username = data[0]
             this.isAdmin = data[1]
+          })
+          const idObservable = this.server.getUserID()
+          idObservable.subscribe((data: any) => {
+            this.userID = data.userID
           })
         }
       })
