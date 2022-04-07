@@ -35,5 +35,17 @@ export class RecentComponent implements OnInit {
     })
   }
 
+  likePost(id: any) {
+    console.log("called like")
+    const statusObservable = this.serverService.likePost(id)
+    statusObservable.subscribe((data) => {
+      console.log(data)
+    })
+  }
+
+  test() {
+    console.log("testing")
+  }
+
 
 }

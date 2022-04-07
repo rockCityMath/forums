@@ -23,6 +23,8 @@ const updatePostURL = '/api/post/updatePost'
 const searchByTitleURL = '/api/post/searchTitle'
 const searchByTagsURL = '/api/post/searchTags'
 const userStatsURL = '/api/user/stats'
+const likePostURL = '/api/like/likePost'
+const unlikePostURL = '/api/like/unlikePost'
 
 @Injectable({
   providedIn: 'root'
@@ -175,6 +177,24 @@ export class ServerService {
   }
 
   //New functionality
+  likePost(id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("POST", baseUrl + likePostURL + '/' + id, {
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  unlikePost(id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("POST", baseUrl + unlikePostURL + '/' + id, {
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
   updateComment(content: any, id: any) {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
     return this.http.request("PUT", baseUrl + updateCommentURL + '/' + id, {
