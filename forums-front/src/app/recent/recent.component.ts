@@ -11,12 +11,14 @@ import { ServerService } from '../shared/services/server-interface.service'
 export class RecentComponent implements OnInit {
   mostRecentPosts: any = [];
   mostLikedPosts: any = [];
+  userID: any = ''
 
   constructor(private serverService: ServerService) { }
 
   ngOnInit(): void {
     this.getMostRecent();
     this.getMostLiked();
+    this.getUserID();
   }
 
   getMostRecent() {
@@ -36,15 +38,46 @@ export class RecentComponent implements OnInit {
   }
 
   likePost(id: any) {
-    console.log("called like")
+
     const statusObservable = this.serverService.likePost(id)
-    statusObservable.subscribe((data) => {
-      console.log(data)
+    statusObservable.subscribe((data: any) => {
+      
+      if(data.err) {
+        alert("You have already liked this post!")
+      }
+
     })
   }
 
-  test() {
-    console.log("testing")
+  unlikePost(id: any) {
+    const statusObservable = this.serverService.unlikePost(id)
+    statusObservable.subscribe((data: any) => {
+      
+      if(data.err) {
+        alert("You have not liked this post!")
+      }
+
+    })
+  }
+
+  getUserID() {
+    const idObservable = this.serverService.getUserID()
+    idObservable.subscribe((data: any) => {
+      if(!data.userID) {
+        this.userID = 0
+      }
+      this.userID = data.userID
+    })
+  }
+
+  userHasLiked(usersThatHaveLiked: any) {
+
+    if(usersThatHaveLiked.includes(this.userID)) {  
+      return true
+    }
+    else {
+      return false;
+    }
   }
 
 

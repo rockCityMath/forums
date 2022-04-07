@@ -105,9 +105,14 @@ loginUser = async(req, res) => {
 }
 
 getUserID = async(req, res) => {
-    jwtAuth(req, res, 
+    await idFromToken(req.headers['authorization'].split(" ").pop(), (decodedID) => {
+        userID = decodedID
+    })
 
-    )
+    return res.status(200).json({
+        userID: userID
+    })
+
 }
 
 getUsernameFromID = async(req, res) => {

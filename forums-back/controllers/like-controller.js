@@ -58,8 +58,8 @@ likePost = async(req, res) => {
                 })
         }
         else {
-            return res.status(404).json({
-                err,
+            return res.status(200).json({
+                err: "User already liked!",
                 message: 'This user has already liked the post...',
             })
         }
@@ -156,8 +156,8 @@ unlikePost = async(req, res) => {
                 })
         }
         else {
-            return res.status(404).json({
-                err,
+            return res.status(200).json({
+                err: "User has not liked",
                 message: 'This user has not already liked the post...',
             })
         }

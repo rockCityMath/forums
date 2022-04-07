@@ -25,6 +25,7 @@ const searchByTagsURL = '/api/post/searchTags'
 const userStatsURL = '/api/user/stats'
 const likePostURL = '/api/like/likePost'
 const unlikePostURL = '/api/like/unlikePost'
+const getUserIDURL = '/auth/getID'
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ const unlikePostURL = '/api/like/unlikePost'
 export class ServerService {
 
   //Set on setLoggedIn()
-  private loggedIn = false;
+  public loggedIn = false;
   private token?: string;
   private username?: string;
 
@@ -236,6 +237,15 @@ export class ServerService {
   getUserStats(id: any) {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
     return this.http.request("GET", baseUrl + userStatsURL + '/' + id, {
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  getUserID() {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("GET", baseUrl + getUserIDURL, {
       responseType: 'json',
       observe: 'body',
       headers: header
