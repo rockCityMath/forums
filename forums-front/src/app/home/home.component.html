@@ -1,11 +1,14 @@
 <div class="home">
   <div class="left">
+    <!--shows recent posts-->
     <app-recent></app-recent>
   </div>
   <div class="right">
+    <!--shows create post button if logged in-->
     <div *ngIf="authService.isLoggedIn | async as isLoggedIn">
       <button class="compose" routerLink="/compose">+ Create a New Post</button>
     </div>
+    <!--shows featured (most liked) posts-->
     <app-feature></app-feature>
   </div>
 </div>
