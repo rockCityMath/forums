@@ -10,17 +10,18 @@
 
 .title {
   font-size: 36px;
-  font-weight: 400;
+  font-weight: bold;
 }
 
 .post-title {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 300;
 }
 
 .post-info {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 12px;
   @apply text-gray-400;
 }
 
