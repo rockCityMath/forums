@@ -6,7 +6,6 @@
   padding: auto;
 
   width: 30%;
-  height: 40%;
   border-radius: 30px;
   @apply bg-white;
 }
@@ -41,7 +40,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  padding-bottom: 10px;
+  padding-bottom: 40px;
 }
 
 input {
