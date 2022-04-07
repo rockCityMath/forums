@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 
 import { ServerService } from '../shared/services/server-interface.service'
 
@@ -13,7 +14,7 @@ export class RecentComponent implements OnInit {
   mostLikedPosts: any = [];
   userID: any = ''
 
-  constructor(private serverService: ServerService) { }
+  constructor(private serverService: ServerService, private router: Router) { }
 
   ngOnInit(): void {
     this.getMostRecent();
@@ -37,27 +38,39 @@ export class RecentComponent implements OnInit {
     })
   }
 
-  likePost(id: any) {
+  likePost(post: any) {
 
-    const statusObservable = this.serverService.likePost(id)
+    const statusObservable = this.serverService.likePost(post._id)
     statusObservable.subscribe((data: any) => {
       
       if(data.err) {
         alert("You have already liked this post!")
       }
+      else {
+        post.likeCount += 1;
+      }
 
     })
+    window.location.reload()
+
   }
 
-  unlikePost(id: any) {
-    const statusObservable = this.serverService.unlikePost(id)
+  unlikePost(post: any) {
+    const statusObservable = this.serverService.unlikePost(post._id)
     statusObservable.subscribe((data: any) => {
       
       if(data.err) {
         alert("You have not liked this post!")
       }
+      else {
+        post.likeCount -= 1;
+      }
 
     })
+
+    window.location.reload()
+
+    
   }
 
   getUserID() {
