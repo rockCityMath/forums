@@ -74,13 +74,19 @@ export class RecentComponent implements OnInit {
   }
 
   getUserID() {
-    const idObservable = this.serverService.getUserID()
-    idObservable.subscribe((data: any) => {
-      if(!data.userID) {
-        this.userID = 0
-      }
-      this.userID = data.userID
-    })
+    if(this.serverService.loggedIn) {
+      const idObservable = this.serverService.getUserID()
+      idObservable.subscribe((data: any) => {
+        if(!data.userID) {
+          this.userID = 0
+        }
+        this.userID = data.userID
+      })
+    }
+    else {
+      this.userID = 0
+    }
+    
   }
 
   userHasLiked(usersThatHaveLiked: any) {
