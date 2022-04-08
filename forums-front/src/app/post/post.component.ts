@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  post: any = [];
+  post: any;
   id: any = []
   comments: any = [];
 

@@ -39,9 +39,8 @@ export class AuthService {
           };
           localStorage.setItem('user', JSON.stringify(userData));
 
-          console.log("login success")
-          alert("Successfully logged in!")
           this.router.navigateByUrl('/home');
+          window.location.reload()
         }
         else {
           alert("Invalid login!")
