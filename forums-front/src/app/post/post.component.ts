@@ -16,6 +16,8 @@ export class PostComponent implements OnInit {
   post: any;
   id: any = []
   comments: any = [];
+  userID = 0
+  userOwnsPost = false
 
   constructor(private route: ActivatedRoute, private serverService: ServerService) { }
 
@@ -30,6 +32,7 @@ export class PostComponent implements OnInit {
     postsObservable.subscribe((data ) => {
       data = Object.values(data)
       this.post = data[1]
+      this.getUserID()
     })
   }
 
@@ -39,6 +42,37 @@ export class PostComponent implements OnInit {
       data = Object.values(data)
       this.comments = data[1]
     })
+  }
+
+  getUserID() {
+    if(this.serverService.loggedIn) {
+      const idObservable = this.serverService.getUserID()
+      idObservable.subscribe((data: any) => {
+        if(!data.userID) {
+          this.userID = 0
+        }
+        else {
+          this.userID = data.userID
+          this.checkIfUserOwnsPost(this.userID)
+        }
+    
+      })
+    }
+    else {
+      this.userID = 0
+    }
+
+  }
+
+  checkIfUserOwnsPost(id: any) {
+    if(this.post.userID == id) {
+      this.userOwnsPost = true
+      console.log("POST OWNED")
+    }
+
+    console.log("COMPARE")
+    console.log(id)
+    console.log(this.post.userID)
   }
 
   ngOnDestroy() {
