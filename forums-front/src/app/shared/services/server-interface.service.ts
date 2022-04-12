@@ -4,7 +4,8 @@ import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 
 //const baseUrl = 'http://68.184.184.100:3232';
-const baseUrl = 'http://192.168.1.14:3232'
+//const baseUrl = 'http://192.168.1.14:3232'
+const baseUrl = 'http://localhost:3232'
 const getMostLikedUrl = '/api/post/mostLiked'
 const loginUrl = '/auth/login'
 const registerUrl = '/auth/register'
