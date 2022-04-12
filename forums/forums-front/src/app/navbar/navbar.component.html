@@ -1,0 +1,26 @@
+<div class="nav">
+  <a routerLink="/home" class="header">{{title}}</a>
+<!--Username/Logout-->
+  <div class="buttons">
+    <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
+        <button type="button" class="sign-up"><a id="signUpBG" routerLink="/user/{{userID}}">{{username}}</a></button>
+        <button type="button" class="login" (click)="authService.logout()">Logout</button>
+    </div>
+<!--Register/Login-->
+    <ng-template #notLoggedIn>
+        <button class="sign-up" onClick="getElementById('reg-modal').style.display = 'block'">Register</button>
+        <button class="login" onClick="getElementById('login-modal').style.display = 'block'">Login</button>
+    </ng-template>
+  </div>
+<!--Search-->
+  <input type="search" name="search" placeholder="Search..." size="39">
+  <button>Search Title</button>
+  <button>Search Tag</button>
+</div>
+
+<!--login/register modals-->
+<app-login id="login-modal" class="modal"></app-login>
+<app-register id="reg-modal" class="modal"></app-register>
+
+
+

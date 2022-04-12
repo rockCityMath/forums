@@ -1,0 +1,35 @@
+<div class="login">
+  <button class="close" onClick="getElementById('login-modal').style.display = 'none'">&times;</button>
+    <div class="title">Pigeon | Login</div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <input type="text" placeholder="username" formControlName="username" size="30" required>
+    <input type="password" placeholder="password" formControlName="password" size="30" required>
+    <button class="submit" type="submit" onClick="getElementById('login-modal').style.display = 'none'">Login</button>
+  </form>
+</div>
+
+<!--
+<span id="bg">
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <p>FORUM | login</p>
+      <span class="input">
+        <input type="text" placeholder="username" formControlName="username" size="30" required>
+        <input type="password" placeholder="password" formControlName="password" size="30" required>
+      </span>
+
+    </form>
+  </div>
+</span>
+
+-->
+
+<script>
+  //close popup when user clicks outside of window - FIX
+  var loginModal = document.getElementById('login-modal');
+  window.addEventListener("click", function(event) {
+    if (event.target == loginModal) {
+        loginModal.style.display = "none";
+    }
+  });
+</script>
