@@ -1,0 +1,11 @@
+<span id="bg">
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <p>FORUM | create post</p>
+      <div id="i1"><input  type ="text" size="30" placeholder="enter post title..." formControlName="title" required></div>
+      <div id="i2"><textarea  name="content" placeholder="enter post contents" formControlName="content" required></textarea></div>
+      <div id="i3"><input type="text" size="30" placeholder="enter post tags..." formControlName="tags"></div>
+      <button type="submit" id="submitButton" class="button">submit</button>
+    </form>
+  </div>
+</span>
