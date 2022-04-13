@@ -8,5 +8,6 @@ router.put('/:id', UserControl.updateUser)
 router.delete('/:id', UserControl.deleteUser)
 router.get('/:id', UserControl.getUserById)
 router.get('/stats/:id', UserControl.getUserStats)
+router.get('/', UserControl.getUsers)
 
 module.exports = router
