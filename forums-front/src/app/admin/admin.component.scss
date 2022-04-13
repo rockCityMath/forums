@@ -1,0 +1,62 @@
+.admin {
+  display: flex;
+  flex-direction: row wrap;
+  margin: 80px;
+  //margin-bottom: -200px;
+  min-height: 517px;
+}
+
+.push {
+  //height: 634px;
+}
+
+.left {
+  margin-right: 25px;
+  width: 1604px;
+  border-radius: 30px;
+  padding: 60px;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  @apply bg-white;
+  filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
+}
+
+.right {
+  margin-left: 25px;
+  width: 746px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  padding: 60px;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  @apply bg-white;
+  filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
+}
+
+.header {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.user-list, .post-list {
+  display: flex;
+  flex-direction: row nowrap;
+  justify-content: left;
+}
+
+.user {
+
+}
+
+.edit {
+  margin: auto;
+
+}
+
+.remove {
+  margin: auto;
+
+}
