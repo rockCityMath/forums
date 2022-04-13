@@ -22,7 +22,8 @@ import { ShortenPipe } from './shorten.pipe';
 import { RecentComponent } from './recent/recent.component';
 import { LikeComponent } from './like/like.component';
 import { LikeButtonComponent } from './like-button/like-button.component';
-import { FooterComponent } from './footer/footer.component'
+import { FooterComponent } from './footer/footer.component';
+import { EditPostComponent } from './edit-post/edit-post.component'
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { FooterComponent } from './footer/footer.component'
     RecentComponent,
     LikeComponent,
     LikeButtonComponent,
-    FooterComponent
+    FooterComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,
