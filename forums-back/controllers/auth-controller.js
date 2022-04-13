@@ -7,7 +7,11 @@ const { jwtAuth } = require('../auth')
 
 const User = require('../models/user-model')
 const { exit } = require('process')
+const { SSL_OP_EPHEMERAL_RSA } = require('constants')
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 registerUser = async(req, res) => {
     const body = req.body
@@ -24,16 +28,17 @@ registerUser = async(req, res) => {
 
     User.findOne({ username: body.username }, (err, user) => {
         if (err) {
-
             return res.status(400).json({ success: false, error: err })
         }
 
         if (user) {
+
             return res
                 .status(404)
                 .json({ success: false, error: `Username already taken` })
         }
         else {
+            console.log('else')
             userFound = false;
         }
     })
@@ -41,7 +46,11 @@ registerUser = async(req, res) => {
         .catch(err => console.log(err))
     
 
+    //Syncronous :)
+    await sleep(500)
+
     if(userFound) {
+        console.log("userfound")
         return 0;
     }
 
@@ -58,7 +67,7 @@ registerUser = async(req, res) => {
         console.log("400 error")
         return res.status(400).json({ success: false, error: err })
     }
-
+    
     user
         .save()
         .then(() => {

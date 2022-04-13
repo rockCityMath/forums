@@ -67,12 +67,7 @@ export class PostComponent implements OnInit {
   checkIfUserOwnsPost(id: any) {
     if(this.post.userID == id) {
       this.userOwnsPost = true
-      console.log("POST OWNED")
     }
-
-    console.log("COMPARE")
-    console.log(id)
-    console.log(this.post.userID)
   }
 
   ngOnDestroy() {
