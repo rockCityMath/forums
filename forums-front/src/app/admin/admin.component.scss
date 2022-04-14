@@ -44,19 +44,15 @@
 .user-list, .post-list {
   display: flex;
   flex-direction: row nowrap;
-  justify-content: left;
+  justify-content: space-between;
 }
 
-.user {
-
+.inner-right {
+  display: flex;
 }
 
-.edit {
-  margin: auto;
-
-}
-
-.remove {
-  margin: auto;
-
+.edit, .remove {
+  padding: 100px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }

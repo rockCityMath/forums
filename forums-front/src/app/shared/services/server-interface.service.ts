@@ -27,6 +27,7 @@ const userStatsURL = '/api/user/stats'
 const likePostURL = '/api/like/likePost'
 const unlikePostURL = '/api/like/unlikePost'
 const getUserIDURL = '/auth/getID'
+const getUserListURL = '/api/user'
 
 @Injectable({
   providedIn: 'root'
@@ -247,6 +248,15 @@ export class ServerService {
   getUserID() {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
     return this.http.request("GET", baseUrl + getUserIDURL, {
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  getUserList() {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("GET", baseUrl + getUserListURL, {
       responseType: 'json',
       observe: 'body',
       headers: header

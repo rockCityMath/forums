@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 import { ServerService } from '../shared/services/server-interface.service'
 
 @Component({
@@ -7,12 +8,20 @@ import { ServerService } from '../shared/services/server-interface.service'
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  userList: any = [];
 
-
-  constructor(private serverService: ServerService) { }
+  constructor(private serverService: ServerService, private router: Router) { }
 
   ngOnInit(): void {
+    this.getUsers();
+  }
 
+  getUsers() {
+    const usersObservable = this.serverService.getUserList()
+    usersObservable.subscribe((data ) => {
+      data = Object.values(data)
+      this.userList = data
+    })
   }
 
 }
