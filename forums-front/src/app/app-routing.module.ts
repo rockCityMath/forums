@@ -11,6 +11,7 @@ import { PostComponent } from './post/post.component';
 import { CommentComponent } from './comment/comment.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { SearchComponent } from './search/search.component';
+import { EditCommentComponent } from './edit-comment/edit-comment.component'
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'comment/:id', component: CommentComponent},
   { path: 'edit-post/:id', component: EditPostComponent},
   { path: 'search/:query', component: SearchComponent},
+  { path: 'edit-comment/:id', component: EditCommentComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

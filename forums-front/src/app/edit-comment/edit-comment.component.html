@@ -1,0 +1,11 @@
+<span id="bg">
+    <div class="container">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <p>FORUM | Edit Comment</p>
+        <div id="i1" style="text-align: center;">Comment</div>
+        <div id="i2"><textarea  name="content" placeholder="Enter Edited Content" formControlName="content" required></textarea></div>
+        <button type="submit" id="submitButton" class="button">submit</button>
+      </form>
+    </div>
+  </span>
+  
