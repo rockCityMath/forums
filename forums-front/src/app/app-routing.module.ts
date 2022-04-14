@@ -10,6 +10,7 @@ import { UserComponent } from './user/user.component';
 import { PostComponent } from './post/post.component';
 import { CommentComponent } from './comment/comment.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'post/:id', component: PostComponent},
   { path: 'comment/:id', component: CommentComponent},
   { path: 'edit-post/:id', component: EditPostComponent},
+  { path: 'search/:query', component: SearchComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

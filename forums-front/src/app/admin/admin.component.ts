@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
+import { ActivatedRoute } from '@angular/router';
 import { ServerService } from '../shared/services/server-interface.service'
 
 @Component({
@@ -9,8 +10,9 @@ import { ServerService } from '../shared/services/server-interface.service'
 })
 export class AdminComponent implements OnInit {
   userList: any = [];
+  userID: any = ''
 
-  constructor(private serverService: ServerService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private serverService: ServerService, private router: Router) { }
 
   ngOnInit(): void {
     this.getUsers();

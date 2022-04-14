@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { AuthService } from '../shared/services/auth.service'
 import { ServerService } from '../shared/services/server-interface.service';
+import { SearchService } from '../search.service';
+import { Router } from '@angular/router';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-navbar',
@@ -10,15 +14,22 @@ import { ServerService } from '../shared/services/server-interface.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public authService: AuthService, private server: ServerService) {
+  constructor(private router: Router, private fb: FormBuilder, public authService: AuthService, private server: ServerService, private searchService: SearchService) {
 
   }
 
+  search!: FormGroup;
+  query: any = '';
   username: any = "null"
   isAdmin: Boolean = false
   userID: any = ''
+  title = 'Pigeon';
 
   ngOnInit(): void {
+
+    this.search = this.fb.group({
+      searchQuery: ['']
+    });
 
     //If user logged in, get username
       this.authService.isLoggedIn.subscribe(data => {
@@ -37,7 +48,12 @@ export class NavbarComponent implements OnInit {
         }
       })
   }
-  title = 'Pigeon';
+
+  onSearch(){
+        this.query = this.search.get('searchQuery')!.value;
+        this.searchService.nextQuery(this.query);
+        this.router.navigate(['/search/', this.query]);
+  }
 
 }
 

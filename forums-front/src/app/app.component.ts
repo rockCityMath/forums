@@ -8,6 +8,11 @@ import { AuthService } from './shared/services/auth.service'
 })
 export class AppComponent {
   title = 'forum';
+  searchQuery: any;
+
+  forwardSearch($event) {
+    this.searchQuery = $event;
+  }
 
   constructor(public authService: AuthService) {}
 

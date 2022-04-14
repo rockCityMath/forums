@@ -13,9 +13,11 @@
     </ng-template>
   </div>
 <!--Search-->
-  <input type="search" name="search" placeholder="Search..." size="39">
-  <button>Search Title</button>
-  <button>Search Tag</button>
+  <form [formGroup]="search" (ngSubmit)="onSearch()">
+    <input type="text" formControlName="searchQuery" required placeholder="Search..." size="39">
+    <button>Search Title</button>
+    <!--<button (click)="searchTag">Search Tag</button>-->
+  </form>
 </div>
 
 <!--login/register modals-->

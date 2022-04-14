@@ -4,18 +4,19 @@
       <div *ngFor="let user of userList[1]" class="user-list">
           <div class="user">{{user.username}}</div>
           <div class="inner-right">
-            <div class="edit">Edit User Details</div>
+            <div class="edit"><a routerLink="/user-admin/{{userID}}">Edit User Details</a></div>
             <div class="remove">Remove User</div>
           </div>
       </div>
-
   </div>
   <div class="right">
     <div class="header">User Posts</div>
     <div class="post-list">
       <div class="title">TITLE</div>
-      <div class="edit">Edit Post Details</div>
-      <div class="remove">Remove Post</div>
+      <div class="inner-right">
+        <div class="edit">Edit Post Details</div>
+        <div class="remove">Remove Post</div>
+      </div>
     </div>
   </div>
 </div>

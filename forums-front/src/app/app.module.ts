@@ -23,7 +23,8 @@ import { RecentComponent } from './recent/recent.component';
 import { LikeComponent } from './like/like.component';
 import { LikeButtonComponent } from './like-button/like-button.component';
 import { FooterComponent } from './footer/footer.component';
-import { EditPostComponent } from './edit-post/edit-post.component'
+import { EditPostComponent } from './edit-post/edit-post.component';
+import { UserAdminComponent } from './user-admin/user-admin.component'
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { EditPostComponent } from './edit-post/edit-post.component'
     LikeComponent,
     LikeButtonComponent,
     FooterComponent,
-    EditPostComponent
+    EditPostComponent,
+    UserAdminComponent
   ],
   imports: [
     BrowserModule,
