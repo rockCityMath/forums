@@ -14,14 +14,16 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchService.searchQuery.subscribe(searchQuery => this.query = searchQuery)
-    this.searchByTitle(this.query);
+    this.searchByTitle();
   }
 
-  searchByTitle(query){
-    const resultsObservable = this.serverService.searchByTitle(query)
+  searchByTitle(){
+    const resultsObservable = this.serverService.searchByTitle(
+      {query: this.query}
+    )
     resultsObservable.subscribe((data ) => {
       data = Object.values(data)
-      this.results= data
+      this.results = data
     })
   }
 

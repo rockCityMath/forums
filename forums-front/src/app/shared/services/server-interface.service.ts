@@ -220,7 +220,8 @@ export class ServerService {
 
   searchByTitle(query: any) {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
-    return this.http.request("GET", baseUrl + searchByTitleURL, {
+    return this.http.request("POST", baseUrl + searchByTitleURL, {
+      body: query,
       responseType: 'json',
       observe: 'body',
       headers: header

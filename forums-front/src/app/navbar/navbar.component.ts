@@ -15,7 +15,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 export class NavbarComponent implements OnInit {
 
   constructor(private router: Router, private fb: FormBuilder, public authService: AuthService, private server: ServerService, private searchService: SearchService) {
-
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   search!: FormGroup;
