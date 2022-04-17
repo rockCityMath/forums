@@ -45,6 +45,21 @@
   </div>
   <div class="right">
 <!--user's comments-->
+  <div class="stats">
+    <div class="header">User Info</div>
+
+        <p>Username: {{user.username}}</p>
+        <p>Admin: {{user.isAdmin}}</p>
+        <p>Biography: {{user.biography}}</p>
+
+    <div *ngFor="let stats of userStats[1]">
+      <div *ngIf="stats.numberOfPosts == [] ">
+        <p>#p {{stats.numberOfPosts}}</p>
+        <p>#c {{stats.numberOfComments}}</p>
+        <p>#l {{stats.numberOfLikes}}</p>
+      </div>
+    </div>
+  </div>
     <div class="comment">
       <h2 class="comment-title">Comments</h2>
       <div *ngFor="let comment of userComments">
@@ -62,6 +77,8 @@
     </div>
   </div>
 </div>
+
+<app-footer></app-footer>
 
 
 

@@ -16,18 +16,27 @@ export class AdminComponent implements OnInit {
   selectedPost: any = ''
   userComments: any = []
   selectedComment: any = ''
+  userStats: any = []
 
   constructor(private route: ActivatedRoute, private serverService: ServerService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getUsers()
   }
 
-  getUsers() {
+  getUsers(){
     const usersObservable = this.serverService.getUserList()
     usersObservable.subscribe((data ) => {
       data = Object.values(data)
       this.userList = data
+    })
+  }
+
+  getUserStats() {
+    const usersObservable = this.serverService.getUserStats(this.selectedUser)
+    usersObservable.subscribe((data ) => {
+      data = Object.values(data)
+      this.userStats = data
     })
   }
 

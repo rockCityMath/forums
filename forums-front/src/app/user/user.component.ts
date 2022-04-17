@@ -16,6 +16,7 @@ export class UserComponent implements OnInit {
   posts: any[] = []
   user: any;
   userComments: any[] = []
+  userStats: any[] = []
 
   constructor(private route: ActivatedRoute, private serverService: ServerService) {
     route.params.subscribe(
@@ -25,11 +26,19 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserStats()
     this.getUserPosts()
     this.getUserInfo()
     this.getUserComments()
   }
 
+  getUserStats() {
+    const usersObservable = this.serverService.getUserStats(this.id)
+    usersObservable.subscribe((data ) => {
+      data = Object.values(data)
+      this.userStats[1] = data
+    })
+  }
 
   getUserPosts() {
     const postsObservable = this.serverService.getUsersPosts(this.id)

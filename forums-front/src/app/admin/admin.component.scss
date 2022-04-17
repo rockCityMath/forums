@@ -13,7 +13,7 @@
 
 .left {
   margin-right: 25px;
-  width: 1604px;
+  width: 1200px;
   border-radius: 30px;
   height: max-content;
   padding: 60px;
@@ -25,16 +25,17 @@
 }
 
 .right {
-  margin-left: 25px;
-  width: 746px;
   display: flex;
   flex-direction: column;
+  width: 1200px;
+}
 
+.r1, .r2, .r3 {
+  margin-bottom: 50px;
+  margin-left: 25px;
   border-radius: 30px;
   padding: 60px;
   padding-top: 25px;
-  display: flex;
-  flex-direction: column;
   @apply bg-white;
   filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
 }
@@ -57,5 +58,5 @@
 .edit, .remove {
   padding: 100px;
   padding-top: 0px;
-  padding-bottom: 0px;
+  padding-bottom: 5px;
 }
