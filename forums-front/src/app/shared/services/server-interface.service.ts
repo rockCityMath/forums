@@ -264,4 +264,22 @@ export class ServerService {
     });
   }
 
+  deleteUser(id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("DELETE", baseUrl + userDetailsURL + '/' + id, {
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
+  deletePost(id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("DELETE", baseUrl + postDetailsUrl + '/' + id, {
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+
 }

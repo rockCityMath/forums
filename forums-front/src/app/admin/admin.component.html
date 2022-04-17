@@ -2,20 +2,30 @@
   <div class="left">
     <div class="header">User Catalog</div>
       <div *ngFor="let user of userList[1]" class="user-list">
-          <button (click)="this.selectedUser = user._id; this.getUsersPosts()" class="user">{{user.username}}</button>
+          <button (click)="this.selectedUser = user._id; this.getUsersPosts(); this.getUsersComments()" class="user">{{user.username}}</button>
           <div class="inner-right">
             <div class="edit"><a routerLink="/user-admin/{{user._id}}">Edit User Details</a></div>
-            <div class="remove">Remove User</div>
+            <button (click)="this.selectedUser = user._id; this.deleteUser()" class="remove">Remove User</button>
           </div>
       </div>
   </div>
   <div class="right">
     <div class="header">User Posts</div>
     <div *ngFor="let post of userPosts[1]" class="post-list">
+      <a *ngIf="!userPosts">User has no posts</a>
       <div class="title">{{post.title}}</div>
       <div class="inner-right">
         <div class="edit">Edit Post Details</div>
-        <div class="remove">Remove Post</div>
+        <button (click)="this.selectedPost = post._id; this.deletePost()" class="remove">Remove Post</button>
+      </div>
+    </div>
+    <div class="header">User Comments</div>
+    <div *ngFor="let comment of userComments[1]" class="post-list">
+      <a *ngIf="comment == ''">User has no comments</a>
+      <div class="title">{{comment.content}}</div>
+      <div class="inner-right">
+        <div class="edit">Edit Comment Details</div>
+        <button (click)="this.selectedComment = comment._id; this.deleteComment()" class="remove">Remove Comment</button>
       </div>
     </div>
   </div>

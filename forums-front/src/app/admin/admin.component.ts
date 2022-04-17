@@ -9,10 +9,13 @@ import { ServerService } from '../shared/services/server-interface.service'
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  userList: any = []
   userID: any = ''
+  userList: any = []
   selectedUser: any = ''
   userPosts: any = []
+  selectedPost: any = ''
+  userComments: any = []
+  selectedComment: any = ''
 
   constructor(private route: ActivatedRoute, private serverService: ServerService, private router: Router) { }
 
@@ -36,4 +39,34 @@ export class AdminComponent implements OnInit {
     })
   }
 
+  getUsersComments() {
+    const commentObservable = this.serverService.getUserComments(this.selectedUser)
+    commentObservable.subscribe((data ) => {
+      console.log(data)
+      data = Object.values(data)
+      this.userComments = data
+    })
+  }
+
+  deleteUser() {
+    const usersObservable = this.serverService.deleteUser(this.selectedUser)
+    usersObservable.subscribe((data ) => {
+      data = Object.values(data)
+      this.userList = data
+      this.getUsers()
+    })
+  }
+
+  deletePost() {
+    const postsObservable = this.serverService.deletePost(this.selectedPost)
+    postsObservable.subscribe((data) => {
+      data = Object.values(data)
+      this.userPosts = data
+      this.getUsersPosts()
+    })
+  }
+
+  deleteComment() {
+
+  }
 }
