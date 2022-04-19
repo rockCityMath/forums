@@ -35,6 +35,12 @@ export class CommentComponent implements OnInit {
       return;
     }
 
+    if(!this.server.loggedIn) {
+      alert("You must be logged in to leave a reply!")
+      this.router.navigate(['/post/' + this.id]);
+      return
+    }
+
     const request = this.server.addReply({
       content: this.form.get('content')?.value
     }, this.id );
