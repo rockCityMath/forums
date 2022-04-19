@@ -75,6 +75,34 @@ export class AdminComponent implements OnInit {
     })
   }
 
+  changeAdmin(){
+    const request = this.serverService.changeAdmin(
+      true,
+      this.selectedUser)
+    request.subscribe(() => {
+      alert("Changed user's admin status to false")
+      this.router.navigate(['/admin/'])
+    })
+/*
+    if(this.isAdmin == false){
+      const request = this.serverService.changeAdmin(
+        {isAdmin: true},
+        this.selectedUser)
+      request.subscribe(() => {
+        alert("Changed user's admin status to true")
+        this.router.navigate(['/admin/'])
+      })
+    }else{
+      const request = this.serverService.changeAdmin(
+        {isAdmin: false},
+        this.selectedUser)
+      request.subscribe(() => {
+        alert("Changed user's admin status to false")
+        this.router.navigate(['/admin/'])
+      })
+    }*/
+  }
+
   deleteComment() {
 
   }

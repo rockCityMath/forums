@@ -101,6 +101,20 @@ updateUser = async(req, res) => {
         .catch(err => console.log(err))
 }
 
+changeAdmin = async(req, res) => {
+    await User.findOneAndUpdate({_id: req.params.id}, {$set: {isAdmin: req.body.isAdmin}}, {new: true}, (err, user) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        return res.status(200).json({  
+            success: true,
+            data: user
+        })
+    })
+        .clone()
+        .catch(err => console.log(err))
+}
+
 deleteUser = async (req, res) => {
     await User.findOneAndDelete({ _id: req.params.id }, (err, user) => {
         if (err) {
@@ -182,5 +196,6 @@ module.exports = {
     deleteUser,
     getUserById,
     getUsers,
-    getUserStats
+    getUserStats,
+    changeAdmin
 }

@@ -273,17 +273,17 @@ export class ServerService {
       headers: header
     });
   }
-/*
-  updateUser( id: any) {
+
+  changeAdmin(isAdmin: Boolean, id: any) {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
     return this.http.request("PUT", baseUrl + userDetailsURL + "/" + id, {
-      //body: biography,
+      body: isAdmin,
       responseType: 'json',
       observe: 'body',
       headers: header
     });
   }
-*/
+
   deleteUser(id: any) {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
     return this.http.request("DELETE", baseUrl + userDetailsURL + '/' + id, {

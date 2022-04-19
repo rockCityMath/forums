@@ -17,6 +17,8 @@
           <p>Username: {{user.username}}</p>
           <p>Admin: {{user.isAdmin}}</p>
           <p>Biography: {{user.biography}}</p>
+          <button (click) = "changeAdmin()">Change Admin Status</button>
+          <div>Edit Biography</div>
         </div>
       </div>
       <div *ngFor="let stats of userStats">
