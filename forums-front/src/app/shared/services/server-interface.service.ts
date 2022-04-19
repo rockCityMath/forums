@@ -28,6 +28,7 @@ const likePostURL = '/api/like/likePost'
 const unlikePostURL = '/api/like/unlikePost'
 const getUserIDURL = '/auth/getID'
 const getUserListURL = '/api/user'
+const updateAdminURL = '/api/user/updateAdmin'
 
 @Injectable({
   providedIn: 'root'
@@ -274,9 +275,9 @@ export class ServerService {
     });
   }
 
-  changeAdmin(isAdmin: Boolean, id: any) {
+  changeAdmin(isAdmin: any, id: any) {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
-    return this.http.request("PUT", baseUrl + userDetailsURL + "/" + id, {
+    return this.http.request("PUT", baseUrl + updateAdminURL + "/" + id, {
       body: isAdmin,
       responseType: 'json',
       observe: 'body',

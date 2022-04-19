@@ -101,7 +101,7 @@ updateUser = async(req, res) => {
         .catch(err => console.log(err))
 }
 
-changeAdmin = async(req, res) => {
+updateAdmin = async(req, res) => {
     await User.findOneAndUpdate({_id: req.params.id}, {$set: {isAdmin: req.body.isAdmin}}, {new: true}, (err, user) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -180,7 +180,8 @@ getUserStats = async (req, res) => {
         var userStats = {
             "numberOfPosts": user[0].posts.length,
             "numberOfComments": user[0].comments.length,
-            "numberOfLikes": user[0].likedPosts.length
+            "numberOfLikes": user[0].likedPosts.length,
+            "isAdmin: ": user[0].isAdmin
         }
 
         return res.status(200).json({ success: true, data: userStats })
@@ -197,5 +198,5 @@ module.exports = {
     getUserById,
     getUsers,
     getUserStats,
-    changeAdmin
+    updateAdmin
 }

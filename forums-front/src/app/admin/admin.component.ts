@@ -36,7 +36,7 @@ export class AdminComponent implements OnInit {
     const usersObservable = this.serverService.getUserStats(this.selectedUser)
     usersObservable.subscribe((data ) => {
       data = Object.values(data)
-      this.userStats = data
+      this.userStats = data[1]
     })
   }
 
@@ -75,12 +75,12 @@ export class AdminComponent implements OnInit {
     })
   }
 
-  changeAdmin(){
+  changeAdmin(currentlyAdmin: any){
     const request = this.serverService.changeAdmin(
-      true,
+      {isAdmin: (!currentlyAdmin ? "true" : "false" )},
       this.selectedUser)
     request.subscribe(() => {
-      alert("Changed user's admin status to false")
+      alert("Changed user's admin status to " + (!currentlyAdmin ? "true" : "false" ) )
       this.router.navigate(['/admin/'])
     })
 /*
