@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserAdminComponent } from './user-admin.component';
+import { EditBioComponent } from './edit-bio.component';
 
-describe('UserAdminComponent', () => {
-  let component: UserAdminComponent;
-  let fixture: ComponentFixture<UserAdminComponent>;
+describe('EditBioComponent', () => {
+  let component: EditBioComponent;
+  let fixture: ComponentFixture<EditBioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserAdminComponent ]
+      declarations: [ EditBioComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserAdminComponent);
+    fixture = TestBed.createComponent(EditBioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

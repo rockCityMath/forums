@@ -24,8 +24,8 @@ import { LikeComponent } from './like/like.component';
 import { LikeButtonComponent } from './like-button/like-button.component';
 import { FooterComponent } from './footer/footer.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
-import { UserAdminComponent } from './user-admin/user-admin.component';
-import { EditCommentComponent } from './edit-comment/edit-comment.component'
+import { EditCommentComponent } from './edit-comment/edit-comment.component';
+import { EditBioComponent } from './edit-bio/edit-bio.component'
 
 
 @NgModule({
@@ -49,8 +49,8 @@ import { EditCommentComponent } from './edit-comment/edit-comment.component'
     LikeButtonComponent,
     FooterComponent,
     EditPostComponent,
-    UserAdminComponent,
-    EditCommentComponent
+    EditCommentComponent,
+    EditBioComponent
   ],
   imports: [
     BrowserModule,

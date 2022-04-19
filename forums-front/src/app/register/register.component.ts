@@ -13,12 +13,6 @@ import { waitForAsync } from '@angular/core/testing';
 
 export class RegisterComponent implements OnInit {
 
-  /*
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-  */
 
   form!: FormGroup;
   public loginInvalid?: boolean;

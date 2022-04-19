@@ -1,0 +1,10 @@
+<span id="bg">
+  <div class="container">
+    <button class="close" onClick="getElementById('bio-modal').style.display = 'none'">&times;</button>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <p>Pigeon | Edit Biography</p>
+      <div id="i2"><textarea  name="content" placeholder="Enter Biography" formControlName="biography" required></textarea></div>
+      <button onClick="getElementById('bio-modal').style.display = 'none'" type="submit" id="submitButton" class="button">submit</button>
+    </form>
+  </div>
+</span>

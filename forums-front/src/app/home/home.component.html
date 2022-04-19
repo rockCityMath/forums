@@ -6,7 +6,7 @@
   <div class="right">
     <!--shows create post button if logged in-->
     <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
-      <button class="compose" routerLink="/compose">+ Create a New Post</button>
+      <button class="compose" onClick="getElementById('compose-modal').style.display = 'block'">+ Create a New Post</button>
     </div>
     <ng-template #notLoggedIn></ng-template>
     <!--shows featured (most liked) posts-->
@@ -15,3 +15,13 @@
 </div>
 
 <app-footer></app-footer>
+
+<script>
+  //close popup when user clicks outside of window - FIX
+  var composeModal = document.getElementById('compose-modal');
+  window.addEventListener("click", function(event) {
+    if (event.target == composeModal) {
+      composeModal.style.display = "none";
+    }
+  });
+</script>

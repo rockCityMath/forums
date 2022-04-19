@@ -3,7 +3,7 @@
 <!--user info-->
     <div class="user">
       <div class="username">{{user.username}}</div>
-      <div class="bio">{{user.createdAt}}</div>
+      <div class="bio">{{user.biography}}</div>
     </div>
 <!--user's posts-->
     <div class="post-box">
@@ -51,6 +51,9 @@
         <p>Username: {{user.username}}</p>
         <p>Admin: {{user.isAdmin}}</p>
         <p>Biography: {{user.biography}}</p>
+        <div *ngIf="user._id == this.id">
+          <button onClick="getElementById('bio-modal').style.display = 'block'">Edit Biography</button>
+        </div>
 
     <div *ngFor="let stats of userStats[1]">
       <div *ngIf="stats.numberOfPosts == [] ">
@@ -80,41 +83,12 @@
 
 <app-footer></app-footer>
 
-
-
-<!--
-<span id="bg">
-  <div class="container">
-    <div class="posts">
-      <div class="user">
-        <div id="username">{{user.username}}</div>
-        <div id="bio">{{user.createdAt}}</div>
-        <h2>{{user.username}}'s posts</h2>
-      </div>
-      <a *ngFor="let post of posts">
-        <div class="post">
-          <a id="title" routerLink="/post/{{post._id}}">{{post.title}}</a>
-          <div id="content">{{post.content | shorten: 300}}</div>
-          <div class="info">
-            <div id="likes">{{post.likeCount}} likes</div>
-            <div id="comments">234 comments</div>
-          </div>
-          <span class="tags"><p *ngFor="let tag of post.tags" id="tag">{{tag}}</p></span>
-        </div>
-      </a>
-    </div>
-    <div class="comments">
-      <h2 id="box-title">{{user.username}}'s comments</h2>
-      <div *ngFor="let comment of userComments">
-        <a *ngFor="let post of posts">
-          <a *ngIf="comment.postID == post._id">
-            <a id="title" routerLink="/post/{{post._id}}">{{post.title}}</a>
-            <div id="comment">{{comment.content}}</div>
-          </a>
-        </a>
-      </div>
-    </div>
-  </div>
-</span>
-
--->
+<script>
+  //close popup when user clicks outside of window - FIX
+  var bioModal = document.getElementById('bio-modal');
+  window.addEventListener("click", function(event) {
+    if (event.target == bioModal) {
+      bioModal.style.display = "none";
+    }
+  });
+</script>

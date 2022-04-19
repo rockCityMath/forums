@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-
+import { AuthService } from '../shared/services/auth.service';
 import { ServerService } from '../shared/services/server-interface.service'
 
 @Component({
@@ -18,7 +17,7 @@ export class UserComponent implements OnInit {
   userComments: any[] = []
   userStats: any[] = []
 
-  constructor(private route: ActivatedRoute, private serverService: ServerService) {
+  constructor(private route: ActivatedRoute, private serverService: ServerService, private authService: AuthService) {
     route.params.subscribe(
      (params) => {
        this.id = params['user']
@@ -30,6 +29,20 @@ export class UserComponent implements OnInit {
     this.getUserPosts()
     this.getUserInfo()
     this.getUserComments()
+
+    this.authService.isLoggedIn.subscribe(data => {
+      if(data) {
+        const nameObservable = this.serverService.getUsernameFromID()
+        nameObservable.subscribe((data ) => {
+          console.log(data)
+          data = Object.values(data)
+        })
+        const idObservable = this.serverService.getUserID()
+        idObservable.subscribe((data: any) => {
+          this.id = data.userID
+        })
+      }
+    })
   }
 
   getUserStats() {

@@ -264,6 +264,26 @@ export class ServerService {
     });
   }
 
+  updateUser(biography: any, id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("PUT", baseUrl + userDetailsURL + "/" + id, {
+      body: biography,
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+/*
+  updateUser( id: any) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("PUT", baseUrl + userDetailsURL + "/" + id, {
+      //body: biography,
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  }
+*/
   deleteUser(id: any) {
     const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
     return this.http.request("DELETE", baseUrl + userDetailsURL + '/' + id, {
