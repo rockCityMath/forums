@@ -19,7 +19,6 @@
   width: 746px;
   display: flex;
   flex-direction: column;
-  //none
 }
 
 .edit-button {
@@ -75,7 +74,6 @@
   justify-content: space-between;
   font-size: 24px;
   padding-left: 110px;
-  //padding-right: 10px;
   @apply text-gray-400;
 }
 
@@ -103,14 +101,6 @@
   padding-left: 110px;
 }
 
-.l {
-
-}
-
-.r {
-
-}
-
 .content{
   width: 100%;
   margin-left: 20%;
@@ -120,22 +110,4 @@
 
 .comment-username {
   @apply text-sky-700;
-}
-
-.line {
-  /*
-  border-left: 2px solid black;
-  height: 100%;
-  position: absolute;
-  left: 24%;
-  */
-}
-
-.content {
-  /*
-  display: flex inline;
-  flex-direction: column nowrap;
-  position: absolute;
-  left: 30%;
-  */
 }
