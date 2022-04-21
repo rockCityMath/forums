@@ -26,13 +26,17 @@
             <div class="post-user"><a routerLink="/user/{{post.userID}}">By: <span class="link">{{post.username}}</span></a></div>
             <div class="post-date"><p>Today</p></div>
         </div>
-        <div class="title">comments</div>
+        <div class="comment-title">comments</div>
         <div class="comments">
-            <div class="line"></div>
+          <div class="l">
+            <div class="line" id="line"></div>
+          </div>
+          <div class="r">
             <div *ngFor="let comment of comments" class="content">
               <div class="comment-content">{{comment.content}}</div>
               <a routerLink="/user/{{comment.userID}}" class="comment-username">{{comment.username}}</a>
             </div>
+          </div>
         </div>
       </div>
   </div>

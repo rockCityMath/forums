@@ -39,11 +39,16 @@
   filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
 }
 
+.post-title{
+  margin-left: 110px;
+  padding-bottom: 18px;
+  font-size: 36px;
+  font-weight: 300;
+}
+
 .title {
   font-size: 36px;
   font-weight: 300;
-  margin-left: 110px;
-  padding-bottom: 18px;
 }
 
 .post-center {
@@ -82,22 +87,52 @@
   @apply text-sky-700;
 }
 
+.comment-title {
+  margin-left: 110px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  font-size: 24px;
+  font-weight: 300;
+}
+
 .comments {
-  //display: flex;
-  //flex-direction: row nowrap;
+  display: flex;
+  flex-direction: row nowrap;
   padding-left: 110px;
 }
 
-.line {
+.l {
+
+}
+
+.r {
+
+}
+
+.content{
+  margin-left: 80%;
   border-left: 2px solid black;
-  height: 100px;
+  padding: 14px;
+}
+
+.comment-username {
+  @apply text-sky-700;
+}
+
+.line {
+  /*
+  border-left: 2px solid black;
+  height: 100%;
   position: absolute;
   left: 24%;
+  */
 }
 
 .content {
-  //display: flex inline;
-  //flex-direction: column nowrap;
-  position: aboslute;
-  left: 31%;
+  /*
+  display: flex inline;
+  flex-direction: column nowrap;
+  position: absolute;
+  left: 30%;
+  */
 }
