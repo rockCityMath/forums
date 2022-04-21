@@ -54,7 +54,6 @@
 .post-center {
   display: flex;
   flex-direction: row;
-  padding-bottom: 24px;
 }
 
 .post-stats {
@@ -76,6 +75,7 @@
   justify-content: space-between;
   font-size: 24px;
   padding-left: 110px;
+  //padding-right: 10px;
   @apply text-gray-400;
 }
 
@@ -88,8 +88,10 @@
 }
 
 .comment-title {
+  margin-top: 14px;
+  border-top: 2px solid rgba(0, 0, 0, 0.25);
   margin-left: 110px;
-  padding-top: 18px;
+  padding-top: 12px;
   padding-bottom: 18px;
   font-size: 24px;
   font-weight: 300;
@@ -110,7 +112,8 @@
 }
 
 .content{
-  margin-left: 80%;
+  width: 100%;
+  margin-left: 20%;
   border-left: 2px solid black;
   padding: 14px;
 }
