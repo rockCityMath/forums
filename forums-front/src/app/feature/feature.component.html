@@ -9,7 +9,7 @@
     <div class="post-info">
       <div class="left">
         <a class="post-user" routerLink="/user/{{post.userID}}">By: <span class="link">{{post.username}}</span></a>
-        <p class="post-date">Today</p>
+        <p class="post-date">{{post.createdAt | shorten2: 10}}</p>
       </div>
       <div class="right">
 <!--like button/count-->

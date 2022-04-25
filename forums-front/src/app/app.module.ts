@@ -25,7 +25,8 @@ import { LikeButtonComponent } from './like-button/like-button.component';
 import { FooterComponent } from './footer/footer.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { EditCommentComponent } from './edit-comment/edit-comment.component';
-import { EditBioComponent } from './edit-bio/edit-bio.component'
+import { EditBioComponent } from './edit-bio/edit-bio.component';
+import { Shorten2Pipe } from './shorten2.pipe'
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { EditBioComponent } from './edit-bio/edit-bio.component'
     FooterComponent,
     EditPostComponent,
     EditCommentComponent,
-    EditBioComponent
+    EditBioComponent,
+    Shorten2Pipe
   ],
   imports: [
     BrowserModule,
