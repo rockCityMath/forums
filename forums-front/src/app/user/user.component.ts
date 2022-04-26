@@ -16,6 +16,8 @@ export class UserComponent implements OnInit {
   user: any;
   userComments: any[] = []
   userStats: any[] = []
+  post: any;
+  userOwnsPost = false
 
   constructor(private route: ActivatedRoute, private serverService: ServerService, private authService: AuthService) {
     route.params.subscribe(
@@ -30,6 +32,7 @@ export class UserComponent implements OnInit {
     this.getUserInfo()
     this.getUserComments()
 
+
     this.authService.isLoggedIn.subscribe(data => {
       if(data) {
         const nameObservable = this.serverService.getUsernameFromID()
@@ -43,6 +46,8 @@ export class UserComponent implements OnInit {
         })
       }
     })
+    this.getPostDetails()
+    this.checkIfUserOwnsPost(this.id)
   }
 
   getUserStats() {
@@ -78,12 +83,19 @@ export class UserComponent implements OnInit {
     })
   }
 
-/*
-  getUsers(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.getUser()
-      .subscribe(users => this.users = users);
-  }*/
+  getPostDetails() {
+    const postsObservable = this.serverService.getPostDetails(this.post._id)
+    postsObservable.subscribe((data ) => {
+      data = Object.values(data)
+      this.post = data
+    })
+  }
+
+  checkIfUserOwnsPost(id: any) {
+    if(this.post.userID == id) {
+      this.userOwnsPost = true
+    }
+  }
 
 
 }

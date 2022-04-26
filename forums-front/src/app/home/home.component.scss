@@ -16,14 +16,20 @@
   flex-direction: column;
 }
 
+.create {
+  overflow:hidden;
+}
+
 .compose {
-  margin-bottom: 4vh;
+  overflow:hidden;
+  margin-bottom: 2.5vh;
   width: 30vw;
   height: 10vh;
-  border-radius: 30px;
+  border-radius: 1.5vw;
   font-size: 4vh;
   font-weight: 300;
-  overflow: hidden;
   @apply bg-sky-500 text-white;
   filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
 }
+
+

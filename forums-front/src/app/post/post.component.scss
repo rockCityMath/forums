@@ -43,17 +43,18 @@
 }
 
 .post-content {
-  padding: 0vh 0.5vw 0vh 4vw;
+  padding: 0vh 0.5vw 1vh 4vw;
   left: 4vw;
   width: 45vw;
+  font-size: 1.75vh;
 }
 
 .post-info {
   display: flex;
   justify-content: space-between;
-  width: 45vw;
+  width: 48vw;
   margin: 0vh 4vw 2vh 4vw;
-  font-size: 2vh;
+  font-size: 1.5vh;
   @apply text-gray-400;
 }
 
@@ -71,16 +72,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  //padding: 0vh 4vw 0vh 4vw;
-  //margin: 0vh 2vw 0vh 0vw;
-  font-size: 2vh;
+  font-size: 1.75vh;
 }
 
 .comment-title {
-  border-top: 2px solid rgba(0, 0, 0, 0.25);
-  width: 45vw;
+  border-top: 1.5px solid rgba(0, 0, 0, 0.25);
+  width: 48vw;
   padding-top: 2vh;
-  margin-left: 4vw;
+  margin: 0vh 4vw 0vh 4vw;
   font-size: 2vh;
   font-weight: 300;
 }
@@ -89,8 +88,13 @@
   width: 50vw;
   border-left: 1.5px solid black;
   padding: 1vh 1vw 1vh 1vw;
+  font-size: 1.25vh;
 }
 
 .username {
   @apply text-sky-700;
+}
+
+svg {
+  width: 2vh;
 }
