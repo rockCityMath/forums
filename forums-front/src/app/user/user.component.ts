@@ -15,7 +15,7 @@ export class UserComponent implements OnInit {
   posts: any[] = []
   user: any;
   userComments: any[] = []
-  userStats: any[] = []
+  userStats: any = []
   post: any;
   posts2: any;
   userOwnsPost: any = true

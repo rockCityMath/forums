@@ -48,20 +48,14 @@
   <!--user's comments-->
   <div class="stats">
   <div class="header">User Info</div>
-  <div *ngFor="let stats of userStats">
-      <p>#p {{stats.numberOfPosts}}</p>
-      <p>#c {{stats.numberOfComments}}</p>
-      <p>#l {{stats.numberOfLikes}}</p>
-  </div>
+      <p>Number of Posts: {{ userStats.numberOfPosts }}</p>
+      <p>Number of Comments: {{ userStats.numberOfComments }}</p>
+      <p>Number of Likes: {{ userStats.numberOfLikes }}</p>
   </div>
   <div class="comment">
     <h2 class="comment-title">Comments</h2>
     <div *ngFor="let comment of userComments" >
-      <a *ngFor="let post2 of posts2">
-        <a class="post-title-comment  " routerLink="/post/{{post2._id}}">{{post2.title}}</a>
-      </a>
-
-
+      <a class="post-title-comment  " routerLink="/post/{{comment.postID}}">{{comment.content}}</a>
     </div>
     </div>
 
