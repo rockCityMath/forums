@@ -82,6 +82,7 @@
   margin: 0vh 4vw 0vh 4vw;
   font-size: 2vh;
   font-weight: 300;
+  float: left;
 }
 
 .content{
@@ -98,3 +99,8 @@
 svg {
   width: 2vh;
 }
+.commentEditButton {
+  float: right;
+  padding: 4px;
+}
+
