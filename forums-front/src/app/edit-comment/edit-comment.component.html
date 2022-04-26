@@ -2,8 +2,7 @@
   <button class="close" onClick="getElementById('edit-comment-modal').style.display = 'none'">&times;</button>
   <div class="title">Pigeon | Edit Comment</div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
-    <div id="i2"><textarea name="content" placeholder="Enter Comment..." formControlName="biography" required></textarea></div>
+    <div id="i2"><textarea name="content" placeholder="Enter Comment..." formControlName="comment" required></textarea></div>
     <button class="submit" type="submit" onClick="getElementById('edit-comment-modal').style.display = 'none'">submit</button>
   </form>
 </div>
-
