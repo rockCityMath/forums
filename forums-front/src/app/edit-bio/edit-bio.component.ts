@@ -56,25 +56,25 @@ export class EditBioComponent implements OnInit {
     }
 
     const request = this.server.updateUser(
-      {biography: this.editBioForm.get('biography')?.value},
+      {biography: this.editBioForm.get('editBioContent')?.value},
       this.userID
       );
 
     request.subscribe(() => {
       //SHOW SUCCESS HERE
 
-      alert("Successfully update biography!")
+      alert("Successfully updated biography!")
       this.router.navigate(['/user/' + this.userID]);
     })
   }
 
   getUserDetails() {
-    const postsObservable = this.server.getPostDetails(this.userID)
-    postsObservable.subscribe((data ) => {
+    const userObservable = this.server.getUser(this.userID)
+    userObservable.subscribe((data ) => {
       data = Object.values(data)
       this.user = data[1]
       this.editBioForm = this.fb.group({
-        editBioContent: [this.user.biography]
+        biography: [this.user.editBioContent]
       });
     })
   }

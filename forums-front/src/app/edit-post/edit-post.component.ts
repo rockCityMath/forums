@@ -58,7 +58,7 @@ export class EditPostComponent implements OnInit {
       data = Object.values(data)
       this.post = data[1]
       this.editPostForm = this.fb.group({
-        editPostContent: [this.post.editPostContent]
+        content: [this.post.content]
       });
     })
   }

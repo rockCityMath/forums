@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { ActivatedRoute } from '@angular/router';
 import { ServerService } from '../shared/services/server-interface.service'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
@@ -9,6 +10,7 @@ import { ServerService } from '../shared/services/server-interface.service'
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  editPostForm!: FormGroup;
   userID: any = ''
   userList: any = []
   selectedUser: any = ''
@@ -18,9 +20,12 @@ export class AdminComponent implements OnInit {
   selectedComment: any = ''
   userStats: any = []
 
-  constructor(private route: ActivatedRoute, private serverService: ServerService, private router: Router) { }
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private serverService: ServerService, private router: Router) { }
 
   ngOnInit(): void {
+    this.editPostForm = this.fb.group({
+      editPostContent: ['']
+    });
     this.getUsers()
   }
 
@@ -83,24 +88,25 @@ export class AdminComponent implements OnInit {
       alert("Changed user's admin status to " + (!currentlyAdmin ? "true" : "false" ) )
       this.router.navigate(['/admin/'])
     })
-/*
-    if(this.isAdmin == false){
-      const request = this.serverService.changeAdmin(
-        {isAdmin: true},
-        this.selectedUser)
-      request.subscribe(() => {
-        alert("Changed user's admin status to true")
-        this.router.navigate(['/admin/'])
-      })
-    }else{
-      const request = this.serverService.changeAdmin(
-        {isAdmin: false},
-        this.selectedUser)
-      request.subscribe(() => {
-        alert("Changed user's admin status to false")
-        this.router.navigate(['/admin/'])
-      })
-    }*/
+  }
+
+  async onSubmit() {
+    if (!this.editPostForm?.valid) {
+      console.log('Form not valid. Please check that fields are correctly filled in');
+      return;
+    }
+
+    const request = this.serverService.updatePost(
+      {content: this.editPostForm.get('editPostContent')?.value},
+      this.selectedPost
+    );
+
+    request.subscribe(() => {
+      //SHOW SUCCESS HERE
+
+      alert("Successfully updated!")
+      this.router.navigate(['/admin/']);
+    })
   }
 
   deleteComment() {
