@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class EditCommentComponent implements OnInit {
 
-  form!: FormGroup;
+  editCommentForm!: FormGroup;
   public loginInvalid?: boolean;
   private formSubmitAttempt?: boolean;
   private id: any;
@@ -28,25 +28,25 @@ export class EditCommentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      content: ['']
+    this.editCommentForm = this.fb.group({
+      editCommentContent: ['']
     });
   }
 
   async onSubmit() {
-    if (!this.form?.valid) {
+    if (!this.editCommentForm?.valid) {
       console.log('Form not valid. Please check that fields are correctly filled in');
       return;
     }
 
     const request = this.server.updateComment(
-      {content: this.form.get('content')?.value},
+      {editCommentContent: this.editCommentForm.get('editCommentContent')?.value},
       this.id
     );
 
     request.subscribe(() => {
       //SHOW SUCCESS HERE
-      
+
       alert("Successfully updated!")
       this.router.navigate(['/post/' + this.comment.postID]);
     })
@@ -57,10 +57,10 @@ export class EditCommentComponent implements OnInit {
     commentObservable.subscribe((data ) => {
       data = Object.values(data)
       this.comment = data[1][0]
-      this.form = this.fb.group({
-        content: [this.comment.content]
+      this.editCommentForm = this.fb.group({
+        editCommentContent: [this.comment.editCommentContent]
       });
-      
+
     })
   }
 }

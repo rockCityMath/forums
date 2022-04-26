@@ -1,9 +1,9 @@
 <div class="container">
   <button class="close" onClick="getElementById('edit-post-modal').style.display = 'none'">&times;</button>
   <div class="title">Pigeon | Edit Post</div>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+  <form [formGroup]="editPostForm" (ngSubmit)="onSubmit()" class="form">
     <div id="i1" style="text-align: center;">{{post.title}}</div>
-    <div id="i2"><textarea name="content" placeholder="Enter Post Content..." formControlName="content" required></textarea></div>
+    <div id="i2"><textarea name="editPostContent" placeholder="Enter Post Content..." formControlName="editPostContent" required></textarea></div>
     <button class="submit" type="submit" onClick="getElementById('edit-post-modal').style.display = 'none'">submit</button>
   </form>
 </div>

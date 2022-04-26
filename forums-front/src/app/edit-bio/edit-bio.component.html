@@ -1,8 +1,8 @@
 <div class="container">
   <button class="close" onClick="getElementById('edit-bio-modal').style.display = 'none'">&times;</button>
   <div class="title">Pigeon | Edit Biography</div>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
-    <div id="i2"><textarea name="content" placeholder="Enter Biography..." formControlName="biography" required></textarea></div>
+  <form [formGroup]="editBioForm" (ngSubmit)="onSubmit()" class="form">
+    <div id="i2"><textarea name="content" placeholder="Enter Biography..." formControlName="editBioContent" required></textarea></div>
     <button class="submit" type="submit" onClick="getElementById('edit-bio-modal').style.display = 'none'">submit</button>
   </form>
 </div>

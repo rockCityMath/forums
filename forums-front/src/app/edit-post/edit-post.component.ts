@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class EditPostComponent implements OnInit {
 
-  form!: FormGroup;
+  editPostForm!: FormGroup;
   public loginInvalid?: boolean;
   private formSubmitAttempt?: boolean;
   private id: any;
@@ -28,25 +28,25 @@ export class EditPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      content: ['']
+    this.editPostForm = this.fb.group({
+      editPostContent: ['']
     });
   }
 
   async onSubmit() {
-    if (!this.form?.valid) {
+    if (!this.editPostForm?.valid) {
       console.log('Form not valid. Please check that fields are correctly filled in');
       return;
     }
 
     const request = this.server.updatePost(
-      {content: this.form.get('content')?.value},
+      {content: this.editPostForm.get('editPostContent')?.value},
       this.id
     );
 
     request.subscribe(() => {
       //SHOW SUCCESS HERE
-      
+
       alert("Successfully updated!")
       this.router.navigate(['/post/' + this.post._id]);
     })
@@ -57,8 +57,8 @@ export class EditPostComponent implements OnInit {
     postsObservable.subscribe((data ) => {
       data = Object.values(data)
       this.post = data[1]
-      this.form = this.fb.group({
-        content: [this.post.content]
+      this.editPostForm = this.fb.group({
+        editPostContent: [this.post.editPostContent]
       });
     })
   }

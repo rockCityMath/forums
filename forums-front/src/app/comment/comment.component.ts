@@ -11,7 +11,7 @@ import {ActivatedRoute } from '@angular/router'
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnInit {
-  form!: FormGroup;
+  commentForm!: FormGroup;
   private formSubmitAttempt?: boolean;
   id: any = ""
 
@@ -24,14 +24,14 @@ export class CommentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  this.form = this.fb.group({
-    content: ['']
+  this.commentForm = this.fb.group({
+    commentContent: ['']
   });
   }
 
   async onSubmit() {
     console.log('Submitting');
-    if (!this.form?.valid) {
+    if (!this.commentForm?.valid) {
       console.log('Form not valid. Please check that fields are correctly filled in');
       return;
     }
@@ -43,7 +43,7 @@ export class CommentComponent implements OnInit {
     }
 
     const request = this.server.addReply({
-      content: this.form.get('content')?.value
+      content: this.commentForm.get('commentContent')?.value
     }, this.id );
 
     request.subscribe(() => {

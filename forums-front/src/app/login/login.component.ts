@@ -8,7 +8,7 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form!: FormGroup;
+  loginForm!: FormGroup;
   public loginInvalid?: boolean;
   private formSubmitAttempt?: boolean;
 
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
+    this.loginForm = this.fb.group({
       username: [''],
       password: ['']
     });
@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit {
   async onSubmit() {
     this.loginInvalid = false;
     this.formSubmitAttempt = false;
-    if (this.form?.valid) {
+    if (this.loginForm?.valid) {
       try {
-        await this.authService.login(this.form.value);      
+        await this.authService.login(this.loginForm.value);
       } catch (err) {
         this.loginInvalid = true;
       }

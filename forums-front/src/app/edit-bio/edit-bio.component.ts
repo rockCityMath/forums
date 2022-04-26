@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./edit-bio.component.scss']
 })
 export class EditBioComponent implements OnInit {
-  form!: FormGroup;
+  editBioForm!: FormGroup;
   public loginInvalid?: boolean;
   private formSubmitAttempt?: boolean;
   userID: any = ''
@@ -27,8 +27,8 @@ export class EditBioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      biography: [''],
+    this.editBioForm = this.fb.group({
+      editBioContent: [''],
     });
 
     this.authService.isLoggedIn.subscribe(data => {
@@ -50,13 +50,13 @@ export class EditBioComponent implements OnInit {
 
   async onSubmit() {
     console.log('Submitting');
-    if (!this.form?.valid) {
+    if (!this.editBioForm?.valid) {
       console.log('Form not valid. Please check that fields are correctly filled in');
       return;
     }
 
     const request = this.server.updateUser(
-      {biography: this.form.get('biography')?.value},
+      {biography: this.editBioForm.get('biography')?.value},
       this.userID
       );
 
@@ -73,8 +73,8 @@ export class EditBioComponent implements OnInit {
     postsObservable.subscribe((data ) => {
       data = Object.values(data)
       this.user = data[1]
-      this.form = this.fb.group({
-        biography: [this.user.biography]
+      this.editBioForm = this.fb.group({
+        editBioContent: [this.user.biography]
       });
     })
   }

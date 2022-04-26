@@ -6,5 +6,5 @@
     Pigeon utilizes an Angular frontend, Node backend, and MongoDB cloud hosted database.
     Developed by Zachary Carpenter and Natalio Castaneda for CSCE 3444, Spring 2022.
   </div>
-  <button routerLink="/admin" class="admin">Admin</button>
+  <button *ngIf="isAdmin == true" routerLink="/admin" class="admin">Admin</button>
 </div>

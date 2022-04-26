@@ -18,7 +18,7 @@
           <p>Admin: {{user.isAdmin}}</p>
           <p>Biography: {{user.biography}}</p>
           <button (click) = "changeAdmin(user.isAdmin)">Change Admin Status</button>
-          <div><button onClick="getElementById('edit-bio-modal').style.display = 'block'" >Edit Biography</button> </div>
+          <div><button onClick="getElementById('edit-bio-modal').style.display = 'block'" (click)="this.selectedUser = user._id" >Edit Biography</button> </div>
         </div>
       </div>
         <p>posts - {{userStats.numberOfPosts}}</p>

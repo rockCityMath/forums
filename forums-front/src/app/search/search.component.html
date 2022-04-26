@@ -27,7 +27,7 @@
 <!--user/date-->
     <div class="post-info">
         <div class="post-user"><a routerLink="/user/{{post.userID}}">By: <span class="link">{{post.username}}</span></a></div>
-        <div class="post-date">Today</div>
+        <div class="post-date">{{post.createdAt | shorten2: 10}}</div>
     </div>
   </a>
 </div>

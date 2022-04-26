@@ -10,37 +10,37 @@ import { Router } from '@angular/router'
   styleUrls: ['./compose.component.scss']
 })
 export class ComposeComponent implements OnInit {
-  form!: FormGroup;
+  composeForm!: FormGroup;
   public loginInvalid?: boolean;
   private formSubmitAttempt?: boolean;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private server: ServerService, private router: Router ) { }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      title: [''],
-      content: [''],
-      tags: ['']
+    this.composeForm = this.fb.group({
+      composeTitle: [''],
+      composeContent: [''],
+      composeTags: ['']
     });
   }
 
   async onSubmit() {
     console.log('Submitting');
-    if (!this.form?.valid) {
+    if (!this.composeForm?.valid) {
       console.log('Form not valid. Please check that fields are correctly filled in');
       return;
     }
 
     const request = this.server.createPost({
-      title: this.form.get('title')?.value,
-      content: this.form.get('content')?.value,
-      //TODO: Parse these tags 
-      tags: this.form.get('tags')?.value
+      title: this.composeForm.get('composeTitle')?.value,
+      content: this.composeForm.get('composeContent')?.value,
+      //TODO: Parse these tags
+      tags: this.composeForm.get('composeTags')?.value
     });
 
     request.subscribe(() => {
       //SHOW SUCCESS HERE
-      
+
       alert("Successfully posted!")
       this.router.navigate(['/home']);
     })

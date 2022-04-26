@@ -14,7 +14,7 @@ import { waitForAsync } from '@angular/core/testing';
 export class RegisterComponent implements OnInit {
 
 
-  form!: FormGroup;
+  registerForm!: FormGroup;
   public loginInvalid?: boolean;
   private formSubmitAttempt?: boolean;
 
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.form = this.fb.group({
+    this.registerForm = this.fb.group({
       username: [''],
       password: ['']
     },);
@@ -34,14 +34,14 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     console.log('Submitting');
-    if (!this.form?.valid) {
+    if (!this.registerForm?.valid) {
       console.log('Form not valid. Please check that fields are correctly filled in');
       return;
     }
 
     const request = this.server.register({
-      username: this.form.get('username')?.value,
-      password: this.form.get('password')?.value
+      username: this.registerForm.get('username')?.value,
+      password: this.registerForm.get('password')?.value
     });
 
     request.subscribe((data) => {
@@ -60,9 +60,9 @@ export class RegisterComponent implements OnInit {
   async ifReg() {
     this.loginInvalid = false;
     this.formSubmitAttempt = false;
-    if (this.form?.valid) {
+    if (this.registerForm?.valid) {
       try {
-       await this.authService.login(this.form.value);
+       await this.authService.login(this.registerForm.value);
        return true;
       } catch (err) {
         this.loginInvalid = true;

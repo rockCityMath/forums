@@ -1,7 +1,7 @@
 <div class="container">
   <button class="close" onClick="getElementById('login-modal').style.display = 'none'">&times;</button>
   <div class="title">Pigeon | Login</div>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
     <input type="text" placeholder="username" formControlName="username" size="30" required>
     <input type="password" placeholder="password" formControlName="password" size="30" required>
     <button class="submit" type="submit" onClick="getElementById('login-modal').style.display = 'none'">Login</button>
