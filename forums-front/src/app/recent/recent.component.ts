@@ -13,6 +13,7 @@ export class RecentComponent implements OnInit {
   mostRecentPosts: any = [];
   mostLikedPosts: any = [];
   userID: any = ''
+  postID: any = ''
 
   constructor(private serverService: ServerService, private router: Router) { }
 

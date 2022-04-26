@@ -48,7 +48,8 @@ export class CommentComponent implements OnInit {
 
     request.subscribe(() => {
       alert("Successfully posted!")
-      this.router.navigate(['/post/' + this.id]);
+      //this.router.navigate(['/post/' + this.id]);
+      window.location.reload()
     })
   }
 }

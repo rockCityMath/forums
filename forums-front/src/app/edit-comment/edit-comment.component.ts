@@ -4,6 +4,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { ServerService } from '../shared/services/server-interface.service'
 import { Router } from '@angular/router'
 import { ActivatedRoute } from '@angular/router'
+import { Input } from '@angular/core'
 
 @Component({
   selector: 'app-edit-comment',
@@ -12,19 +13,26 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class EditCommentComponent implements OnInit {
 
+  @Input() id: any
+
   editCommentForm!: FormGroup;
   public loginInvalid?: boolean;
   private formSubmitAttempt?: boolean;
-  private id: any;
   public comment: any;
 
 
   constructor(private fb: FormBuilder, private authService: AuthService, private server: ServerService, private router: Router, private route: ActivatedRoute ) {
-    route.params.subscribe(
-      (params) => {
-        this.id = params['id']
-      });
+    // route.params.subscribe(
+    //   (params) => {
+    //     this.id = params['id']
+    //   });
+    //this.getCommentDetails();
+  }
+
+  ngOnChanges():void {
     this.getCommentDetails();
+    console.log("ID")
+    console.log(this.id)
   }
 
   ngOnInit(): void {
@@ -40,15 +48,16 @@ export class EditCommentComponent implements OnInit {
     }
 
     const request = this.server.updateComment(
-      {editCommentContent: this.editCommentForm.get('editCommentContent')?.value},
+      {content: this.editCommentForm.get('editCommentContent')?.value},
       this.id
     );
 
-    request.subscribe(() => {
+    request.subscribe((data) => {
       //SHOW SUCCESS HERE
 
       alert("Successfully updated!")
-      this.router.navigate(['/post/' + this.comment.postID]);
+      //this.router.navigate(['/post/' + this.comment.postID]);
+      window.location.reload()
     })
   }
 

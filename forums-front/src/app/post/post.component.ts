@@ -19,6 +19,7 @@ export class PostComponent implements OnInit {
   userID = 0
   userOwnsPost = false
   username? = ''
+  selectedCommentID = ''
 
   constructor(private route: ActivatedRoute, private serverService: ServerService) { }
 
