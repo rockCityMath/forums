@@ -18,7 +18,7 @@
           <p>Admin: {{user.isAdmin}}</p>
           <p>Biography: {{user.biography}}</p>
           <button (click) = "changeAdmin(user.isAdmin)">Change Admin Status</button>
-          <div>Edit Biography</div>
+          <div><button onClick="getElementById('edit-bio-modal').style.display = 'block'" >Edit Biography</button> </div>
         </div>
       </div>
         <p>posts - {{userStats.numberOfPosts}}</p>
@@ -32,7 +32,7 @@
         <a *ngIf="!userPosts">User has no posts</a>
         <div class="title">{{post.title}}</div>
         <div class="inner-right">
-          <div class="edit">Edit Post Details</div>
+          <button onClick="getElementById('edit-post-modal').style.display = 'block'" class="edit">Edit Post Details</button>
           <button (click)="this.selectedPost = post._id; this.deletePost()" class="remove">Remove Post</button>
         </div>
       </div>
@@ -44,7 +44,7 @@
         <a *ngIf="comment == ''">User has no comments</a>
         <div class="title">{{comment.content}}</div>
         <div class="inner-right">
-          <div class="edit">Edit Comment Details</div>
+          <button onClick="getElementById('edit-comment-modal').style.display = 'block'" class="edit">Edit Comment Details</button>
           <button (click)="this.selectedComment = comment._id; this.deleteComment()" class="remove">Remove Comment</button>
         </div>
       </div>
@@ -53,12 +53,3 @@
   </div>
 
 </div>
-<div class="push"></div>
-<app-footer></app-footer>
-
-<!--modals-->
-<app-edit-bio id="bio-modal" class="modal"></app-edit-bio>
-<app-edit-comment id="comment-modal" class="modal"></app-edit-comment>
-<app-edit-post id="post-modal" class="modal"></app-edit-post>
-
-
