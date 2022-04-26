@@ -1,4 +1,4 @@
-<div class="register">
+<div class="container">
   <button class="close" onClick="getElementById('reg-modal').style.display = 'none'">&times;</button>
   <div class="title">Pigeon | Register</div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
@@ -7,13 +7,3 @@
     <button class="submit" type="submit" onClick="getElementById('reg-modal').style.display = 'none'">Register</button>
   </form>
 </div>
-
-<script>
-  //close popup when user clicks outside of window - FIX
-  var loginModal = document.getElementById('login-modal');
-  window.addEventListener("click", function(event) {
-    if (event.target == loginModal) {
-        loginModal.style.display = "none";
-    }
-  });
-</script>

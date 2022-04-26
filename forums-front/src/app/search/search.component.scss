@@ -1,21 +1,35 @@
-
-.post {
-  border-radius: 30px;
-  margin-bottom: 50px;
-  padding: 60px;
-  padding-left: 85px;
-  padding-right: 200px;
+.search {
   display: flex;
   flex-direction: column;
+  width: 60vw;
+  margin-left: 20vw;
+  margin-top: 8vh;
+}
+
+.post, .result-cont {
+  border-radius: 1vw;
+  padding: 4vh 4vw 4vh 4vw;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.5vh;
   @apply bg-white;
   filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
 }
 
+.result-title {
+  padding: 0vh 0.5vw 1vh 0vw;
+  width: 40vw;
+  float: left;
+  font-size: 3vh;
+  font-weight: 600;
+}
+
 .post-title {
-  font-size: 36px;
-  font-weight: 300;
-  margin-left: 110px;
-  padding-bottom: 18px;
+  padding: 0vh 0.5vw 1vh 4vw;
+  width: 40vw;
+  float: left;
+  font-size: 3vh;
+  font-weight: 600;
 }
 
 .post-center {

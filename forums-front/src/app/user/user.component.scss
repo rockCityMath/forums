@@ -7,6 +7,7 @@
 .left {
   margin-right: 2vw;
   width: 60vw;
+ // background-color: red;
 }
 
 .right {
@@ -16,11 +17,12 @@
 }
 
 .edit-button {
-  float: right;
-  margin-top: 2vh;
+  position: absolute;
+  right: 4vw;
+  top: 6vh;
 }
 
-.post {
+.post, .stats {
   border-radius: 1vw;
   padding: 4vh 4vw 4vh 4vw;
   display: flex;
@@ -32,20 +34,12 @@
 
 .comment, .user {
   border-radius: 1.5vw;
-  margin-bottom: 50px;
-  padding: 60px;
+  margin-bottom: 2vh;
+  padding: 4vh 4vw 4vh 4vw;
   display: flex;
   flex-direction: column;
   @apply bg-white;
   filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
-}
-
-.comment {
-  padding-top: 25px;
-}
-
-.post-comment {
-  padding-bottom: 12px;
 }
 
 .title, .username {
@@ -57,49 +51,43 @@
 }
 
 .comment-title {
-  font-size: 36px;
+  font-size: 3vh;
   font-weight: bold;
-  padding-bottom: 18px;
+  //padding-bottom: 18px;
 }
 
-.post-title {
-  padding: 0vh 0.5vw 1vh 4vw;
+.post-title, .header {
   width: 40vw;
   float: left;
   font-size: 3vh;
   font-weight: 600;
 }
 
-.post-center {
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 24px;
-}
-
 .post-stats {
-  display: flex inline;
+  margin-top: 1vh;
+  position: absolute;
+  left: 0;
+  width: 8vw;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 24px;
-  padding-top: 2px;
-  margin-right: 60px;
+  font-size: 1.75vh;
 }
 
-.post-content {
-  padding-left: 10px;
+.post-content, .bio {
+  padding: 0vh 0.5vw 1vh 4vw;
+  width: 40vw;
+  float: left;
+  font-size: 1.75VH;
 }
 
 .post-info {
-  display: flex inline;
-  flex-direction: row;
+  display: flex;
   justify-content: space-between;
-  font-size: 24px;
-  padding-left: 110px;
+  width: 48vw;
+  margin: 0vh 4vw 2vh 4vw;
+  font-size: 1.5vh;
   @apply text-gray-400;
-}
-
-.like-count {
-  padding-bottom: 14px;
 }
 
 .link {

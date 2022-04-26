@@ -1,9 +1,9 @@
-<span id="bg">
-  <div class="container">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <p>FORUM | comment</p>
-      <div id="i2"><textarea  name="content" placeholder="comment" formControlName="content" required></textarea></div>
-      <button type="submit" id="submitButton" class="button">submit</button>
-    </form>
-  </div>
-</span>
+<div class="container">
+  <button class="close" onClick="getElementById('comment-modal').style.display = 'none'">&times;</button>
+  <div class="title">Pigeon | Create Comment</div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <div id="i2"><textarea name="content" placeholder="Enter Comment..." formControlName="biography" required></textarea></div>
+    <button class="submit" type="submit" onClick="getElementById('comment-modal').style.display = 'none'">submit</button>
+  </form>
+</div>
+

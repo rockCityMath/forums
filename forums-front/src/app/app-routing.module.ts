@@ -9,6 +9,7 @@ import { UserComponent } from './user/user.component';
 import { PostComponent } from './post/post.component';
 import { CommentComponent } from './comment/comment.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
+import { EditBioComponent } from './edit-bio/edit-bio.component';
 import { SearchComponent } from './search/search.component';
 import { EditCommentComponent } from './edit-comment/edit-comment.component'
 
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'edit-post/:id', component: EditPostComponent},
   { path: 'search/:query', component: SearchComponent},
   { path: 'edit-comment/:id', component: EditCommentComponent },
+  { path: 'edit-bio/:id', component: EditBioComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

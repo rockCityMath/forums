@@ -17,9 +17,11 @@ export class UserComponent implements OnInit {
   userComments: any[] = []
   userStats: any[] = []
   post: any;
-  userOwnsPost = false
+  posts2: any;
+  userOwnsPost: any = true
+  numberOfComments: any = false
 
-  constructor(private route: ActivatedRoute, private serverService: ServerService, private authService: AuthService) {
+  constructor(private route: ActivatedRoute, private serverService: ServerService, public authService: AuthService) {
     route.params.subscribe(
      (params) => {
        this.id = params['user']
@@ -31,6 +33,7 @@ export class UserComponent implements OnInit {
     this.getUserPosts()
     this.getUserInfo()
     this.getUserComments()
+    this.getAllPosts()
 
 
     this.authService.isLoggedIn.subscribe(data => {
@@ -54,7 +57,7 @@ export class UserComponent implements OnInit {
     const usersObservable = this.serverService.getUserStats(this.id)
     usersObservable.subscribe((data ) => {
       data = Object.values(data)
-      this.userStats[1] = data
+      this.userStats = data[1]
     })
   }
 
@@ -63,6 +66,14 @@ export class UserComponent implements OnInit {
     postsObservable.subscribe((data ) => {
       data = Object.values(data)
       this.posts = data[1]
+    })
+  }
+
+  getAllPosts() {
+    const posts2Observable = this.serverService.getAllPosts()
+    posts2Observable.subscribe((data ) => {
+      data = Object.values(data)
+      this.posts2 = data
     })
   }
 

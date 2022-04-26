@@ -1,10 +1,9 @@
-<span id="bg">
-  <div class="container">
-    <button class="close" onClick="getElementById('bio-modal').style.display = 'none'">&times;</button>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <p>Pigeon | Edit Biography</p>
-      <div id="i2"><textarea  name="content" placeholder="Enter Biography" formControlName="biography" required></textarea></div>
-      <button onClick="getElementById('bio-modal').style.display = 'none'" type="submit" id="submitButton" class="button">submit</button>
-    </form>
-  </div>
-</span>
+<div class="container">
+  <button class="close" onClick="getElementById('edit-bio-modal').style.display = 'none'">&times;</button>
+  <div class="title">Pigeon | Edit Biography</div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <div id="i2"><textarea name="content" placeholder="Enter Biography..." formControlName="biography" required></textarea></div>
+    <button class="submit" type="submit" onClick="getElementById('edit-bio-modal').style.display = 'none'">submit</button>
+  </form>
+</div>
+

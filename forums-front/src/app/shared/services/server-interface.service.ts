@@ -3,13 +3,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 
-//const baseUrl = 'http://68.184.184.100:3232';
+const baseUrl = 'http://68.184.184.100:3232';
 //const baseUrl = 'http://192.168.1.14:3232'
-const baseUrl = 'http://localhost:3232'
+//const baseUrl = 'http://localhost:3232'
 const getMostLikedUrl = '/api/post/mostLiked'
 const loginUrl = '/auth/login'
 const registerUrl = '/auth/register'
 const getMostRecentUrl = '/api/post/mostRecent'
+const getAllPostsUrl = '/api/post/allPosts'
 const createPostUrl = '/api/post'
 const usernameFromIDUrl = '/auth/usernameFromID'
 const postDetailsUrl = '/api/post'
@@ -30,6 +31,7 @@ const getUserIDURL = '/auth/getID'
 const getUserListURL = '/api/user'
 const updateAdminURL = '/api/user/updateAdmin'
 const deleteCommentURL = '/api/comment/remove'
+
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +73,15 @@ export class ServerService {
   getMostRecent() {
     const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
     const posts = this.http.get(baseUrl + getMostRecentUrl, {
+      responseType: 'json',
+      headers: header
+    })
+    return posts
+  }
+
+  getAllPosts() {
+    const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
+    const posts = this.http.get(baseUrl + getAllPostsUrl, {
       responseType: 'json',
       headers: header
     })
@@ -312,7 +323,7 @@ export class ServerService {
       observe: 'body',
       headers: header
     });
-  
+
   }
 
 }

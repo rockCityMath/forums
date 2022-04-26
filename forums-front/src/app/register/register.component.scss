@@ -1,12 +1,11 @@
-.register {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
-  padding: auto;
-
-  width: 30%;
-  border-radius: 30px;
+  margin: 8vh 35vw 0vh 35vw;
+  overflow: hidden;
+  width: 30vw;
+  border-radius: 1.5vw;
   @apply bg-white;
 }
 
@@ -14,19 +13,19 @@
   justify-self: center;
   font-family: Montserrat;
   font-weight: 300;
-  font-size: 36px;
-  padding-bottom: 20px;
-  padding-top: 25px;
+  font-size: 3vh;
+  padding-bottom: 2vh;
+  padding-top: 2vh;
 }
 
 .close {
     float: right;
-    font-size: 28px;
+    font-size: 3vh;
     font-weight: bold;
-    margin: 0px;
+    margin: 0;
     position: absolute;
-    right: 37%;
-    padding-top: 15px;
+    right: 37vw;
+    padding-top: 1.5vh;
     @apply text-gray-300;
 }
 
@@ -40,75 +39,34 @@
 .form {
   display: flex;
   flex-direction: column;
-  padding-bottom: 40px;
+  padding-bottom: 2vh;
 }
 
 input {
+  border-radius: 1.5vw;
+  overflow: hidden;
+  margin: 1vh 0vw 0vh 0vw;
+  width: 10vw;
   padding-left: 3%;
-  top: 22px;
-  width: 75%;
-  margin-left: 12.5%;
-  border-radius: 20px;
-  overflow: auto;
-  margin-top: 0.5rem;
-  @apply bg-gray-200 text-black;
-
-  height: 40px;
-
-  border-radius: 30px;
-  font-size: 24px;
+  padding-right: 3%;
+  font-size: 2vh;
   font-weight: 300;
-  border: none;
-  outline: none;
+  @apply bg-gray-200 text-black;
 }
+
+
 
 .submit {
   @apply bg-sky-500 text-white;
-  border-radius: 30px;
-  width: 135px;
-  height: 40px;
-  font-size: 24px;
+  border-radius: 2vw;
+  width: 6vw;
+  height: 3vh;
+  font-size: 1.5vh;
   font-weight: 300;
+  margin-top: 2vh;
   align-self: center;
-  margin-top: 25px;
-
 }
 
 .submit:hover {
   @apply bg-sky-800;
 }
-
-
-/*#bg {
-  z-index: 0;
-  position: fixed;
-  top: 60px;
-  height: 100%;
-  width: 100%;
-  background-color: transparent;
-  display: flex;
-  justify-content: center;
- // @apply bg-gray-300;
-}
-
-.container {
-  display: flex;
-  padding: 2rem;
-  height: max-content;
-  margin-top: 5rem;
-  border-radius: 20px;
-  width: 25rem;
-  flex-flow: column wrap;
-  @apply bg-white font-sans font-light;
-  filter: drop-shadow(5px 10px 10px grey);
-}
-
-p {
-  font-size: 225%;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  @apply font-sans font-light text-sky-800;
-}
-
-
-*/
