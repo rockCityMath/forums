@@ -29,6 +29,7 @@ const unlikePostURL = '/api/like/unlikePost'
 const getUserIDURL = '/auth/getID'
 const getUserListURL = '/api/user'
 const updateAdminURL = '/api/user/updateAdmin'
+const deleteCommentURL = '/api/comment/remove'
 
 @Injectable({
   providedIn: 'root'
@@ -301,6 +302,17 @@ export class ServerService {
       observe: 'body',
       headers: header
     });
+  }
+
+  deleteComment(commentID, postID) {
+    const header = (this.loggedIn) ? { authorization: `Bearer ${this.token}` } : undefined;
+    return this.http.request("POST", baseUrl + deleteCommentURL + '/' + postID, {
+      body: commentID,
+      responseType: 'json',
+      observe: 'body',
+      headers: header
+    });
+  
   }
 
 }

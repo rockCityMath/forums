@@ -83,14 +83,22 @@
   margin-left: 4vw;
   font-size: 2vh;
   font-weight: 300;
+  float: left;
 }
 
 .content{
   width: 50vw;
   border-left: 1.5px solid black;
   padding: 1vh 1vw 1vh 1vw;
+  float: left;
 }
 
 .username {
   @apply text-sky-700;
 }
+
+.commentEditButton {
+  float: right;
+  padding: 4px;
+}
+

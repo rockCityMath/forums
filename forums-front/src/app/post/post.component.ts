@@ -18,6 +18,7 @@ export class PostComponent implements OnInit {
   comments: any = [];
   userID = 0
   userOwnsPost = false
+  username? = ''
 
   constructor(private route: ActivatedRoute, private serverService: ServerService) { }
 
@@ -25,6 +26,7 @@ export class PostComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id')
     this.getPostDetails()
     this.getPostComments()
+    this.getUsername()
   }
 
   getPostDetails() {
@@ -68,6 +70,25 @@ export class PostComponent implements OnInit {
     if(this.post.userID == id) {
       this.userOwnsPost = true
     }
+  }
+
+  getUsername() {
+    const userObservable = this.serverService.getUsernameFromID(this.id)
+    userObservable.subscribe((data ) => {
+      console.log("USERNAME")
+      data = Object.values(data)
+      console.log(data[0])
+      this.username = data[0]
+    })
+  }
+
+  deleteComment(commentID) {
+    const delObservable = this.serverService.deleteComment({"commentID": commentID}, this.id)
+    delObservable.subscribe((data ) => {
+      window.location.reload()
+    })
+
+    
   }
 
   ngOnDestroy() {
