@@ -15,11 +15,12 @@ export class CommentComponent implements OnInit {
   private formSubmitAttempt?: boolean;
   id: any = ""
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private server: ServerService, private router: Router, private route: ActivatedRoute ) { 
+  constructor(private fb: FormBuilder, private authService: AuthService, private server: ServerService, private router: Router, private route: ActivatedRoute ) {
     route.params.subscribe(
       (params) => {
         this.id = params['id']
       });
+
   }
 
   ngOnInit(): void {
