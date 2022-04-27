@@ -6,15 +6,18 @@
   @apply bg-white;
   filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
 }
+
 .title {
   font-size: 3vh;
   font-weight: bold;
   padding-bottom: 1vh;
+
 }
 
 .post-title {
   font-size: 2vh;
   font-weight: 300;
+  float: left;
 }
 
 .post-info {
@@ -30,17 +33,16 @@
 }
 
 .shell {
-  position: absolute;
-  left: 0;
+  //float: left;
+  //padding: 1vh 0vw 0vh 0vw;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  margin-left: -4vw;
+  //justify-content: space;
 }
 
 .post-stats {
-  padding: 5vh 0vw 0vh 0vw;
-  position: absolute;
-  left: 0;
+  padding: 0vh 0vw 0vh 0vw;
   width: 4vw;
   display: flex;
   flex-direction: column;

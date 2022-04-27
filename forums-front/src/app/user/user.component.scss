@@ -90,6 +90,28 @@
   @apply text-gray-400;
 }
 
+.info-cont {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75vh;
+}
+
+.post-title-comment {
+  font-size: 1.5vh;
+  font-weight: 600;
+}
+
+.post-user-comment {
+  font-size: 1.5vh;
+  @apply text-sky-700;
+}
+
+.comment-content {
+  //font-size: 1.5vh;
+  padding-top: 0.5vh;
+  //padding-bottom: 0.25vh;
+}
+
 .link {
   @apply text-sky-700;
 }

@@ -2,7 +2,7 @@
   <div class="left">
     <div class="header">User Catalog</div>
       <div *ngFor="let user of userList[1]" class="user-list">
-          <div class="user">{{user.username}}</div>
+        <a routerLink="/user/{{user._id}}">{{user.username}}</a>
           <div class="inner-right">
             <div class="edit"><button (click)="this.selectedUser = user._id; this.getUsersPosts(); this.getUsersComments(); this.getUserStats()">Edit User Details</button></div>
             <button (click)="this.selectedUser = user._id; this.deleteUser()" class="remove">Remove User</button>
@@ -14,7 +14,7 @@
       <div class="header">User Info</div>
       <div *ngFor="let user of userList[1]">
         <div *ngIf="user._id == this.selectedUser">
-          <p>Username: {{user.username}}</p>
+          <a routerLink="/user/{{user._id}}">Username: {{user.username}}</a>
           <p>Admin: {{user.isAdmin}}</p>
           <p>Biography: {{user.biography}}</p>
           <button (click) = "changeAdmin(user.isAdmin)">Change Admin Status</button>
@@ -30,7 +30,7 @@
       <div class="header">User Posts</div>
       <div *ngFor="let post of userPosts[1]" class="post-list">
         <a *ngIf="!userPosts">User has no posts</a>
-        <div class="title">{{post.title}}</div>
+        <a routerLink="/post/{{post._id}}" class="title">{{post.title | shorten: 45}}</a>
         <div class="inner-right">
           <button onClick="getElementById('edit-post-modal').style.display = 'block'"  (click)="this.selectedPost = post._id" class="edit">Edit Post Details</button>
           <button (click)="this.selectedPost = post._id; this.deletePost()" class="remove">Remove Post</button>
@@ -42,9 +42,9 @@
       <div class="header">User Comments</div>
       <div *ngFor="let comment of userComments[1]" class="post-list">
         <a *ngIf="comment == ''">User has no comments</a>
-        <div class="title">{{comment.content}}</div>
+        <a routerLink="/post/{{comment.postID}}" class="title">{{comment.content | shorten: 40}}</a>
         <div class="inner-right">
-          <button onClick="getElementById('edit-comment-modal').style.display = 'block'" class="edit">Edit Comment Details</button>
+          <button (click)="this.selectedComment = comment._id" onClick="getElementById('edit-comment-modal').style.display = 'block'" class="edit">Edit Comment Details</button>
           <button (click)="this.selectedComment = comment._id; this.deleteComment()" class="remove">Remove Comment</button>
         </div>
       </div>
@@ -59,7 +59,7 @@
 <app-register id="reg-modal" class="modal"></app-register>
 <app-edit-bio id="edit-bio-modal" [userID]="this.selectedUser" class="modal"></app-edit-bio>
 <!--<app-edit-post id="edit-post-modal" class="modal"></app-edit-post>-->
-<app-edit-comment id="edit-comment-modal" class="modal"></app-edit-comment>
+<app-edit-comment id="edit-comment-modal" [id]="this.selectedComment" class="modal"></app-edit-comment>
 <app-compose id="compose-modal" class="modal"></app-compose>
 <app-comment id="comment-modal" class="modal"></app-comment>
 
@@ -67,7 +67,7 @@
   <div class="modalcontainer">
     <button class="close" onClick="getElementById('edit-post-modal').style.display = 'none'">&times;</button>
     <div class="modal-title">Pigeon | Edit Post</div>
-    <form [formGroup]="editPostForm" (ngSubmit)="onSubmit()" class="form">
+    <form [formGroup]="editPostForm" (ngSubmit)="editPostSubmit()" class="form">
       <div id="i1" style="text-align: center;">{{selectedPost.title}}</div>
       <div id="i2"><textarea name="editPostContent" placeholder="Enter Post Content..." formControlName="editPostContent" required></textarea></div>
       <button class="submit" type="submit" onClick="getElementById('edit-post-modal').style.display = 'none'">submit</button>

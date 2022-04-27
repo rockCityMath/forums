@@ -20,7 +20,6 @@ export class CommentComponent implements OnInit {
       (params) => {
         this.id = params['id']
       });
-
   }
 
   ngOnInit(): void {

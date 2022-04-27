@@ -55,12 +55,20 @@
   <div class="comment">
     <h2 class="comment-title">Comments</h2>
     <div *ngFor="let comment of userComments" >
-      <a class="post-title-comment" routerLink="/post/{{comment.postID}}">{{comment.content}}</a>
+      <div *ngFor="let allPosts of allPosts[1]">
+        <div *ngIf="allPosts._id == comment.postID">
+          <div class="comment-content">{{comment.content}}</div>
+          <div class="info-cont">
+            <a class="post-title-comment" routerLink="/post/{{comment.postID}}">{{allPosts.title}}</a>
+            <div class="post-user-comment">{{allPosts.username}}</div>
+          </div>
+        </div>
+      </div>
     </div>
     </div>
-
+    <app-feature></app-feature>
   </div>
-  <!--all featured posts-- <app-feature></app-feature>-->
+
 
 </div>
 

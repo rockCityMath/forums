@@ -1,9 +1,6 @@
 import { getSafePropertyAccessString } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-
-
 import { ServerService } from '../shared/services/server-interface.service'
-
 import { ActivatedRoute } from '@angular/router'
 import { Subscription } from 'rxjs';
 
@@ -58,7 +55,7 @@ export class PostComponent implements OnInit {
           this.userID = data.userID
           this.checkIfUserOwnsPost(this.userID)
         }
-    
+
       })
     }
     else {
@@ -89,7 +86,7 @@ export class PostComponent implements OnInit {
       window.location.reload()
     })
 
-    
+
   }
 
   ngOnDestroy() {

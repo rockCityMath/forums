@@ -1,22 +1,26 @@
+<div class="navbar">
 
-<div class="nav">
-  <a routerLink="/home" class="header">{{title}}</a>
-<!--Username/Logout-->
-  <div class="buttons">
-    <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
-        <button type="button" class="sign-up"><a id="signUpBG" routerLink="/user/{{userID}}">{{username}}</a></button>
-        <button type="button" class="login" (click)="authService.logout()">Logout</button>
+
+  <div class="nav">
+    <a routerLink="/home" class="header">{{title}}</a>
+    <!--Username/Logout-->
+    <div class="buttons">
+      <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
+          <button type="button" class="sign-up"><a id="signUpBG" routerLink="/user/{{userID}}">{{username}}</a></button>
+          <button type="button" class="login" (click)="authService.logout()">Logout</button>
+      </div>
+  <!--Register/Login-->
+      <ng-template #notLoggedIn>
+          <button class="sign-up" onClick="getElementById('reg-modal').style.display = 'block'">Register</button>
+          <button class="login" onClick="getElementById('login-modal').style.display = 'block'">Login</button>
+      </ng-template>
     </div>
-<!--Register/Login-->
-    <ng-template #notLoggedIn>
-        <button class="sign-up" onClick="getElementById('reg-modal').style.display = 'block'">Register</button>
-        <button class="login" onClick="getElementById('login-modal').style.display = 'block'">Login</button>
-    </ng-template>
   </div>
-<!--Search-->
+   <!--Search-->
   <form [formGroup]="search" (ngSubmit)="onSearch()">
     <input type="text" formControlName="searchQuery" required placeholder="Search..." size="39">
-    <button class="search">Search Title</button>
+
+      <button class="search">Search</button>
     <!--<button (click)="searchTag">Search Tag</button>-->
   </form>
 </div>

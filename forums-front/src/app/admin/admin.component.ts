@@ -90,7 +90,7 @@ export class AdminComponent implements OnInit {
     })
   }
 
-  async onSubmit() {
+  async editPostSubmit() {
     if (!this.editPostForm?.valid) {
       console.log('Form not valid. Please check that fields are correctly filled in');
       return;

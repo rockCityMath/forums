@@ -1,17 +1,23 @@
-.nav {
+.navbar {
   background-color: black;
   height: 6vh;
   width: 100vw;
   color: white;
   z-index: 10;
+ // display: flex;
+  //justify-content: space-between;
+}
+
+.nav{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  align-content: center;
 }
 
 .header {
-  position: absolute;
-  left: 0;
+  position: relative;
+  //left: 0;
   font-family: Montserrat;
   font-weight: 300;
   margin-top: 1vh;
@@ -33,8 +39,9 @@ button {
 
 
 .buttons {
-  position: absolute;
-  right: 0;
+  //float: right;
+  //position: absolute;
+  //right: 0;
   margin-right: 4vw;
 }
 
@@ -42,24 +49,33 @@ button {
   margin-left: 0.5vw;
 }
 
+form {
+  display: flex;
+  justify-content: center;
+  margin: -4vh 0vw 0vh 0vw;
+}
+
 input {
   width: 28vw;
   height: 3vh;
-  margin-top: 1.5vh;
+  //margin-top: 1.5vh;
   border-radius: 1.5vw;
   font-size: 2vh;
   font-weight: 300;
-  padding-Left: 3%;
-  padding-right: 20%;
+  padding-Left: 1%;
+  padding-right: 6.5%;
   color: black;
+
 }
 
+
 .search {
-  position: absolute;
-  left: 58vw;
-  margin-top: 1.5vh;
+  //background-color: rgba(0,255,0,0.4);
+  margin: 0vh 0vw 0vh -6vw;
+  //left: 27vw;
+  //margin-top: -8vh;
   border-radius: 0 1.5vw 1.5vw 0;
-  height: 3vh;
+  //height: 3vh;
 
 }
 

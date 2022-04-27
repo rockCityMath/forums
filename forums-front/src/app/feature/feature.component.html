@@ -14,10 +14,10 @@
               </svg></button>
               <p class="comment-count">{{post.commentCount}}</p>-->
             </div>
-  </div>
+  
 <!--post title-->
-  <a routerLink="/post/{{post._id}}" class="post-title">{{post.title}}</a>
-
+  <a routerLink="/post/{{post._id}}" class="post-title">{{post.title | shorten: 35}}</a>
+</div>
 
 
 <!--post username/date-->

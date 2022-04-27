@@ -26,26 +26,27 @@
 }
 
 .edit-button {
-  position: absolute;
-  right: 4vw;
-  top: 6vh;
+  float: right;
+  // margin-right: -4vw;
+  // margin-top: -6vh;
 }
 
 .post-title {
-  padding: 0vh 0.5vw 1vh 4vw;
-  width: 40vw;
+  //padding: 0vh 1.5vw 1vh 0vw;
+  width: 46vw;
 }
 
 .title{
-  float: left;
+  //float: left;
   font-size: 3vh;
   font-weight: 600;
 }
 
 .post-content {
-  padding: 0vh 0.5vw 1vh 4vw;
-  left: 4vw;
-  width: 45vw;
+  padding: 0vh 1.5vw 1vh 0vw;
+  margin-left: 4vw;
+  //left: 4vw;
+  //width: 45vw;
   font-size: 1.75vh;
 }
 
@@ -66,8 +67,8 @@
 }
 
 .post-stats {
-  position: absolute;
-  left: 0;
+  //position: absolute;
+  //left: 0;
   width: 8vw;
   display: flex;
   flex-direction: column;
@@ -104,3 +105,14 @@ svg {
   padding: 4px;
 }
 
+
+.shell {
+  //position: fixed;
+  //left: 0;
+  padding: 1vh 0vw 0vh 0vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: -8vw;
+//  margin-bottom:-4vh;
+}

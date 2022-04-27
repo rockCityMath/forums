@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
   userStats: any = []
   post: any;
   posts2: any;
+  allPosts: any;
   userOwnsPost: any = true
   numberOfComments: any = false
 
@@ -33,7 +34,7 @@ export class UserComponent implements OnInit {
     this.getUserPosts()
     this.getUserInfo()
     this.getUserComments()
-    this.getAllPosts()
+    this.searchByTitle()
 
 
     this.authService.isLoggedIn.subscribe(data => {
@@ -106,6 +107,16 @@ export class UserComponent implements OnInit {
     if(this.post.userID == id) {
       this.userOwnsPost = true
     }
+  }
+
+  searchByTitle(){
+    const resultsObservable = this.serverService.searchByTitle(
+      {query: ""}
+    )
+    resultsObservable.subscribe((data ) => {
+      data = Object.values(data)
+      this.allPosts = data
+    })
   }
 
 
