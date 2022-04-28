@@ -89,8 +89,20 @@
 
 
 <app-edit-bio id="edit-bio-modal" class="modal"></app-edit-bio>
-<app-edit-post id="edit-post-modal" [id]="selectedPostID" class="modal"></app-edit-post>
+
 <app-edit-comment id="edit-comment-modal" [id]="selectedCommentID" class="modal"></app-edit-comment>
 <app-compose id="compose-modal" class="modal"></app-compose>
 <app-comment id="comment-modal" class="modal"></app-comment>
 
+<div id="edit-post-modal" class="modal">
+  <div class="editpost-container">
+    <button class="close" onClick="getElementById('edit-post-modal').style.display = 'none'">&times;</button>
+    <div class="title2">Pigeon | Edit Post</div>
+    <form [formGroup]="editPostForm" (ngSubmit)="editPostSubmit()" class="form">
+      <div id="i1" style="text-align: center;">{{post.title}}</div>
+      <div id="i2"><textarea name="editPostContent" placeholder="Enter Post Content..." formControlName="editPostContent" required></textarea></div>
+      <button class="submit" type="submit" onClick="getElementById('edit-post-modal').style.display = 'none'">submit</button>
+    </form>
+  </div>
+
+</div>

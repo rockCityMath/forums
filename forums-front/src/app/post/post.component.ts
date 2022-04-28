@@ -1,8 +1,9 @@
-import { getSafePropertyAccessString } from '@angular/compiler';
+import { getSafePropertyAccessString, ResourceLoader } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../shared/services/server-interface.service'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Subscription } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-post',
@@ -10,6 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
+  editPostForm!: FormGroup;
   post: any;
   id: any = []
   comments: any = [];
@@ -19,14 +21,17 @@ export class PostComponent implements OnInit {
   selectedCommentID = ''
   selectedPostID = ''
 
-  constructor(private router: Router, private route: ActivatedRoute, private serverService: ServerService) { }
+  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private serverService: ServerService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id')
     this.getPostDetails()
     this.getPostComments()
-
-    this.getUserID() 
+    this.selectedPostID = ''
+    this.editPostForm = this.fb.group({
+      editPostContent: ['']
+    });
+    this.getUserID()
     //this.getUsername()
   }
 
@@ -75,18 +80,26 @@ export class PostComponent implements OnInit {
     }
 
   }
-/*
-  getUsername() {
-    const userObservable = this.serverService.getUsernameFromID(this.id)
-    userObservable.subscribe((data ) => {
-      //console.log("USERNAME")
-      data = Object.values(data)
-      console.log(data[0])
-      this.username = data[0]
+
+  async editPostSubmit() {
+
+    if (!this.editPostForm?.valid) {
+      console.log('Form not valid. Please check that fields are correctly filled in');
+      return;
+    }
+
+    const request = this.serverService.updatePost(
+      {content: this.editPostForm.get('editPostContent')?.value},
+      this.selectedPostID
+    );
+
+    request.subscribe(() => {
+      //SHOW SUCCESS HERE
+      //alert(this.selectedPostID)
+      alert("Successfully updated!")
+      window.location.reload()
     })
   }
-
-*/
 
   deleteComment(commentID) {
     const delObservable = this.serverService.deleteComment({"commentID": commentID}, this.id)
