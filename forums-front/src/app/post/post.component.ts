@@ -25,6 +25,8 @@ export class PostComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id')
     this.getPostDetails()
     this.getPostComments()
+
+    this.getUserID() 
     //this.getUsername()
   }
 
@@ -54,7 +56,7 @@ export class PostComponent implements OnInit {
         }
         else {
           this.userID = data.userID
-          this.checkIfUserOwnsPost(this.userID)
+          this.checkIfUserOwnsPost()
         }
 
       })
@@ -62,13 +64,16 @@ export class PostComponent implements OnInit {
     else {
       this.userID = 0
     }
+    //console.log(this.userID)
 
   }
 
-  checkIfUserOwnsPost(id: any) {
-    if(this.post.userID == id) {
+  checkIfUserOwnsPost() {
+    console.log(this.post[1].userID)
+    if(this.post[1].userID == this.userID) {
       this.userOwnsPost = true
     }
+
   }
 /*
   getUsername() {
