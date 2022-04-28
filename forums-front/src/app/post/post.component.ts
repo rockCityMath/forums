@@ -25,14 +25,14 @@ export class PostComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id')
     this.getPostDetails()
     this.getPostComments()
-    this.getUsername()
+    //this.getUsername()
   }
 
   getPostDetails() {
     const postsObservable = this.serverService.getPostDetails(this.id)
     postsObservable.subscribe((data ) => {
       data = Object.values(data)
-      this.post = data[1]
+      this.post = data
       this.getUserID()
     })
   }
@@ -70,18 +70,18 @@ export class PostComponent implements OnInit {
       this.userOwnsPost = true
     }
   }
-
+/*
   getUsername() {
     const userObservable = this.serverService.getUsernameFromID(this.id)
     userObservable.subscribe((data ) => {
-      console.log("USERNAME")
+      //console.log("USERNAME")
       data = Object.values(data)
       console.log(data[0])
       this.username = data[0]
     })
   }
 
-
+*/
 
   deleteComment(commentID) {
     const delObservable = this.serverService.deleteComment({"commentID": commentID}, this.id)
