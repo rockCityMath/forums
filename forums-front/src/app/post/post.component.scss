@@ -1,8 +1,9 @@
+
+
 .box {
   display: flex;
   flex-direction: row wrap;
-  margin: 4vw;
-  margin-top: 8vh;
+  margin: 8vh 4vw 30vh 4vw
 }
 
 .left {
@@ -16,30 +17,14 @@
   flex-direction: column;
 }
 
-.post {
-  border-radius: 30px;
-  @apply bg-white;
-  filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
+.post, .stats {
+  border-radius: 1.75vw;
   padding: 4vh 4vw 4vh 4vw;
   display: flex;
   flex-direction: column;
-}
-
-.edit-button {
-  float: right;
-  // margin-right: -4vw;
-  // margin-top: -6vh;
-}
-
-.post-title {
-  //padding: 0vh 1.5vw 1vh 0vw;
-  width: 46vw;
-}
-
-.title{
-  //float: left;
-  font-size: 3vh;
-  font-weight: 600;
+  margin-bottom: 2.5vh;
+  @apply bg-white;
+  filter: drop-shadow(0.5vh 0.5vh 0.5vh rgba(0, 0, 0, 0.5));
 }
 
 .post-content {
@@ -56,7 +41,7 @@
   width: 48vw;
   margin: 0vh 4vw 2vh 4vw;
   font-size: 1.5vh;
-  @apply text-gray-400;
+  @apply text-gray-500;
 }
 
 .comments {
@@ -66,24 +51,13 @@
   padding: 1vh 0vw 0vh 9.3vw;
 }
 
-.post-stats {
-  //position: absolute;
-  //left: 0;
-  width: 8vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.75vh;
-}
-
 .comment-title {
   border-top: 1.5px solid rgba(0, 0, 0, 0.25);
   width: 48vw;
   padding-top: 2vh;
   margin: 0vh 4vw 0vh 4vw;
-  font-size: 2vh;
-  font-weight: 300;
   float: left;
+  font-size: 3vh;
 }
 
 .content{
@@ -100,19 +74,48 @@
 svg {
   height: 2vh;
 }
+
 .commentEditButton {
   float: right;
   padding: 4px;
 }
 
+.title {
+  padding: 0vh 0.5vw 1vh 4vw;
+  width: 40vw;
+  float: left;
+  font-size: 3vh;
+  font-weight: 600;
+}
 
-.shell {
-  //position: fixed;
-  //left: 0;
-  padding: 1vh 0vw 0vh 0vw;
+.post-title, .header {
+  width: 40vw;
+  float: left;
+  font-size: 3vh;
+  font-weight: 600;
+}
+
+.post-stats {
+  margin-top: 1vh;
+  position: absolute;
+  left: 0;
+  width: 8vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.75vh;
+}
+
+.post-content  {
+  padding: 0vh 0.5vw 1vh 0vw;
+  width: 40vw;
+  //float: left;
+  font-size: 1.75vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.editbuttons {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-left: -8vw;
-//  margin-bottom:-4vh;
 }

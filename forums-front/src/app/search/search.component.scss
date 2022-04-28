@@ -4,6 +4,7 @@
   width: 60vw;
   margin-left: 20vw;
   margin-top: 8vh;
+  margin-bottom: 40vh;
 }
 
 .post, .result-cont {
@@ -13,7 +14,7 @@
   flex-direction: column;
   margin-bottom: 2.5vh;
   @apply bg-white;
-  filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0.5vh 0.5vh 0.5vh rgba(0, 0, 0, 0.5));
 }
 
 .result-title {

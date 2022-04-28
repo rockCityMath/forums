@@ -6,7 +6,7 @@
     <!--Username/Logout-->
     <div class="buttons">
       <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
-          <button type="button" class="sign-up"><a id="signUpBG" routerLink="/user/{{userID}}">{{username}}</a></button>
+          <button type="button" class="sign-up"><a id="signUpBG" routerLink="/user/{{userID}}">{{this.navUsername}}</a></button>
           <button type="button" class="login" (click)="authService.logout()">Logout</button>
       </div>
   <!--Register/Login-->

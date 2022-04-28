@@ -109,7 +109,13 @@ export class AdminComponent implements OnInit {
     })
   }
 
-  deleteComment() {
-
+  deleteComment(commentID) {
+    const delObservable = this.serverService.deleteComment({"commentID": commentID}, this.selectedPost)
+    delObservable.subscribe((data ) => {
+      data = Object.values(data)
+      this.userComments = data
+      this.getUsersComments()
+      this.router.navigate(['/admin/']);
+    })
   }
 }

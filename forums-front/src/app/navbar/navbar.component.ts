@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
 
   search!: FormGroup;
   query: any = '';
-  username: any = "null"
+  navUsername: any = "null"
   isAdmin: Boolean = false
   userID: any = ''
   title = 'Pigeon';
@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
           nameObservable.subscribe((data ) => {
             console.log(data)
             data = Object.values(data)
-            this.username = data[0]
+            this.navUsername = data[0]
             this.isAdmin = data[1]
           })
           const idObservable = this.server.getUserID()

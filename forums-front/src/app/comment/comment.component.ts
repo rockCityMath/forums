@@ -4,6 +4,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { ServerService } from '../shared/services/server-interface.service'
 import { Router } from '@angular/router'
 import {ActivatedRoute } from '@angular/router'
+import { Input } from '@angular/core'
 
 @Component({
   selector: 'app-comment',

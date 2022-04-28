@@ -1,15 +1,15 @@
 .post {
-  border-radius: 1vw;
+  border-radius: 1.75vw;
   padding: 4vh 4vw 4vh 4vw;
   display: flex;
   flex-direction: column;
   margin-bottom: 2.5vh;
   @apply bg-white;
-  filter: drop-shadow(6px 6px 20px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0.5vh 0.5vh 0.5vh rgba(0, 0, 0, 0.5));
 }
 
 
-
+/*
 .shell {
   //position: fixed;
   //left: 0;
@@ -27,7 +27,19 @@
   flex-direction: column;
   align-items: center;
   font-size: 1.75vh;
+}*/
+
+.post-stats {
+  margin-top: 1vh;
+  position: absolute;
+  left: 0;
+  width: 8vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.75vh;
 }
+
 .post-title {
   padding: 0vh 0.5vw 1vh 0vw;
   width: 40vw;
@@ -37,11 +49,21 @@
 }
 
 .post-content {
+  padding: 0vh 1.5vw 1vh 0vw;
+  margin-left: 4vw;
+  //left: 4vw;
+  //width: 45vw;
+  font-size: 1.75vh;
+}
+
+
+/*
+.post-content {
   padding: 0vh 0.5vw 1vh 4vw;
   left: 4vw;
   width: 45vw;
   font-size: 1.75vh;
-}
+}*/
 
 .post-info {
   display: flex;
@@ -49,7 +71,8 @@
   width: 45vw;
   margin: 0vh 4vw 0vh 4vw;
   font-size: 1.5vh;
-  @apply text-gray-400;
+  //color: black;
+  @apply text-gray-500;
 }
 
 .link {
@@ -85,7 +108,7 @@ svg {
   @apply bg-white;
 }
 
-.title {
+.title2 {
   justify-self: center;
   font-family: Montserrat;
   font-weight: 300;
@@ -102,7 +125,7 @@ svg {
     position: absolute;
     right: 37vw;
     padding-top: 1.5vh;
-    @apply text-gray-300;
+    @apply text-gray-400;
 }
 
 .close:hover,
@@ -173,4 +196,20 @@ input {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+.title {
+  padding: 0vh 0.5vw 1vh 4vw;
+  width: 40vw;
+  float: left;
+  font-size: 3vh;
+  font-weight: 600;
+}
+
+.post-title, .header {
+  width: 40vw;
+  float: left;
+  font-size: 3vh;
+  font-weight: 600;
 }

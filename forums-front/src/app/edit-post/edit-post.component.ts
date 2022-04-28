@@ -4,6 +4,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { ServerService } from '../shared/services/server-interface.service'
 import { Router } from '@angular/router'
 import { ActivatedRoute } from '@angular/router'
+import { Input } from '@angular/core'
 
 @Component({
   selector: 'app-edit-post',
@@ -15,7 +16,7 @@ export class EditPostComponent implements OnInit {
   editPostForm!: FormGroup;
   public loginInvalid?: boolean;
   private formSubmitAttempt?: boolean;
-  private id: any;
+  @Input() id: any
   public post: any;
 
 
@@ -48,7 +49,7 @@ export class EditPostComponent implements OnInit {
       //SHOW SUCCESS HERE
 
       alert("Successfully updated!")
-      this.router.navigate(['/post/' + this.post._id]);
+      window.location.reload()
     })
   }
 

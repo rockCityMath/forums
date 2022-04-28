@@ -14,6 +14,7 @@ export class RecentComponent implements OnInit {
   mostLikedPosts: any = [];
   userID: any = ''
   postID: any = ''
+  selectedPost=''
   commentForm!: FormGroup;
   private formSubmitAttempt?: boolean;
 
@@ -58,7 +59,7 @@ export class RecentComponent implements OnInit {
 
     const request = this.serverService.addReply({
       content: this.commentForm.get('commentContent')?.value
-    }, this.postID );
+    }, this.selectedPost );
 
     request.subscribe(() => {
       alert("Successfully posted!")

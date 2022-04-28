@@ -1,7 +1,7 @@
 import { getSafePropertyAccessString } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../shared/services/server-interface.service'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,8 +17,9 @@ export class PostComponent implements OnInit {
   userOwnsPost = false
   username? = ''
   selectedCommentID = ''
+  selectedPostID = ''
 
-  constructor(private route: ActivatedRoute, private serverService: ServerService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private serverService: ServerService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id')
@@ -80,6 +81,8 @@ export class PostComponent implements OnInit {
     })
   }
 
+
+
   deleteComment(commentID) {
     const delObservable = this.serverService.deleteComment({"commentID": commentID}, this.id)
     delObservable.subscribe((data ) => {
@@ -87,6 +90,16 @@ export class PostComponent implements OnInit {
     })
 
 
+  }
+
+  deletePost(id:any) {
+    const postsObservable = this.serverService.deletePost(id)
+    postsObservable.subscribe((data) => {
+      data = Object.values(data)
+      this.post = data
+      //this.getUserPosts()
+      this.router.navigate(['/home']);
+    })
   }
 
   ngOnDestroy() {

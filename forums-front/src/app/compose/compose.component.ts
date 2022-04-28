@@ -42,7 +42,7 @@ export class ComposeComponent implements OnInit {
       //SHOW SUCCESS HERE
 
       alert("Successfully posted!")
-      this.router.navigate(['/home']);
+      window.location.reload()
     })
   }
 }

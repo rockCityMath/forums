@@ -15,15 +15,20 @@
       <div *ngFor="let user of userList[1]">
         <div *ngIf="user._id == this.selectedUser">
           <a routerLink="/user/{{user._id}}">Username: {{user.username}}</a>
-          <p>Admin: {{user.isAdmin}}</p>
-          <p>Biography: {{user.biography}}</p>
-          <button (click) = "changeAdmin(user.isAdmin)">Change Admin Status</button>
-          <div><button onClick="getElementById('edit-bio-modal').style.display = 'block'" (click)="this.selectedUser = user._id" >Edit Biography</button> </div>
+          <div class="adminstatus">
+            <p>Admin: {{user.isAdmin}}</p>
+            <button (click) = "changeAdmin(user.isAdmin)">Change Admin Status</button>
+          </div>
+          <div class="editbio">
+            <p>Biography: {{user.biography | shorten: 125}}</p>
+            <div><button onClick="getElementById('edit-bio-modal').style.display = 'block'" (click)="this.selectedUser = user._id" >Edit Biography</button> </div>
+          </div>
+          <p>Posts - {{userStats.numberOfPosts}}</p>
+          <p>Comments - {{userStats.numberOfComments}}</p>
+          <p>Likes - {{userStats.numberOfLikes}}</p>
         </div>
       </div>
-        <p>posts - {{userStats.numberOfPosts}}</p>
-        <p>comments - {{userStats.numberOfComments}}</p>
-        <p>likes - {{userStats.numberOfLikes}}</p>
+
     </div>
 
     <div class="r2">
@@ -31,8 +36,9 @@
       <div *ngFor="let post of userPosts[1]" class="post-list">
         <a *ngIf="!userPosts">User has no posts</a>
         <a routerLink="/post/{{post._id}}" class="title">{{post.title | shorten: 45}}</a>
+
         <div class="inner-right">
-          <button onClick="getElementById('edit-post-modal').style.display = 'block'"  (click)="this.selectedPost = post._id" class="edit">Edit Post Details</button>
+          <button onClick="getElementById('edit-post-modal').style.display = 'block'"  (click)="this.selectedPost = post._id; this.getUsersPosts(); this.getUsersComments(); this.getUserStats()" class="edit">Edit Post Details</button>
           <button (click)="this.selectedPost = post._id; this.deletePost()" class="remove">Remove Post</button>
         </div>
       </div>
@@ -41,11 +47,11 @@
     <div class="r3">
       <div class="header">User Comments</div>
       <div *ngFor="let comment of userComments[1]" class="post-list">
-        <a *ngIf="comment == ''">User has no comments</a>
-        <a routerLink="/post/{{comment.postID}}" class="title">{{comment.content | shorten: 40}}</a>
+          <a routerLink="/post/{{comment.postID}}" class="title">{{comment.content | shorten: 10}}</a>
+
         <div class="inner-right">
-          <button (click)="this.selectedComment = comment._id" onClick="getElementById('edit-comment-modal').style.display = 'block'" class="edit">Edit Comment Details</button>
-          <button (click)="this.selectedComment = comment._id; this.deleteComment()" class="remove">Remove Comment</button>
+          <button (click)="this.selectedComment = comment._id; this.getUsersPosts(); this.getUsersComments(); this.getUserStats()" onClick="getElementById('edit-comment-modal').style.display = 'block'" class="edit">Edit Comment Details</button>
+          <button (click)="this.selectedComment = comment._id; this.selectedPost = comment.postID; this.deleteComment(this.selectedComment); " class="remove">Remove Comment</button>
         </div>
       </div>
     </div>
@@ -58,7 +64,6 @@
 <app-login id="login-modal" class="modal"></app-login>
 <app-register id="reg-modal" class="modal"></app-register>
 <app-edit-bio id="edit-bio-modal" [userID]="this.selectedUser" class="modal"></app-edit-bio>
-<!--<app-edit-post id="edit-post-modal" class="modal"></app-edit-post>-->
 <app-edit-comment id="edit-comment-modal" [id]="this.selectedComment" class="modal"></app-edit-comment>
 <app-compose id="compose-modal" class="modal"></app-compose>
 <app-comment id="comment-modal" class="modal"></app-comment>

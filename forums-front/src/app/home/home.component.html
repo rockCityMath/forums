@@ -5,12 +5,16 @@
   </div>
   <div class="right">
     <!--shows create post button if logged in-->
-    <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
-      <button class="compose" onClick="getElementById('compose-modal').style.display = 'block'"><div class="create">+ Create a New Post</div></button>
-    </div>
-    <ng-template #notLoggedIn></ng-template>
+
     <!--shows featured (most liked) posts-->
     <app-feature></app-feature>
   </div>
+
+</div>
+<div class="post">
+  <div *ngIf="authService.isLoggedIn | async as isLoggedIn; else notLoggedIn">
+    <button class="compose" onClick="getElementById('compose-modal').style.display = 'block'"><div class="create">+</div></button>
+  </div>
+  <ng-template #notLoggedIn></ng-template>
 </div>
 <app-compose id="compose-modal" class="modal"></app-compose>
