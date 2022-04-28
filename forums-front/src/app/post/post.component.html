@@ -1,6 +1,7 @@
 <div class="box">
   <div class="left">
-        <a *ngFor="let post of post" class="post">
+        <a *ngFor="let post of post">
+          <a *ngIf="post._id" class="post">
           <div class="shell">
             <div class="post-stats">
                 <!--like button/count-->
@@ -77,12 +78,14 @@
 
     </div>
   </a>
+</a>
+  </div>
+  <div class="right">
+    <!--features posts-->
+        <app-feature></app-feature>
   </div>
 </div>
-<div class="right">
-  <!--features posts-->
-      <app-feature></app-feature>
-</div>
+
 
 
 <app-edit-bio id="edit-bio-modal" class="modal"></app-edit-bio>
