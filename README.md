@@ -7,7 +7,7 @@ Created by me and @natalioc
 # In Action!
 https://www.youtube.com/watch?v=H4GsLzhys48  
   
-[PigeonForums](pigeonforums.com)
+[PigeonForums](https://pigeonforums.com)
 
 # Installation / Use
 - clone the project
